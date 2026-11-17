@@ -26,6 +26,7 @@ class Store:
                 CREATE TABLE IF NOT EXISTS documents(id TEXT PRIMARY KEY, name TEXT, content TEXT, created REAL);
                 CREATE VIRTUAL TABLE IF NOT EXISTS chunks USING fts5(document UNINDEXED, name UNINDEXED, content);
                 CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY, value TEXT);
+                CREATE TABLE IF NOT EXISTS samples(id TEXT PRIMARY KEY, model TEXT, prompt TEXT, result TEXT, created REAL, settings TEXT);
                 CREATE TABLE IF NOT EXISTS datasets(id TEXT PRIMARY KEY, name TEXT, tokens INTEGER, chars INTEGER, sha256 TEXT, created REAL);
                 CREATE TABLE IF NOT EXISTS runs(id TEXT PRIMARY KEY, name TEXT, config TEXT, status TEXT, control TEXT DEFAULT '',
                     step INTEGER DEFAULT 0, best REAL, error TEXT, pid INTEGER, created REAL, updated REAL);

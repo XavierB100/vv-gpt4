@@ -1,0 +1,392 @@
+{
+  "runs": [
+    {
+      "kind": "gpt2",
+      "run": "bdefa02b53d94a10a8aaca48429ad95c",
+      "config": {
+        "dataset": "6ea35dc170924c07b6457ee85cf6b444",
+        "tokenizer": "gpt2",
+        "size": "nano",
+        "steps": 400,
+        "batch": 8,
+        "context": 128,
+        "eval_every": 50,
+        "patience": 20,
+        "seed": 42,
+        "name": "Shakespeare pilot \u00b7 original vocabulary"
+      },
+      "summary": {
+        "parameters": 8007840,
+        "vocab_size": 50257,
+        "tokenizer": "gpt2",
+        "train_tokens": 267687,
+        "validation_tokens": 34277,
+        "test_chars": 111537,
+        "device": "mps",
+        "dataset_sha256": "60974fad486084624837c0ab96504fa03208a0bda04fc0338d1713d96a74d169",
+        "split": "80/10/10 chronological",
+        "step": 400,
+        "elapsed": 26.00267687500036,
+        "training_seconds": 22.034797500990862,
+        "steady_training_seconds": 20.50187983599062,
+        "steady_steps": 390,
+        "steady_ms_per_step": 52.568922656386206,
+        "tokens_per_second": 18588.77985974598,
+        "best_loss": 6.023659944534302,
+        "best_step": 400,
+        "test": {
+          "bits_per_byte": 2.707914297565315,
+          "loss": 5.9800339643340905,
+          "tokens": 2511,
+          "bytes": 8000,
+          "chars": 8000,
+          "context_tokens": 128,
+          "text_sha256": "32671005d40755be6ec42a60664ce166e5da54d4c291e302fc820dd3ee9248b4"
+        }
+      },
+      "metrics": [
+        {
+          "step": 1,
+          "train": 10.83701777458191,
+          "val": 10.842495918273926,
+          "lr": 7.499999999999999e-06,
+          "elapsed": 1.209680166999533
+        },
+        {
+          "step": 50,
+          "train": 8.733472108840942,
+          "val": 8.82168459892273,
+          "lr": 0.00029958384005397226,
+          "elapsed": 4.203272499999912
+        },
+        {
+          "step": 100,
+          "train": 6.7290037870407104,
+          "val": 6.912101864814758,
+          "lr": 0.0002824980189518864,
+          "elapsed": 7.2656481670001085
+        },
+        {
+          "step": 150,
+          "train": 6.179236531257629,
+          "val": 6.454784512519836,
+          "lr": 0.00024339489902097685,
+          "elapsed": 10.236997250000059
+        },
+        {
+          "step": 200,
+          "train": 5.934054851531982,
+          "val": 6.264630079269409,
+          "lr": 0.00018960179594143992,
+          "elapsed": 13.269260541999756
+        },
+        {
+          "step": 250,
+          "train": 5.772770285606384,
+          "val": 6.15573251247406,
+          "lr": 0.00013119869945265038,
+          "elapsed": 16.345133959000123
+        },
+        {
+          "step": 300,
+          "train": 5.674079179763794,
+          "val": 6.087587356567383,
+          "lr": 7.912944026250185e-05,
+          "elapsed": 19.351685083999655
+        },
+        {
+          "step": 350,
+          "train": 5.619058132171631,
+          "val": 6.0467212200164795,
+          "lr": 4.315098661276884e-05,
+          "elapsed": 22.341005499999483
+        },
+        {
+          "step": 400,
+          "train": 5.590014576911926,
+          "val": 6.023659944534302,
+          "lr": 3.000514038633687e-05,
+          "elapsed": 25.365535208999972
+        }
+      ]
+    },
+    {
+      "kind": "compact",
+      "run": "f57f481dcf8a412a9e381bc0901527b7",
+      "config": {
+        "dataset": "6ea35dc170924c07b6457ee85cf6b444",
+        "tokenizer": "compact",
+        "size": "nano",
+        "steps": 400,
+        "batch": 8,
+        "context": 128,
+        "eval_every": 50,
+        "patience": 20,
+        "seed": 42,
+        "name": "Shakespeare pilot \u00b7 compact vocabulary"
+      },
+      "summary": {
+        "parameters": 1360656,
+        "vocab_size": 4096,
+        "tokenizer": "compact",
+        "train_tokens": 272112,
+        "validation_tokens": 36226,
+        "test_chars": 111537,
+        "device": "mps",
+        "dataset_sha256": "60974fad486084624837c0ab96504fa03208a0bda04fc0338d1713d96a74d169",
+        "split": "80/10/10 chronological",
+        "step": 400,
+        "elapsed": 12.388658415999998,
+        "training_seconds": 10.649765694002781,
+        "steady_training_seconds": 9.941638945001614,
+        "steady_steps": 390,
+        "steady_ms_per_step": 25.49138191026055,
+        "tokens_per_second": 38460.940059053006,
+        "best_loss": 5.5389931201934814,
+        "best_step": 400,
+        "test": {
+          "bits_per_byte": 2.930035211781902,
+          "loss": 5.77588523565727,
+          "tokens": 2813,
+          "bytes": 8000,
+          "chars": 8000,
+          "context_tokens": 128,
+          "text_sha256": "32671005d40755be6ec42a60664ce166e5da54d4c291e302fc820dd3ee9248b4"
+        }
+      },
+      "metrics": [
+        {
+          "step": 1,
+          "train": 8.320096254348755,
+          "val": 8.319469928741455,
+          "lr": 7.499999999999999e-06,
+          "elapsed": 0.5449791660003029
+        },
+        {
+          "step": 50,
+          "train": 6.954485535621643,
+          "val": 6.969025492668152,
+          "lr": 0.00029958384005397226,
+          "elapsed": 1.9388522079998438
+        },
+        {
+          "step": 100,
+          "train": 6.06985068321228,
+          "val": 6.124691009521484,
+          "lr": 0.0002824980189518864,
+          "elapsed": 3.4459144160000506
+        },
+        {
+          "step": 150,
+          "train": 5.7973103523254395,
+          "val": 5.885919451713562,
+          "lr": 0.00024339489902097685,
+          "elapsed": 4.907340124999791
+        },
+        {
+          "step": 200,
+          "train": 5.647488951683044,
+          "val": 5.739997386932373,
+          "lr": 0.00018960179594143992,
+          "elapsed": 6.372341665999556
+        },
+        {
+          "step": 250,
+          "train": 5.538764238357544,
+          "val": 5.647353768348694,
+          "lr": 0.00013119869945265038,
+          "elapsed": 7.839777041000161
+        },
+        {
+          "step": 300,
+          "train": 5.4723451137542725,
+          "val": 5.580462217330933,
+          "lr": 7.912944026250185e-05,
+          "elapsed": 9.272198333000233
+        },
+        {
+          "step": 350,
+          "train": 5.440766930580139,
+          "val": 5.558526396751404,
+          "lr": 4.315098661276884e-05,
+          "elapsed": 10.68256079099956
+        },
+        {
+          "step": 400,
+          "train": 5.420360326766968,
+          "val": 5.5389931201934814,
+          "lr": 3.000514038633687e-05,
+          "elapsed": 12.096303790999627
+        }
+      ]
+    },
+    {
+      "kind": "compact_equal_budget",
+      "run": "655a9d135988470f8dcc65fd9f45ecfa",
+      "config": {
+        "dataset": "6ea35dc170924c07b6457ee85cf6b444",
+        "tokenizer": "compact",
+        "size": "nano",
+        "steps": 800,
+        "batch": 8,
+        "context": 128,
+        "eval_every": 50,
+        "patience": 20,
+        "seed": 42,
+        "name": "Shakespeare pilot \u00b7 compact / equal budget"
+      },
+      "summary": {
+        "parameters": 1360656,
+        "vocab_size": 4096,
+        "tokenizer": "compact",
+        "train_tokens": 272112,
+        "validation_tokens": 36226,
+        "test_chars": 111537,
+        "device": "mps",
+        "dataset_sha256": "60974fad486084624837c0ab96504fa03208a0bda04fc0338d1713d96a74d169",
+        "split": "80/10/10 chronological",
+        "step": 800,
+        "elapsed": 24.159396082999592,
+        "training_seconds": 21.05023358301696,
+        "steady_training_seconds": 20.417293126017285,
+        "steady_steps": 790,
+        "steady_ms_per_step": 25.844674843059853,
+        "tokens_per_second": 38916.43276875176,
+        "best_loss": 5.241535544395447,
+        "best_step": 800,
+        "test": {
+          "bits_per_byte": 2.817310743758457,
+          "loss": 5.553675076565707,
+          "tokens": 2813,
+          "bytes": 8000,
+          "chars": 8000,
+          "context_tokens": 128,
+          "text_sha256": "32671005d40755be6ec42a60664ce166e5da54d4c291e302fc820dd3ee9248b4"
+        }
+      },
+      "metrics": [
+        {
+          "step": 1,
+          "train": 8.321181058883667,
+          "val": 8.320540428161621,
+          "lr": 5.999999999999999e-06,
+          "elapsed": 0.465245583000069
+        },
+        {
+          "step": 50,
+          "train": 7.099905014038086,
+          "val": 7.111873388290405,
+          "lr": 0.0003,
+          "elapsed": 2.023558707999655
+        },
+        {
+          "step": 100,
+          "train": 6.102708339691162,
+          "val": 6.155041575431824,
+          "lr": 0.00029716633857664146,
+          "elapsed": 3.4917982919996575
+        },
+        {
+          "step": 150,
+          "train": 5.793060541152954,
+          "val": 5.883904814720154,
+          "lr": 0.00028855755830382385,
+          "elapsed": 4.9589224999999715
+        },
+        {
+          "step": 200,
+          "train": 5.613503932952881,
+          "val": 5.707116723060608,
+          "lr": 0.0002745487198381837,
+          "elapsed": 6.41325145799965
+        },
+        {
+          "step": 250,
+          "train": 5.46329927444458,
+          "val": 5.572506904602051,
+          "lr": 0.00025575207664253464,
+          "elapsed": 7.847074749999592
+        },
+        {
+          "step": 300,
+          "train": 5.366857528686523,
+          "val": 5.488244891166687,
+          "lr": 0.0002329891322208277,
+          "elapsed": 9.281849832999796
+        },
+        {
+          "step": 350,
+          "train": 5.312751650810242,
+          "val": 5.451771855354309,
+          "lr": 0.00020725473647301753,
+          "elapsed": 10.715900832999978
+        },
+        {
+          "step": 400,
+          "train": 5.250609874725342,
+          "val": 5.378148555755615,
+          "lr": 0.00017967360598061498,
+          "elapsed": 12.168377666999731
+        },
+        {
+          "step": 450,
+          "train": 5.199952840805054,
+          "val": 5.344074368476868,
+          "lr": 0.00015145116849508595,
+          "elapsed": 13.622772207999333
+        },
+        {
+          "step": 500,
+          "train": 5.166424512863159,
+          "val": 5.318819284439087,
+          "lr": 0.00012382087996082853,
+          "elapsed": 15.08038149999993
+        },
+        {
+          "step": 550,
+          "train": 5.13619589805603,
+          "val": 5.297529101371765,
+          "lr": 9.799031657162413e-05,
+          "elapsed": 16.55527683299988
+        },
+        {
+          "step": 600,
+          "train": 5.118434429168701,
+          "val": 5.278929710388184,
+          "lr": 7.508839789637604e-05,
+          "elapsed": 18.082169749999593
+        },
+        {
+          "step": 650,
+          "train": 5.105027914047241,
+          "val": 5.265772581100464,
+          "lr": 5.6116047676791134e-05,
+          "elapsed": 19.52371391699944
+        },
+        {
+          "step": 700,
+          "train": 5.093661069869995,
+          "val": 5.250003337860107,
+          "lr": 4.19024486569023e-05,
+          "elapsed": 20.979073208000045
+        },
+        {
+          "step": 750,
+          "train": 5.084574937820435,
+          "val": 5.243165493011475,
+          "lr": 3.306880331829388e-05,
+          "elapsed": 22.445986749999975
+        },
+        {
+          "step": 800,
+          "train": 5.0794326066970825,
+          "val": 5.241535544395447,
+          "lr": 3.0001184350796418e-05,
+          "elapsed": 23.90695258300002
+        }
+      ]
+    }
+  ],
+  "caveat": "One seed, 400 steps, one corpus. Different token counts per raw byte; token losses are not directly comparable. Test bits/byte uses the same raw text and each model has a 128-token context. Not a general coherence benchmark.",
+  "equal_budget_note": "After observing the 400-step timing, the compact model received 800 steps to approximate the original model training compute time. The original 400-step compact result is retained. One seed and corpus; this is not a blinded final benchmark."
+}

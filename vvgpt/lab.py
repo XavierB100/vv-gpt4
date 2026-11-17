@@ -10,6 +10,11 @@ from dataclasses import asdict
 from pathlib import Path
 
 from .store import uid
+from .data import prepare, split_text, fingerprint
+from .tokenizer import Codec, fit_codec
+import threading
+
+_CODEC_LOCK = threading.Lock()
 
 LEGACY = Path('/Users/xavier/AI/hermes-workspace/vv-gpt3/models')
 PRESETS = {'nano', 'micro', 'tiny', 'small'}
@@ -20,15 +25,45 @@ def tokenize(text):
     return tiktoken.get_encoding('gpt2').encode_ordinary(text)
 
 
-def add_dataset(store, name, text):
-    encoded = tokenize(text)
+def add_dataset(store, name, text, deduplicate=True):
+    prepared, report = prepare(text, deduplicate)
+    encoded = tokenize(prepared)
     if len(encoded) < 200:
-        raise ValueError('Add at least 200 tokens of text. A useful model will need much more.')
+        raise ValueError('Add at least 200 tokens of varied text; useful training needs much more.')
     did = uid()
-    (store.root / 'datasets' / f'{did}.txt').write_text(text, encoding='utf-8')
+    (store.root/'datasets'/f'{did}.raw.txt').write_text(text,encoding='utf-8')
+    (store.root/'datasets'/f'{did}.txt').write_text(prepared,encoding='utf-8')
+    (store.root/'datasets'/f'{did}.json').write_text(json.dumps(report,indent=2))
     store.execute('INSERT INTO datasets VALUES(?,?,?,?,?,?)',
-                  (did, name, len(encoded), len(text), hashlib.sha256(text.encode()).hexdigest(), time.time()))
+                  (did,name,len(encoded),len(prepared),fingerprint(prepared),time.time()))
     return did
+
+
+def dataset_info(store):
+    result=store.rows('SELECT * FROM datasets ORDER BY created DESC')
+    for item in result:
+        path=store.root/'datasets'/f'{item["id"]}.json'
+        item['analysis']=json.loads(path.read_text()) if path.exists() else {}
+    return result
+
+
+def dataset_codec(store, did, kind):
+    if kind not in ('compact','gpt2'): raise ValueError('Unknown tokenizer.')
+    source=store.root/'datasets'/f'{did}.txt'
+    splits=split_text(source.read_text(encoding='utf-8'))
+    target=store.root/'datasets'/f'{did}.{kind}.json'
+    with _CODEC_LOCK:
+        if target.exists():
+            artifact=json.loads(target.read_text())
+            if artifact['train_sha256']!=fingerprint(splits['train']):
+                raise ValueError('Tokenizer source changed. Reimport the dataset.')
+            codec=Codec(artifact['codec'])
+        else:
+            codec=fit_codec(splits['train'],kind)
+            artifact={'train_sha256':fingerprint(splits['train']),'codec':codec.spec}
+            temporary=target.with_suffix('.tmp')
+            temporary.write_text(json.dumps(artifact));temporary.replace(target)
+    return codec,splits
 
 
 def training_config(store, payload):
@@ -36,12 +71,13 @@ def training_config(store, payload):
     if not dataset:
         raise ValueError('Select a dataset first.')
     config = {'dataset': dataset[0]['id'], 'dataset_sha256': dataset[0]['sha256'],
-              'size': payload.get('size', 'nano'), 'seed': 42}
+              'size': payload.get('size', 'nano'), 'seed': 42, 'pipeline': 5,
+              'tokenizer':payload.get('tokenizer','gpt2')}
     if config['size'] not in PRESETS:
         raise ValueError('Unknown model size.')
     for key, default, low, high in [('steps', 500, 2, 100000), ('context', 128, 16, 1024),
                                    ('batch', 4, 1, 32), ('eval_every', 25, 1, 1000),
-                                   ('patience', 6, 1, 100), ('accumulation', 1, 1, 16)]:
+                                   ('patience', 8, 1, 100), ('accumulation', 1, 1, 16), ('seed',42,0,2147483647)]:
         raw = payload.get(key, default)
         if isinstance(raw, bool) or not math.isfinite(float(raw)) or float(raw) != int(raw):
             raise ValueError(f'{key} must be a whole number.')
@@ -52,13 +88,16 @@ def training_config(store, payload):
     config['dropout'] = float(payload.get('dropout', 0.1))
     if not 0.000001 <= config['lr'] <= 0.01 or not 0 <= config['dropout'] <= 0.5:
         raise ValueError('Learning rate or dropout is out of range.')
-    if dataset[0]['tokens'] - int(dataset[0]['tokens'] * .9) <= config['context'] + 1:
-        raise ValueError('The validation split is too short for this context. Add more data or reduce context.')
+    codec,splits=dataset_codec(store,config['dataset'],config['tokenizer'])
+    lengths={key:len(codec.encode(value)) for key,value in splits.items()}
+    if any(value<=config['context']+1 for value in lengths.values()):
+        raise ValueError('A train/validation/test split is too short. Add more data or reduce context.')
+    config['codec_sha256']=fingerprint(json.dumps(codec.spec,sort_keys=True))
     return config
 
 
 def reconcile(store):
-    for run in store.rows("SELECT id,pid,updated FROM runs WHERE status IN ('queued','running','paused')"):
+    for run in store.rows("SELECT id,pid,updated FROM runs WHERE status IN ('queued','running','paused','evaluating')"):
         if not run['pid'] and time.time() - run['updated'] < 30:
             continue
         if run['pid']:
@@ -91,8 +130,8 @@ def start_run(store, payload):
     rid = uid()
     with store.db() as db:
         db.execute('BEGIN IMMEDIATE')
-        if db.execute("SELECT id FROM runs WHERE status IN ('queued','running','paused')").fetchone():
-            raise ValueError('Pause or stop the active run before starting another. Paused runs still hold the training slot.')
+        if db.execute("SELECT id FROM runs WHERE status IN ('queued','running','paused','evaluating')").fetchone():
+            raise ValueError('Stop the active run before starting another. A paused run still holds the training slot.')
         db.execute('INSERT INTO runs(id,name,config,status,created,updated) VALUES(?,?,?,?,?,?)',
                    (rid, name, json.dumps(config), 'queued', time.time(), time.time()))
     try:
@@ -120,7 +159,7 @@ def control_run(store, rid, action):
                 raise ValueError('No resumable checkpoint exists. Start a new experiment.')
             with store.db() as db:
                 db.execute('BEGIN IMMEDIATE')
-                if db.execute("SELECT id FROM runs WHERE status IN ('queued','running','paused')").fetchone():
+                if db.execute("SELECT id FROM runs WHERE status IN ('queued','running','paused','evaluating')").fetchone():
                     raise ValueError('Another experiment is active.')
                 db.execute("UPDATE runs SET status='queued',control='',error=NULL WHERE id=?", (rid,))
             spawn(store, rid)
@@ -143,7 +182,7 @@ def library(store):
             result.append({'id': 'legacy:' + name, 'name': name, 'origin': 'VV-GPT3', 'params': meta.get('params'),
                            'best': tm.get('best_val_loss'), 'step': tm.get('best_val_loss_step'),
                            'context': tm.get('block_size'), 'train_history': tm.get('train_loss_history', []),
-                           'val_history': tm.get('val_loss_history', []), 'variant': 'best', 'readonly': True})
+                           'val_history': tm.get('val_loss_history', []), 'variant': 'best', 'readonly': True, 'tokenizer':'gpt2', 'vocab':meta.get('vocab_size',50257)})
         except (OSError, ValueError):
             continue
     for run in store.rows('SELECT * FROM runs ORDER BY created DESC'):
@@ -151,7 +190,8 @@ def library(store):
             config = json.loads(run['config'])
             result.append({'id': 'run:' + run['id'], 'name': run['name'], 'origin': 'VV-GPT4',
                            'best': run['best'], 'step': run['step'], 'context': config['context'],
-                           'variant': 'best', 'readonly': False})
+                           'variant': 'best', 'readonly': False, 'tokenizer':config.get('tokenizer','gpt2'),
+                           'summary':run_summary(store,run['id'])})
     return result
 
 
@@ -164,33 +204,76 @@ def load_checkpoint(path):
         return torch.load(path, map_location='cpu', weights_only=True)
 
 
-def generate_sample(store, model_id, prompt, length):
+def run_summary(store,rid):
+    path=store.root/'runs'/rid/'summary.json'
+    return json.loads(path.read_text()) if path.exists() else {}
+
+
+def model_path(store,model_id,variant='best'):
+    if variant not in ('best','final','latest'): raise ValueError('Unknown checkpoint variant.')
+    models={m['id']:m for m in library(store)}
+    if model_id not in models: raise ValueError('Model not found.')
+    model=models[model_id]
+    if model_id.startswith('legacy:'):
+        suffix={'best':'_best','latest':'_latest','final':''}[variant]
+        return LEGACY/f'{model["name"]}{suffix}.pt'
+    return store.root/'runs'/model_id[4:]/f'{"latest" if variant=="latest" else "best"}.pt'
+
+
+class ModelCache:
+    def __init__(self):
+        self.key=None
+        self.loaded=None
+
+    def get(self,path):
+        import torch
+        from .model import GPT,GPTConfig
+        key=(str(path.resolve()),path.stat().st_mtime_ns)
+        if self.key!=key:
+            self.loaded=None
+            if torch.backends.mps.is_available(): torch.mps.empty_cache()
+            checkpoint=load_checkpoint(path)
+            config=checkpoint.get('config') or asdict(checkpoint['model_args'])
+            net=GPT(GPTConfig(**config))
+            net.load_state_dict(checkpoint['model'])
+            device='mps' if torch.backends.mps.is_available() else ('cuda' if torch.cuda.is_available() else 'cpu')
+            net.to(device).eval()
+            codec=Codec(checkpoint.get('codec'))
+            self.loaded=(net,codec,device,checkpoint.get('step',checkpoint.get('iter_num')))
+            self.key=key
+        return self.loaded
+
+
+def generate_sample(store, model_id, prompt, length, settings=None, cache=None):
     import torch
-    import tiktoken
-    from .model import GPT, GPTConfig
-    models = {m['id']: m for m in library(store)}
-    if model_id not in models:
-        raise ValueError('Model not found.')
-    if not isinstance(prompt, str) or not prompt.strip() or len(prompt) > 8000:
+    from .model import repeat_fraction
+    if not isinstance(prompt,str) or not prompt.strip() or len(prompt)>8000:
         raise ValueError('Enter a prompt of 1–8,000 characters.')
-    length = int(length)
-    if not 1 <= length <= 256:
-        raise ValueError('Generate between 1 and 256 tokens.')
-    model = models[model_id]
-    path = LEGACY / f'{model["name"]}_best.pt' if model_id.startswith('legacy:') else store.root / 'runs' / model_id[4:] / 'best.pt'
-    checkpoint = load_checkpoint(path)
-    config = checkpoint.get('config') or asdict(checkpoint['model_args'])
-    net = GPT(GPTConfig(**config))
-    net.load_state_dict(checkpoint['model'])
-    device = 'mps' if torch.backends.mps.is_available() else ('cuda' if torch.cuda.is_available() else 'cpu')
-    net.to(device).eval()
-    encoder = tiktoken.get_encoding('gpt2')
-    token_ids = encoder.encode_ordinary(prompt)
-    idx = torch.tensor([token_ids], device=device)
-    start = time.monotonic()
+    def integer(value, label):
+        if isinstance(value, bool) or not math.isfinite(float(value)) or float(value) != int(value):
+            raise ValueError(f'{label} must be a whole number.')
+        return int(value)
+    length=integer(length, 'Tokens')
+    if not 1<=length<=512: raise ValueError('Generate between 1 and 512 tokens.')
+    settings=settings or {}
+    seed=integer(settings.get('seed',42), 'Seed')
+    temperature=float(settings.get('temperature',.8))
+    penalty=float(settings.get('repetition_penalty',1.12))
+    ngram=integer(settings.get('no_repeat_ngram',0), 'Phrase guard')
+    if not 0<=seed<=2147483647 or not .1<=temperature<=2 or not 1<=penalty<=1.5 or ngram not in (0,3,4,5):
+        raise ValueError('Generation settings are out of range.')
+    net,codec,device,step=(cache or ModelCache()).get(model_path(store,model_id))
+    token_ids=codec.encode(prompt)
+    idx=torch.tensor([token_ids],device=device)
+    start=time.monotonic()
     with torch.inference_mode():
-        output = net.generate(idx, length, temperature=.8, top_k=40, top_p=.9)
-    generated = output[0, len(token_ids):].tolist()
-    return {'text': encoder.decode(generated), 'tokens': len(generated),
-            'seconds': round(time.monotonic()-start, 2), 'checkpoint': 'best',
-            'step': checkpoint.get('step', checkpoint.get('iter_num'))}
+        output=net.generate(idx,length,temperature=temperature,top_k=50,top_p=.9,
+            repetition_penalty=penalty,no_repeat_ngram_size=ngram,
+            generator=torch.Generator().manual_seed(seed),eos_token_id=codec.eos)
+    generated=output[0,len(token_ids):].tolist()
+    if generated and generated[-1]==codec.eos: generated=generated[:-1]
+    text=codec.decode(generated)
+    return {'text':text,'tokens':len(generated),'seconds':round(time.monotonic()-start,3),
+            'checkpoint':'best','step':step,'repeat_fraction':repeat_fraction(generated,4),
+            'seed':seed,'prompt_tokens':len(token_ids),'used_prompt_tokens':min(len(token_ids),net.config.block_size),
+            'context':net.config.block_size,'settings':{'temperature':temperature,'repetition_penalty':penalty,'no_repeat_ngram':ngram}}

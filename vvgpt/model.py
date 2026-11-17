@@ -259,7 +259,8 @@ class GPT(nn.Module):
         return logits, loss
 
     @torch.no_grad()
-    def generate(self, idx, max_new_tokens, temperature=1.0, top_k=None, top_p=None):
+    def generate(self, idx, max_new_tokens, temperature=1.0, top_k=None, top_p=None,
+                 repetition_penalty=1.0, no_repeat_ngram_size=0, generator=None, eos_token_id=None):
         """
         Fast generation using KV caching.
         """
@@ -268,6 +269,9 @@ class GPT(nn.Module):
         if not math.isfinite(temperature) or temperature <= 0:
             raise ValueError('Temperature must be positive and finite.')
         past_key_values = None
+        prompt_length = idx.size(1)
+        if eos_token_id is None and self.config.vocab_size == 50257:
+            eos_token_id = 50256
         for _ in range(max_new_tokens):
             if past_key_values is not None:
                 # If the sequence context is growing too long we unfortunately can't cache past block_size
@@ -286,6 +290,18 @@ class GPT(nn.Module):
 
             # Pluck the logits at the final step and scale by desired temperature
             logits = logits[:, -1, :] / temperature
+
+            # Penalize generated content, not the user's prompt. A bounded window avoids
+            # suppressing every common token in a long continuation.
+            for row in range(idx.size(0)):
+                generated = idx[row, prompt_length:].tolist()
+                if generated and repetition_penalty != 1:
+                    seen = list(set(generated[-64:]))
+                    values = logits[row, seen]
+                    logits[row, seen] = torch.where(values < 0, values * repetition_penalty, values / repetition_penalty)
+                banned = banned_ngram_tokens(generated, no_repeat_ngram_size)
+                if banned:
+                    logits[row, list(banned)] = -float('inf')
 
             # Optionally crop the logits to only the top k options
             if top_k is not None:
@@ -311,14 +327,30 @@ class GPT(nn.Module):
             # Apply softmax to convert logits to (normalized) probabilities
             probs = F.softmax(logits, dim=-1)
             # Sample from the distribution
-            idx_next = torch.multinomial(probs, num_samples=1)
+            if generator is None:
+                idx_next = torch.multinomial(probs, num_samples=1)
+            else:
+                idx_next = torch.multinomial(probs.cpu(), num_samples=1, generator=generator).to(idx.device)
             # Append sampled index to the running sequence and continue
             idx = torch.cat((idx, idx_next), dim=1)
 
-            if self.config.vocab_size == 50257 and bool((idx_next == 50256).all()):
+            if eos_token_id is not None and bool((idx_next == eos_token_id).all()):
                 break
 
         return idx
+
+
+def banned_ngram_tokens(tokens, size):
+    if size < 2 or len(tokens) < size-1:
+        return set()
+    prefix = tuple(tokens[-(size-1):])
+    return {tokens[i+size-1] for i in range(len(tokens)-size+1)
+            if tuple(tokens[i:i+size-1]) == prefix}
+
+
+def repeat_fraction(tokens, size=4):
+    grams = [tuple(tokens[i:i+size]) for i in range(len(tokens)-size+1)]
+    return 1-len(set(grams))/len(grams) if grams else 0.0
 
 
 # Example usage

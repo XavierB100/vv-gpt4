@@ -1,1 +1,1 @@
-"""VV-GPT4: local assistant and custom-model laboratory."""
+"""VV-GPT4: a studio for Xavier's own Transformer models."""

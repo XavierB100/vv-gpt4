@@ -1,0 +1,173 @@
+{
+  "model": "legacy:shakespeare-small-v1",
+  "checkpoint": "best",
+  "tokens_requested": 200,
+  "samples": [
+    {
+      "prompt": "ROMEO:\nThe night is quiet, and",
+      "seed": 42,
+      "baseline": {
+        "text": " I would have a word;\nHe will not to me to see: then, I'll say it.\n\n<|paragraph|>\nROMEO:\nMy lord, sir, but I'll be thyself,\nMy soul, and, I have done,\nI would not for thyself to see;\nTo meet thee, I was not with me.\n\n<|paragraph|>\nJULIET:\nThou wert not have been a happy gentleman,\nThan thou not that thou? thou art thou,\nAnd, is this name is not with a woman;\nThat I have the king is not?\n\n<|paragraph|>\nROMEO:\nI know not be it be too well:\nI would not, to him, thou hast thy life;\nFor now, thou wilt thou art.\n\n<|paragraph|>\nJULIET:\nWell, how thou art thou art",
+        "tokens": 200,
+        "seconds": 3.694,
+        "checkpoint": "best",
+        "step": 850,
+        "repeat_fraction": 0.14213197969543145,
+        "seed": 42,
+        "prompt_tokens": 10,
+        "used_prompt_tokens": 10,
+        "context": 256,
+        "settings": {
+          "temperature": 0.8,
+          "repetition_penalty": 1.0,
+          "no_repeat_ngram": 0
+        }
+      },
+      "controlled": {
+        "text": " I would have a word;\nHe will not to me to see: then, I'll say it.\n\n<|paragraph|>\nROMEO:\nMy lord.\n\n<|paragraph|>\nNurse:\nO, go, good lords, sir, that is dead;\nI know the heavens!\n\n<|paragraph|>\nJULIET:\nNow, thou dost not what a word; 'tis more,\nThat I should be so, he is not.\n\n<|paragraph|>\nNurse:\nNo; I will I love me,\nAnd here the king is not? and I would you are,\nThe man that'st thou art dead, he be too! O day?\n\n<|paragraph|>\nROMEO:\nO God, thou wilt thou know.\n\n<|paragraph|>\nJULIET:\nWell, how to-morrow?",
+        "tokens": 200,
+        "seconds": 9.842,
+        "checkpoint": "best",
+        "step": 850,
+        "repeat_fraction": 0.21319796954314718,
+        "seed": 42,
+        "prompt_tokens": 10,
+        "used_prompt_tokens": 10,
+        "context": 256,
+        "settings": {
+          "temperature": 0.8,
+          "repetition_penalty": 1.12,
+          "no_repeat_ngram": 0
+        }
+      },
+      "guarded": {
+        "text": " I would have a word;\nHe will not to me to see: then, I'll say it.\n\n<|paragraph|>\nROMEO:\nMy lord.\n\n\n<ICINCE EDWARD IV:\nO heavens, I have done, but a doth think's dead!\nI know thou woe, I hear thee.\nAnd, in your honour, I have not by my face;\nAnd so long-morrow is no more than I am,\nThan thou not that thou, thou art thou, if it be,\nWe'll call'd my heart from our brother's love's son.\n\n a kind of Norfolk! why, what news, to do again?\nI know me with thy death, my husband's death,\nThe king is my gracious wife is made me\nOf this blood of Edward'st,\nAnd yet the doth he didst thou wot,\nAs thou art not the",
+        "tokens": 200,
+        "seconds": 3.806,
+        "checkpoint": "best",
+        "step": 850,
+        "repeat_fraction": 0.0,
+        "seed": 42,
+        "prompt_tokens": 10,
+        "used_prompt_tokens": 10,
+        "context": 256,
+        "settings": {
+          "temperature": 0.8,
+          "repetition_penalty": 1.12,
+          "no_repeat_ngram": 4
+        }
+      }
+    },
+    {
+      "prompt": "KING RICHARD III:\nMy lord,",
+      "seed": 123,
+      "baseline": {
+        "text": " and I do I must have a king.\n\n<|paragraph|>\nQUEEN ELIZABETH:\nAh, my lord, so, for I'll come to his friends.\n\n<|paragraph|>\nQUEEN ELIZABETH:\nHow may we have of Norfolk,\nIn that I, then, but not like a king'st me!\n\n<|paragraph|>\nGLOUCESTER:\nWhy, I will, then I think my father'st,\nMy Lord of my brother, to be married.\n\n<|paragraph|>\nKING RICHARD III:\nCome, my lord.\n\n<|paragraph|>\nQUEEN ELIZABETH:\n\n<|paragraph|>\nGLOUCESTER:\nAnd, that thy heart withal\nThat we'll give me to your grace.\n\n<|paragraph|>\nQUEEN EL",
+        "tokens": 200,
+        "seconds": 3.195,
+        "checkpoint": "best",
+        "step": 850,
+        "repeat_fraction": 0.31979695431472077,
+        "seed": 123,
+        "prompt_tokens": 10,
+        "used_prompt_tokens": 10,
+        "context": 256,
+        "settings": {
+          "temperature": 0.8,
+          "repetition_penalty": 1.0,
+          "no_repeat_ngram": 0
+        }
+      },
+      "controlled": {
+        "text": " and I do I must have a king.\n\n<|paragraph|>\nQUEEN ELIZABETH:\nAh, my lord, so, for I'll come to his friends.\n\n<|paragraph|>\nQUEEN ELIZABETH:\nHow may we are no blood of York;\nMy Lord Hastings, but not like a king'st me!\n\n<|paragraph|>\nGLOUCESTER:\nWhy, what you, then I'll take your brother Richard,\nTo save my poor Margaret.\n\n<|paragraph|>\nKING RICHARD III:\nWell, I will give it be the crown'd,\nOf what love the house of death to-morrow\nIn an envious-hearted Edward,\nIn this is his father'st to the other eyes,\nBut for the Lord Hastings, and then you all my lord.\n\n<|paragraph|>\nQUEEN",
+        "tokens": 200,
+        "seconds": 3.425,
+        "checkpoint": "best",
+        "step": 850,
+        "repeat_fraction": 0.17766497461928932,
+        "seed": 123,
+        "prompt_tokens": 10,
+        "used_prompt_tokens": 10,
+        "context": 256,
+        "settings": {
+          "temperature": 0.8,
+          "repetition_penalty": 1.12,
+          "no_repeat_ngram": 0
+        }
+      },
+      "guarded": {
+        "text": " and I do I must have a king.\n\n<|paragraph|>\nQUEEN ELIZABETH:\nAh, my lord, so, for I'll come to his friends.\n\n\n<EO, is the day I was her brother of grief?\n\n<INGHAM: I do we will not all,\nBut but not like a king'st me withal.\n\n, I do I hope, be as we have you now in thee\nThat it is to my hands for you,--\n\n<'er the Duke of my lords, and leave him be your love:\nAnd yet, but I will give it,\nA king, like a little else we will.\n\n3 KING HEN ELIZELOKE OF YORK:\nThou art thou, for our grace and that thy heart,\nFor what we'll give me to make mine?\nAnd he cannot die my lord?\nThe rest,",
+        "tokens": 200,
+        "seconds": 3.384,
+        "checkpoint": "best",
+        "step": 850,
+        "repeat_fraction": 0.0,
+        "seed": 123,
+        "prompt_tokens": 10,
+        "used_prompt_tokens": 10,
+        "context": 256,
+        "settings": {
+          "temperature": 0.8,
+          "repetition_penalty": 1.12,
+          "no_repeat_ngram": 4
+        }
+      }
+    },
+    {
+      "prompt": "JULIET:\nIf love be",
+      "seed": 7,
+      "baseline": {
+        "text": ", I was thy love, and thou\nBut, and what thou hast to be, or now.\n\n<|paragraph|>\nJULIET:\nIET: if you would have no,\nAnd if they'll give me, for that she was in the other\nFor now thou art thou dost, my lie;\nFor 'twas I am not speak I will have done.\n\n<|paragraph|>\nJULIET:\nAy, and be so, what'st thou wilt thou?\n\n<|paragraph|>\nRomeo, and I shouldst say,\nAnd he wouldst thou dost not have\nTo be, thou not: I think, I was,\nI would I be so, for the king,\nAnd that have but this be a little,\nBy this is not, let him to your grace,\nAnd I say, my heart in the doth:\n",
+        "tokens": 200,
+        "seconds": 3.521,
+        "checkpoint": "best",
+        "step": 850,
+        "repeat_fraction": 0.08629441624365486,
+        "seed": 7,
+        "prompt_tokens": 9,
+        "used_prompt_tokens": 9,
+        "context": 256,
+        "settings": {
+          "temperature": 0.8,
+          "repetition_penalty": 1.0,
+          "no_repeat_ngram": 0
+        }
+      },
+      "controlled": {
+        "text": ", I was thy love thee,\nIn all that thou, thou wast to be.\n\n<|paragraph|>\nJULIET:\nThou art thou wert thou but this?\n\n<|paragraph|>\nROMEO:\nI wouldst not so the word.\n\n<|paragraph|>\nJULIET:\nWhy, he is I will have thee to thee.\n\n<|paragraph|>\nJULIET:\nHow! and then thou wert thou art thou hast made thee!\nAnd, that thou shalt say you in thee,\nI was not love'st a little:\nThe dost thou shalt never to thyself,\nThat thou shouldst thee, when thou doth be so?\nO thou, that thou would have but thy eye.\nHow may I could I may be not love;\nThat, for thou art not be ant me in this world:\n",
+        "tokens": 200,
+        "seconds": 3.834,
+        "checkpoint": "best",
+        "step": 850,
+        "repeat_fraction": 0.15228426395939088,
+        "seed": 7,
+        "prompt_tokens": 9,
+        "used_prompt_tokens": 9,
+        "context": 256,
+        "settings": {
+          "temperature": 0.8,
+          "repetition_penalty": 1.12,
+          "no_repeat_ngram": 0
+        }
+      },
+      "guarded": {
+        "text": ", I was thy love thee,\nIn all that thou, thou wast to be.\n\n<|paragraph|>\nJULIET:\nThou art thou wert thou but this?\n\n<ingbroke is a little wilt not so many of it,\nFor now thou art thou dost thou hast thou shouldst thou shalt say,\nThat he hadst thou shalt have no more than to make thee.\n\nTo what thou shalt tell me thy soul'st thou hast thou wert love;\nThou know that thou not, and thou liest thou shaltst,\nI'll say, thou,\nAs I shall be so, thy death to thee, thou not:\nBut thou, for thou wouldst thou, be so,\nWhich thou wilt thou art: but thy eye thee, and the air\nAnd yet, with death to that thou hast thou art:\nHe hath been in this night'st,",
+        "tokens": 200,
+        "seconds": 3.329,
+        "checkpoint": "best",
+        "step": 850,
+        "repeat_fraction": 0.0,
+        "seed": 7,
+        "prompt_tokens": 9,
+        "used_prompt_tokens": 9,
+        "context": 256,
+        "settings": {
+          "temperature": 0.8,
+          "repetition_penalty": 1.12,
+          "no_repeat_ngram": 4
+        }
+      }
+    }
+  ],
+  "limitations": "Three public prompts, one seed each. Phrase repetition is a token metric, not a coherence or factuality measure. Controls change sampling, not learned weights. The default uses only the penalty. Hard n-gram blocking is opt-in because it damaged structural delimiters in these samples. Repetition counts include formatting."
+}

@@ -1,14 +1,12 @@
 # VV-GPT4
 
-A local assistant and a lab for your own language models. This is a working **4.0 alpha**, built alongside VV-GPT3. Original data, models, launchers, and Git history are preserved.
+A dark, local studio for **Xavier's own Transformer models**, built directly on VV-GPT3. Train from scratch, inspect learning curves, and compare generation from your existing and new checkpoints. No pretrained model weights, Ollama service, or paid inference API is used.
 
-## Start
+## Open the studio
 
-Double-click `VV_GPT4.command`, or the separate **VV-GPT4 Preview** app on the desktop. The launcher opens Ollama when installed, waits for this checkout's server, and opens a browser. It normally uses http://127.0.0.1:5054 and selects another port if needed. Keep Terminal open while using the app.
+Double-click **VV-GPT4 Preview** on the desktop, or run `VV_GPT4.command`. The studio normally opens at http://127.0.0.1:5054; the launcher reuses this checkout's server or selects another free loopback port. The original **VV-GPT3** launcher and checkout are unchanged.
 
-The assistant uses locally installed Ollama models. This Mac already has six local models; `qwen3:8b` is the initial choice. Cloud entries are excluded and checked again before inference. Nothing downloads models automatically.
-
-For a fresh setup on Apple Silicon:
+For a fresh installation:
 
 ```sh
 uv venv --python 3.11 .venv
@@ -16,44 +14,56 @@ uv pip install --python .venv/bin/python -r requirements.lock
 .venv/bin/python launcher.py
 ```
 
-Install Ollama and a suitable local model separately if they are absent. Dependency installation, model acquisition, and the first uncached GPT-2 tokenizer initialization need internet. Normal chat, indexed knowledge search, and training use local resources after setup. The web interface has no CDN dependencies.
+Dependency installation and the first uncached GPT-2 tokenizer setup need internet. Tokenizer rules are not pretrained model weights. Subsequent training and generation run locally on MPS, CUDA, or CPU. The interface has no CDN dependencies.
 
-## What works
+## What carries forward
 
-- Streaming local-model chat, stop control, saved conversations, text export, and recent conversation context.
-- Explicit saved preferences across conversations; no hidden automatic memory extraction.
-- Local text/Markdown/log document import and SQLite full-text retrieval with inspectable source passages. Follow-up retrieval includes the previous two user questions.
-- Scratch training with the original VV-GPT Transformer architecture, GPT-2 BPE, Apple MPS/CUDA/CPU selection, gradient accumulation, a fixed validation sample, early stopping, pause, stop, and checkpoint resume.
-- An independent worker per training job, SQLite run/metric history, atomic best/latest saves, dataset fingerprints, optimizer and RNG restoration.
-- Read-only discovery of VV-GPT3 metadata and **best** checkpoints. Generation uses restricted `weights_only` loading with only the legacy config dataclass allowlisted.
-- A playground for the original and new custom models. These are text-continuation models, distinct from the instruction-following assistant.
+The decoder, causal attention, learned position embeddings, tied input/output embeddings, size presets, and checkpoint compatibility derive from `XavierB100/vv-gpt3` at `802d1a8`. Your original project already trained approximately 30M-parameter chat and Shakespeare models and a 51M-parameter chat model. This version preserves those checkpoints and reads the original `_best.pt` files for generation.
 
-## Data and controls
+## What changed
 
-`runtime/` holds the local SQLite database, imported training text, run logs, and checkpoints. It is ignored by Git. Set `VVGPT_DATA` to a different directory before starting to isolate an installation. Back up the complete directory with the app and workers stopped; SQLite may have WAL companion files while running.
+- Simple dark interface with real training/validation curves, hover measurements, training pace, progress, a data table, and mobile layouts.
+- Correct best-checkpoint saving. The old final checkpoint could retain later weights while reporting an earlier best score; the new worker saves best weights immediately and atomically.
+- Resume restores model, optimizer, learning-rate position, and random state. It reports errors instead of silently restarting. Exact CPU resume is covered by a regression test; identical results across accelerators are not promised.
+- Unicode-preserving preparation, common AM/PM WhatsApp formats, multiline messages and speaker labels. Repeated long plain-text paragraphs are removed from the prepared copy; the raw decoded upload is retained.
+- Separate chronological 80/10/10 train/validation/test splits. Fixed train and validation evaluation batches run with dropout disabled. Only validation selects the best checkpoint; the best model then receives a final held-out score.
+- Vectorized batch construction, AdamW decay groups that exclude bias/norm vectors, warmup/cosine scheduling, accumulation, early stopping, and durable pause/stop/resume.
+- Optional compact byte-level BPE (up to 4,096 tokens), learned exclusively from the training split and embedded in checkpoints. The original 50,257-token vocabulary remains the default.
+- Seeded, same-checkpoint generation comparisons, an adjustable repetition penalty, optional phrase blocking, saved settings, JSON exports, and a one-model inference cache.
 
-The server is loopback-only, validates Host and Origin, and requires a random per-start request token for mutations. It is a single-user local app, not an authenticated network service. The Flask development server is intentional for this alpha; do not expose it to a network.
+## Measured speed experiment
 
-Closing the browser does not stop training. Closing the web server also leaves a training worker running. Reopen the launcher to monitor, pause, or stop it. A stopped run can resume its latest saved state. A completed or early-stopped run stays immutable; create a new experiment to continue research. A process crash can lose work since the last saved checkpoint. Cross-device numerical determinism is not promised.
+Three short Nano pilots used the same public Shakespeare source, raw splits, seed 42, batch 8, and 128-token context on this Mac's MPS device. They are experiments, not replacements for your original trained models.
 
-Removing a knowledge file removes it from future retrieval. Previously saved conversations retain any source excerpts they used; delete those conversations separately. Clearing saved preferences affects future prompts, not existing messages. Data is stored in plaintext under your macOS account.
+| Vocabulary | Steps | Parameters | Steady training step | Active training | Run elapsed | Test bits/byte ↓ |
+|---|---:|---:|---:|---:|---:|---:|
+| Original, 50,257 | 400 | 8.008M | 52.57 ms | 22.03 s | 26.00 s | **2.708** |
+| Compact, 4,096 | 400 | 1.361M | 25.49 ms | 10.65 s | 12.39 s | 2.930 |
+| Compact, 4,096 | 800 | 1.361M | 25.84 ms | 21.05 s | 24.16 s | 2.817 |
 
-## Current limits
+Compact training was about **2.06× as fast per steady step**, but its test score was worse at both budgets. It therefore stays experimental. The 800-step budget was chosen after observing the first timing, not as a blinded benchmark. This is one seed and one corpus. Timings exclude preflight/tokenizer fitting; steady step timing excludes the first ten steps, evaluation and saving. Run elapsed includes the worker loop, evaluation and saves, but excludes model/data initialization. Compare test scores only on the same raw text; all three used the same first 8,000 bytes of the held-out partition. Different tokenizers give different raw-text context coverage at 128 tokens. Token loss is not comparable across vocabularies.
 
-- Document search is lexical, not embedding-based. No PDF parser yet. Citations identify supplied passages; answer correctness is not automatically verified.
-- Recent chat context is bounded by character budgets, not an unlimited memory or a model-specific token accountant. Long or token-dense input can reach the engine's context limit. Interrupted/truncated assistant replies are displayed but not reused as complete exchanges.
-- Stop takes effect on the next inference output/read; an unresponsive model can hold the slot until the local request timeout.
-- New training consumes raw UTF-8 text. Legacy WhatsApp timestamp stripping is not ported; clean exports before new training. Training split is the last 10% of tokens, and repeated/near-duplicate documents can contaminate validation. Loss here is not a benchmark of instruction following or general intelligence.
-- No adapter fine-tuning, vision, voice, autonomous tools, web browsing, model downloads, or paid APIs in this release.
-- No migrations or automatic updater yet. Original model discovery currently defaults to this Mac's verified VV-GPT3 path in `vvgpt/lab.py`.
+See [the visual report](docs/enhancements.html), [raw training results](docs/training-comparison.json), and [generation samples](docs/generation-comparison.json). The generation comparison uses the original Shakespeare best checkpoint, three fixed public prompts, 200 tokens and the same seed per pair. A hard four-token phrase guard eliminated repeated four-token phrases by construction but distorted delimiters/speaker labels. The gentler penalty had mixed repetition results. Neither experiment establishes better coherence or factual accuracy; controls change sampling, not learned weights.
 
-## Architecture
+## Using your data
 
-`app.py` serves the offline UI and API. `vvgpt/store.py` owns SQLite; `knowledge.py` builds bounded context; `providers.py` talks only to loopback Ollama; `lab.py` manages datasets, model discovery and workers; `worker.py` runs training; `model.py` carries the original custom Transformer forward. `static/` contains plain JavaScript and CSS, without a frontend build chain.
+Import `.txt`, `.md`, or `.log` text through Datasets, then select it in Training. Use the original vocabulary first and a Nano pilot to verify the data and learning curve. Compact vocabulary is an optional experiment. Larger models need more varied data and training; selecting a larger preset alone does not make output better.
 
-The assistant and scratch models are separate engines. Importing a document for retrieval does not update any model's weights. This separation preserves the original learning project while providing useful pretrained intelligence today. The next bridge is measured adapter fine-tuning, not relabelling scratch training as a general assistant.
+Use the format your model learned in the Playground, such as `Alice: ...\nBob:` for dialogue or `ROMEO:\n` for Shakespeare. The Playground continues the supplied text; multi-turn context must be part of that prompt and is bounded by the model's context window. These models are not instruction-tuned general assistants. Saved comparisons can be reopened with their original settings.
 
-## Verify
+The final test score covers up to the first 8,000 characters of the test split, normalized by actual UTF-8 bytes. It is a useful limited check, not an exhaustive evaluation. Near-duplicate text can still contaminate chronological splits. Repeated format markers also count toward the displayed repetition metric. Training text containing private information can be memorized; samples and data stay in your local runtime.
+
+## Storage and lifecycle
+
+`runtime/` contains SQLite, imported/prepared text, fitted tokenizers, logs and run checkpoints. It is ignored by Git. Set `VVGPT_DATA` to isolate another workspace. Back up the whole directory with app and workers stopped. Older assistant tables are preserved for recovery but are no longer exposed in the interface.
+
+Closing a browser or the web server leaves an active training worker running. Reopen the launcher to monitor, pause or stop it. Stopped/interrupted jobs resume from `latest.pt`; a crash can lose work since the last evaluation save. Finished runs remain fixed. The new UI lists original checkpoints read-only; their discovery path is currently configured for this Mac in `vvgpt/lab.py`.
+
+The loopback server validates Host/Origin and uses a per-start request token. This is a single-user local development application, not an authenticated network service. The desktop preview may already be served by the temporary launchd job `local.xavier.vvgpt4.preview`; the launcher reuses it. No Ollama job is required.
+
+The prior assistant alpha remains on local branch `archive/assistant-alpha`. Development continues on `enhance-original-models`. This project has not been published to GitHub.
+
+## Verification and reproducibility
 
 ```sh
 .venv/bin/python -m pytest -q
@@ -62,12 +72,8 @@ node --check static/studio.js
 bash -n VV_GPT4.command
 ```
 
-Optional real-model checks: `scripts/verify_live.py` uses installed `qwen3:8b`, performs a tiny six-step training job in temporary storage, and loads the original Shakespeare **best** checkpoint read-only. It writes `docs/live-verification.json`. `scripts/audit_legacy.py` reproduces the checkpoint comparison without modifying the source project and writes `docs/legacy-evidence.json`.
+`scripts/verify_ui.cjs` uses Playwright/Chromium and temporary storage to test import, actual compact training, original-checkpoint generation, saved settings, charts, and mobile views. Set `PLAYWRIGHT_MODULE` to an existing `@playwright/test` package when necessary. It writes `docs/ui-verification.json` and screenshots.
 
-`scripts/verify_ui.cjs` exercises real chat, source display, persistence, dataset upload and six-step training through a temporary local server, then checks desktop/mobile layouts. It requires `@playwright/test` with Chromium; set `PLAYWRIGHT_MODULE` to an existing package installation if necessary. It writes `docs/ui-verification.json` and screenshots. These optional tests use temporary workspaces, not the user's conversations or training data.
+`scripts/compare_training.py` can run new pilots and save a separate results file; it will not replace the retained original evidence. `scripts/compare_generation.py` reproduces the three public-prompt comparisons. `scripts/build_report.py` renders the retained observations into the static visual report. `scripts/audit_legacy.py` inspects the original checkpoints read-only.
 
-See `docs/deep-dive.html` for the original-project audit and successor roadmap. `docs/DESIGN.md` records the interface direction. Screenshots in `docs/` show verified layouts, not a hosted deployment.
-
-## Provenance
-
-Custom Transformer code derives from XavierB100/vv-gpt3 commit `802d1a8`. The original project was inspected locally and on GitHub. This project is local and has not been published to GitHub. No new redistribution license has been chosen for the inherited code.
+Source layout: `app.py` serves the UI/API; `vvgpt/lab.py` manages datasets/workers/loading; `worker.py` trains; `model.py` contains the inherited Transformer; `data.py`, `tokenizer.py` and `evaluation.py` handle preparation, vocabulary and held-out scoring. No new redistribution license has been selected for inherited code.

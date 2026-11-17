@@ -2,16 +2,14 @@
   "date": "2026-11-17",
   "passed": true,
   "checks": [
-    "real local chat through UI",
-    "source display",
-    "conversation persistence",
-    "dataset import",
-    "real six-step training through UI",
-    "run graph rendering",
-    "model discovery",
-    "preference persistence",
-    "mobile history access",
-    "no horizontal overflow",
-    "no browser console errors"
+    "original vocabulary default",
+    "dataset upload",
+    "real compact training",
+    "held-out score",
+    "chart hover and pace",
+    "legacy model generation comparison",
+    "sample and settings persistence",
+    "four mobile views without overflow",
+    "no browser errors"
   ]
 }

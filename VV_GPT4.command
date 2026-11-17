@@ -5,7 +5,4 @@ if [ ! -x .venv/bin/python ]; then
   read -r -p "Press Enter to close."
   exit 1
 fi
-if [ -d /Applications/Ollama.app ]; then
-  open -g -a Ollama
-fi
 exec .venv/bin/python launcher.py "$@"

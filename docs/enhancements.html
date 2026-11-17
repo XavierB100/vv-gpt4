@@ -1,0 +1,226 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VV-GPT · An evolution of your own model</title><style>
+:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"Avenir Next",sans-serif;background:#0b0e14;color:#e7ebf3}*{box-sizing:border-box}body{margin:0 auto;max-width:1160px;padding:54px 32px 64px}a{color:#b6a0e9}header{border-bottom:1px solid #232b3b;padding-bottom:35px;margin-bottom:34px}.eyebrow{font-size:11px;letter-spacing:1.4px;color:#b6a0e9;text-transform:uppercase}h1{font-size:44px;font-weight:500;line-height:1.16;letter-spacing:-1.8px;max-width:800px;margin:18px 0}h2{font-size:23px;font-weight:500;letter-spacing:-.5px;margin:0 0 12px}h3{font-size:15px;font-weight:550;margin:12px 0}p,li{color:#9daac0;font-size:13px;line-height:1.9}strong{color:#d7e0ef;font-weight:550}.lead{max-width:800px;font-size:15px}.grid,.original,.sample-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.original,.sample-grid{grid-template-columns:repeat(3,minmax(0,1fr))}article{padding:23px;background:#111620;border:1px solid #232b3b;border-radius:12px;min-width:0}article p{font-size:12px;margin-bottom:0}svg{width:100%;display:block;margin:16px 0 0}.number{font-size:45px;line-height:1.2;letter-spacing:-1.7px;color:#b6a0e9;margin:12px 0 8px}.number small{font-size:14px;letter-spacing:0;color:#8a96ac}section{margin:38px 0}.note{padding:19px 23px;border-left:2px solid #8cc9b4;background:#10171d;border-radius:0 8px 8px 0;margin:24px 0}.note p{margin:0}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;margin-top:23px;font-size:12px;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:14px 12px;border-bottom:1px solid #232b3b;white-space:nowrap}th{color:#8290a9;font-weight:450}td{color:#cad5e7}.fine{font-size:11px;color:#7d8da7}ul{padding-left:19px}li{margin:9px 0}details{border-top:1px solid #232b3b;padding:18px 0}summary{cursor:pointer;font-size:13px;color:#bac7dd}pre{font:11px/1.85 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:#aab9d0}small{color:#8393ad;font-size:10px}.sample-grid{margin-top:20px}footer{border-top:1px solid #232b3b;padding-top:24px;color:#65728a;font-size:11px;line-height:1.9}@media(max-width:750px){body{padding:30px 18px}.grid,.original,.sample-grid{grid-template-columns:1fr}h1{font-size:34px}h2{font-size:21px}article{padding:20px}}</style>
+<header><span class="eyebrow">VV-GPT4 · Research &amp; design notes · 17 November 2026</span><h1>An evolution of<br>your own model.</h1><p class="lead">Your Transformer, your datasets, your learned weights. A simpler dark studio with more trustworthy training and clearer evidence about what actually helps.</p></header>
+<section><h2>What you had already achieved</h2><p>You built a complete language-model training project: a custom decoder, data preparation, GPU training, checkpoints, text generation and a desktop launcher. The three existing model families contain weights you trained yourself.</p><div class="original"><article><span class="eyebrow">51.0M parameters</span><h3>chat 2</h3><svg viewBox="0 0 520 155" role="img" aria-label="Historical validation loss for chat 2"><path d="M18 125H502 M18 75H502 M18 25H502" stroke="#252e3e"/><polyline points="18.0,29.8 33.6,93.9 49.2,111.2 64.8,116.2 80.5,115.3 96.1,117.4 111.7,114.7 127.3,116.6 142.9,116.5 158.5,118.5 174.1,117.2 189.7,118.2 205.4,119.0 221.0,119.2 236.6,118.6 252.2,120.5 267.8,118.2 283.4,121.1 299.0,119.2 314.6,119.8 330.3,120.1 345.9,121.7 361.5,119.3 377.1,120.8 392.7,120.8 408.3,120.1 423.9,118.0 439.5,120.9 455.2,119.4 470.8,119.3 486.4,118.7 502.0,118.2" fill="none" stroke="#b6a0e9" stroke-width="2.2"/><text x="18" y="148" fill="#8a96ac" font-size="10">Recorded evaluations →</text></svg><p>Historical best validation: <strong>2.305</strong> at step 1,050. Validation loss is not a coherence score.</p></article><article><span class="eyebrow">29.9M parameters</span><h3>chat</h3><svg viewBox="0 0 520 155" role="img" aria-label="Historical validation loss for chat"><path d="M18 125H502 M18 75H502 M18 25H502" stroke="#252e3e"/><polyline points="18.0,31.0 24.6,80.7 31.3,106.2 37.9,114.0 44.5,114.9 51.2,116.4 57.8,116.4 64.4,118.2 71.0,116.6 77.7,119.3 84.3,118.9 90.9,119.3 97.6,118.2 104.2,118.0 110.8,119.5 117.5,119.8 124.1,120.2 130.7,118.5 137.3,119.9 144.0,120.1 150.6,120.3 157.2,118.8 163.9,120.0 170.5,118.8 177.1,120.0 183.8,119.5 190.4,120.6 197.0,121.2 203.6,118.5 210.3,120.2 216.9,119.0 223.5,121.3 230.2,120.3 236.8,119.3 243.4,120.6 250.1,119.5 256.7,118.0 263.3,119.2 269.9,121.9 276.6,119.4 283.2,118.8 289.8,119.0 296.5,121.6 303.1,119.7 309.7,117.5 316.4,118.9 323.0,119.6 329.6,117.2 336.2,117.7 342.9,120.0 349.5,119.0 356.1,119.6 362.8,117.6 369.4,117.7 376.0,120.9 382.7,117.4 389.3,117.6 395.9,117.7 402.5,118.1 409.2,118.3 415.8,118.7 422.4,118.3 429.1,117.5 435.7,115.7 442.3,117.4 449.0,118.5 455.6,118.8 462.2,119.9 468.8,116.6 475.5,115.2 482.1,117.0 488.7,115.6 495.4,118.4 502.0,116.7" fill="none" stroke="#b6a0e9" stroke-width="2.2"/><text x="18" y="148" fill="#8a96ac" font-size="10">Recorded evaluations →</text></svg><p>Historical best validation: <strong>2.287</strong> at step 1,900. Validation loss is not a coherence score.</p></article><article><span class="eyebrow">29.9M parameters</span><h3>shakespeare-small-v1</h3><svg viewBox="0 0 520 155" role="img" aria-label="Historical validation loss for shakespeare-small-v1"><path d="M18 125H502 M18 75H502 M18 25H502" stroke="#252e3e"/><polyline points="18.0,29.4 42.2,67.7 66.4,90.6 90.6,94.4 114.8,97.2 139.0,97.3 163.2,97.9 187.4,100.1 211.6,99.5 235.8,100.3 260.0,102.7 284.2,101.3 308.4,101.8 332.6,103.2 356.8,102.5 381.0,102.3 405.2,102.4 429.4,103.3 453.6,101.9 477.8,101.4 502.0,101.7" fill="none" stroke="#b6a0e9" stroke-width="2.2"/><text x="18" y="148" fill="#8a96ac" font-size="10">Recorded evaluations →</text></svg><p>Historical best validation: <strong>4.013</strong> at step 850. Validation loss is not a coherence score.</p></article></div><p class="fine">Historical metadata from VV-GPT3. Separate datasets and run configurations mean these values are not a ranking across models. The original source and checkpoints are preserved.</p></section>
+<section><h2>The training-speed experiment</h2><p>Same public Shakespeare text, Nano decoder, batch 8, context 128 and seed 42. A compact vocabulary reduces the work in the embedding and output layers.</p><div class="grid"><article><span class="eyebrow">Steady training step · milliseconds ↓</span><div class="number">2.06× <small>observed speed ratio</small></div><svg viewBox="0 0 520 215" role="img" aria-label="Original · 400 steps: 52.569 ms per step; Compact · 400 steps: 25.491 ms per step; Compact · 800 steps: 25.845 ms per step"><text x="0" y="20" fill="#aab6cb" font-size="12">Original · 400 steps</text><rect x="0" y="32" width="401.4" height="12" rx="3" fill="#83b9e9"/><text x="411.4" y="43" fill="#e7ebf3" font-size="12">52.57</text><text x="0" y="87" fill="#aab6cb" font-size="12">Compact · 400 steps</text><rect x="0" y="99" width="194.7" height="12" rx="3" fill="#b6a0e9"/><text x="204.7" y="110" fill="#e7ebf3" font-size="12">25.49</text><text x="0" y="154" fill="#aab6cb" font-size="12">Compact · 800 steps</text><rect x="0" y="166" width="197.4" height="12" rx="3" fill="#8cc9b4"/><text x="207.4" y="177" fill="#e7ebf3" font-size="12">25.84</text></svg></article><article><span class="eyebrow">Common held-out text · lower is better</span><div class="number">2.708 <small>best test bits per byte</small></div><svg viewBox="0 0 520 215" role="img" aria-label="Original · 400 steps: 2.708 bits per byte; Compact · 400 steps: 2.930 bits per byte; Compact · 800 steps: 2.817 bits per byte"><text x="0" y="20" fill="#aab6cb" font-size="12">Original · 400 steps</text><rect x="0" y="32" width="372.9" height="12" rx="3" fill="#83b9e9"/><text x="382.9" y="43" fill="#e7ebf3" font-size="12">2.71</text><text x="0" y="87" fill="#aab6cb" font-size="12">Compact · 400 steps</text><rect x="0" y="99" width="403.5" height="12" rx="3" fill="#b6a0e9"/><text x="413.5" y="110" fill="#e7ebf3" font-size="12">2.93</text><text x="0" y="154" fill="#aab6cb" font-size="12">Compact · 800 steps</text><rect x="0" y="166" width="388.0" height="12" rx="3" fill="#8cc9b4"/><text x="398.0" y="177" fill="#e7ebf3" font-size="12">2.82</text></svg></article></div><div class="note"><p><strong>Faster did not mean better here.</strong> The compact model scored worse after 400 steps. Spending the saved time on 800 steps narrowed the gap, but did not close it. The original vocabulary remains the default; compact is an optional experiment.</p></div><div class="table-wrap"><table><thead><tr><th>Condition</th><th>Parameters</th><th>Active training</th><th>Run elapsed</th><th>Test bits/byte ↓</th></tr></thead><tbody><tr><td>Original · 400 steps</td><td>8.008M</td><td>22.03s</td><td>26.00s</td><td>2.708</td></tr><tr><td>Compact · 400 steps</td><td>1.361M</td><td>10.65s</td><td>12.39s</td><td>2.930</td></tr><tr><td>Compact · 800 steps</td><td>1.361M</td><td>21.05s</td><td>24.16s</td><td>2.817</td></tr></tbody></table></div><p class="fine">One seed and one corpus, short pilots only. The exploratory 800-step budget was chosen after observing the first timing. Preflight/tokenizer fitting and model/data initialization are outside these timings. Steady step time excludes the first ten steps, evaluation and saving. Test scores use the same 8,000-byte slice; different vocabularies cover different amounts of raw text in 128 tokens. Raw token losses are not comparable across vocabularies. These pilots are not replacements for your original trained models.</p></section>
+<section><h2>Improvements grounded in the original code</h2><div class="grid"><article><h3>Keep the actual best model</h3><p>The original final-save path retained live tensors: later training could overwrite the supposed best weights. All three final files differ from their separate best checkpoints. The new worker immediately saves the real best weights and keeps a separate resumable state.</p></article><article><h3>Resume with the training state intact</h3><p>Current Torch rejected the original resume load, which could fall back to starting fresh. Restricted checkpoint loading, optimizer/RNG restoration and explicit errors now make resume dependable. The CPU regression reaches exactly the same weights after interruption.</p></article><article><h3>Preserve the information in your data</h3><p>Emoji, punctuation, Unicode and speaker labels survive preparation. Common WhatsApp AM/PM exports and multiline messages are handled. Raw decoded uploads stay beside prepared copies; compact tokenizers learn from the training split only.</p></article><article><h3>Make learning visible</h3><p>Training and validation curves use fixed batches with dropout disabled. A separate final test follows checkpoint selection. Hover values, training pace, elapsed time and a measurement table give the dark studio a practical purpose.</p></article></div></section>
+<section><h2>Read the samples, not just the repetition score</h2><p>The same original Shakespeare best checkpoint was tested with three fixed public prompts, 200 generated tokens and matched seeds. The mild penalty produced mixed results. Hard phrase blocking produced zero repeated four-token phrases by construction, but broke recurring delimiters and speaker labels. It is therefore opt-in.</p><p><strong>Better coherence is not yet demonstrated.</strong> Sampling controls cannot supply grammar, knowledge or conversational ability the model has not learned. Further quality work should use a fixed prompt set, more varied clean text, multiple seeds and a fresh held-out evaluation before claiming a better model.</p><details><summary>ROMEO: The night is quiet, and · seed 42</summary><div class="sample-grid"><article><h3>Original sampling</h3><small>14.2% repeated four-token phrases</small><pre> I would have a word;
+He will not to me to see: then, I&#x27;ll say it.
+
+&lt;|paragraph|&gt;
+ROMEO:
+My lord, sir, but I&#x27;ll be thyself,
+My soul, and, I have done,
+I would not for thyself to see;
+To meet thee, I was not with me.
+
+&lt;|paragraph|&gt;
+JULIET:
+Thou wert not have been a happy gentleman,
+Than thou not that thou? thou art thou,
+And, is this name is not with a woman;
+That I have the king is not?
+
+&lt;|paragraph|&gt;
+ROMEO:
+I know not be it be too well:
+I would not, to him, thou hast thy life;
+For now, thou wilt thou art.
+
+&lt;|paragraph|&gt;
+JULIET:
+Well, how thou art thou art</pre></article><article><h3>Penalty only · default</h3><small>21.3% repeated four-token phrases</small><pre> I would have a word;
+He will not to me to see: then, I&#x27;ll say it.
+
+&lt;|paragraph|&gt;
+ROMEO:
+My lord.
+
+&lt;|paragraph|&gt;
+Nurse:
+O, go, good lords, sir, that is dead;
+I know the heavens!
+
+&lt;|paragraph|&gt;
+JULIET:
+Now, thou dost not what a word; &#x27;tis more,
+That I should be so, he is not.
+
+&lt;|paragraph|&gt;
+Nurse:
+No; I will I love me,
+And here the king is not? and I would you are,
+The man that&#x27;st thou art dead, he be too! O day?
+
+&lt;|paragraph|&gt;
+ROMEO:
+O God, thou wilt thou know.
+
+&lt;|paragraph|&gt;
+JULIET:
+Well, how to-morrow?</pre></article><article><h3>Penalty + hard phrase guard</h3><small>0.0% repeated four-token phrases</small><pre> I would have a word;
+He will not to me to see: then, I&#x27;ll say it.
+
+&lt;|paragraph|&gt;
+ROMEO:
+My lord.
+
+
+&lt;ICINCE EDWARD IV:
+O heavens, I have done, but a doth think&#x27;s dead!
+I know thou woe, I hear thee.
+And, in your honour, I have not by my face;
+And so long-morrow is no more than I am,
+Than thou not that thou, thou art thou, if it be,
+We&#x27;ll call&#x27;d my heart from our brother&#x27;s love&#x27;s son.
+
+ a kind of Norfolk! why, what news, to do again?
+I know me with thy death, my husband&#x27;s death,
+The king is my gracious wife is made me
+Of this blood of Edward&#x27;st,
+And yet the doth he didst thou wot,
+As thou art not the</pre></article></div></details><details><summary>KING RICHARD III: My lord, · seed 123</summary><div class="sample-grid"><article><h3>Original sampling</h3><small>32.0% repeated four-token phrases</small><pre> and I do I must have a king.
+
+&lt;|paragraph|&gt;
+QUEEN ELIZABETH:
+Ah, my lord, so, for I&#x27;ll come to his friends.
+
+&lt;|paragraph|&gt;
+QUEEN ELIZABETH:
+How may we have of Norfolk,
+In that I, then, but not like a king&#x27;st me!
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+Why, I will, then I think my father&#x27;st,
+My Lord of my brother, to be married.
+
+&lt;|paragraph|&gt;
+KING RICHARD III:
+Come, my lord.
+
+&lt;|paragraph|&gt;
+QUEEN ELIZABETH:
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+And, that thy heart withal
+That we&#x27;ll give me to your grace.
+
+&lt;|paragraph|&gt;
+QUEEN EL</pre></article><article><h3>Penalty only · default</h3><small>17.8% repeated four-token phrases</small><pre> and I do I must have a king.
+
+&lt;|paragraph|&gt;
+QUEEN ELIZABETH:
+Ah, my lord, so, for I&#x27;ll come to his friends.
+
+&lt;|paragraph|&gt;
+QUEEN ELIZABETH:
+How may we are no blood of York;
+My Lord Hastings, but not like a king&#x27;st me!
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+Why, what you, then I&#x27;ll take your brother Richard,
+To save my poor Margaret.
+
+&lt;|paragraph|&gt;
+KING RICHARD III:
+Well, I will give it be the crown&#x27;d,
+Of what love the house of death to-morrow
+In an envious-hearted Edward,
+In this is his father&#x27;st to the other eyes,
+But for the Lord Hastings, and then you all my lord.
+
+&lt;|paragraph|&gt;
+QUEEN</pre></article><article><h3>Penalty + hard phrase guard</h3><small>0.0% repeated four-token phrases</small><pre> and I do I must have a king.
+
+&lt;|paragraph|&gt;
+QUEEN ELIZABETH:
+Ah, my lord, so, for I&#x27;ll come to his friends.
+
+
+&lt;EO, is the day I was her brother of grief?
+
+&lt;INGHAM: I do we will not all,
+But but not like a king&#x27;st me withal.
+
+, I do I hope, be as we have you now in thee
+That it is to my hands for you,--
+
+&lt;&#x27;er the Duke of my lords, and leave him be your love:
+And yet, but I will give it,
+A king, like a little else we will.
+
+3 KING HEN ELIZELOKE OF YORK:
+Thou art thou, for our grace and that thy heart,
+For what we&#x27;ll give me to make mine?
+And he cannot die my lord?
+The rest,</pre></article></div></details><details><summary>JULIET: If love be · seed 7</summary><div class="sample-grid"><article><h3>Original sampling</h3><small>8.6% repeated four-token phrases</small><pre>, I was thy love, and thou
+But, and what thou hast to be, or now.
+
+&lt;|paragraph|&gt;
+JULIET:
+IET: if you would have no,
+And if they&#x27;ll give me, for that she was in the other
+For now thou art thou dost, my lie;
+For &#x27;twas I am not speak I will have done.
+
+&lt;|paragraph|&gt;
+JULIET:
+Ay, and be so, what&#x27;st thou wilt thou?
+
+&lt;|paragraph|&gt;
+Romeo, and I shouldst say,
+And he wouldst thou dost not have
+To be, thou not: I think, I was,
+I would I be so, for the king,
+And that have but this be a little,
+By this is not, let him to your grace,
+And I say, my heart in the doth:
+</pre></article><article><h3>Penalty only · default</h3><small>15.2% repeated four-token phrases</small><pre>, I was thy love thee,
+In all that thou, thou wast to be.
+
+&lt;|paragraph|&gt;
+JULIET:
+Thou art thou wert thou but this?
+
+&lt;|paragraph|&gt;
+ROMEO:
+I wouldst not so the word.
+
+&lt;|paragraph|&gt;
+JULIET:
+Why, he is I will have thee to thee.
+
+&lt;|paragraph|&gt;
+JULIET:
+How! and then thou wert thou art thou hast made thee!
+And, that thou shalt say you in thee,
+I was not love&#x27;st a little:
+The dost thou shalt never to thyself,
+That thou shouldst thee, when thou doth be so?
+O thou, that thou would have but thy eye.
+How may I could I may be not love;
+That, for thou art not be ant me in this world:
+</pre></article><article><h3>Penalty + hard phrase guard</h3><small>0.0% repeated four-token phrases</small><pre>, I was thy love thee,
+In all that thou, thou wast to be.
+
+&lt;|paragraph|&gt;
+JULIET:
+Thou art thou wert thou but this?
+
+&lt;ingbroke is a little wilt not so many of it,
+For now thou art thou dost thou hast thou shouldst thou shalt say,
+That he hadst thou shalt have no more than to make thee.
+
+To what thou shalt tell me thy soul&#x27;st thou hast thou wert love;
+Thou know that thou not, and thou liest thou shaltst,
+I&#x27;ll say, thou,
+As I shall be so, thy death to thee, thou not:
+But thou, for thou wouldst thou, be so,
+Which thou wilt thou art: but thy eye thee, and the air
+And yet, with death to that thou hast thou art:
+He hath been in this night&#x27;st,</pre></article></div></details></section>
+<section><h2>Use the new studio</h2><p>Open <strong>VV-GPT4 Preview</strong> on your desktop. Training, Playground, Datasets and My models are the four main views. The original models appear alongside your new experiments. Advanced settings stay tucked away until needed.</p><p>All new work is local on <code>enhance-original-models</code>. The earlier assistant alpha is retained on <code>archive/assistant-alpha</code>. The original VV-GPT3 launcher and files remain unchanged.</p></section>
+<footer>Evidence: docs/legacy-evidence.json · docs/training-comparison.json · docs/generation-comparison.json<br>Source lineage: XavierB100/vv-gpt3 @ 802d1a8 · Custom Transformer retained · No pretrained model weights</footer></html>
