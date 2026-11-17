@@ -3,25 +3,17 @@
   "passed": true,
   "checks": [
     "original vocabulary default",
+    "bundled example without legacy files",
     "dataset upload",
     "real compact training",
     "held-out score",
     "chart hover and pace",
-    "legacy model generation comparison",
+    "own trained model generation comparison",
     "sample and settings persistence",
     "continued training with inherited settings",
     "model-to-model comparison",
     "four persistent destinations without mobile overflow",
+    "320-1440px responsive destinations",
     "no browser errors"
-  ],
-  "navigation_checks": [
-    "persistent destinations and active state",
-    "browser back restores destination",
-    "selected run survives reload",
-    "model and experiment search",
-    "selected checkpoint opens directly in Generate",
-    "keyboard chart traversal",
-    "setup sheet restores focus",
-    "responsive 320, 390, 768, 1024 and 1440 pixel layouts"
   ]
 }

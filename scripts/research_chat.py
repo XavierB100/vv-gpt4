@@ -15,7 +15,8 @@ FOLDER.mkdir(exist_ok=True)
 path=FOLDER/'manifest.json'
 if path.exists():report=json.loads(path.read_text())
 else:
-    original=Path('/Users/xavier/AI/hermes-workspace/vv-gpt3');sys.path.insert(0,str(original))
+    from vvgpt.config import legacy_models
+    original=legacy_models().parent;sys.path.insert(0,str(original))
     from src.training.data_loader import DataProcessor
     processor=DataProcessor();text,metadata=processor.load_and_process_data(original/'uploads/chat_20260513_004648.txt','auto')
     codec=Codec();ids=codec.encode(text)

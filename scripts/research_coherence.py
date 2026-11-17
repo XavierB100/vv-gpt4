@@ -26,7 +26,8 @@ def write(path,value):
 def prepare():
     if MANIFEST.exists():return json.loads(MANIFEST.read_text())
     # Reconstruct the exact original data treatment; never import or run the old trainer.
-    original=Path('/Users/xavier/AI/hermes-workspace/vv-gpt3')
+    from vvgpt.config import legacy_models
+    original=legacy_models().parent
     sys.path.insert(0,str(original))
     from src.training.data_loader import DataProcessor
     processor=DataProcessor();text,_=processor.load_and_process_data(original/'data/input.txt','plain_text')

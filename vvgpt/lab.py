@@ -16,7 +16,9 @@ import threading
 
 _CODEC_LOCK = threading.Lock()
 
-LEGACY = Path('/Users/xavier/AI/hermes-workspace/vv-gpt3/models')
+from .config import legacy_models
+
+LEGACY = legacy_models()
 PRESETS = {'nano', 'micro', 'mini', 'tiny', 'small'}
 
 

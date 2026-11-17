@@ -1,0 +1,9 @@
+{
+  "version": "4.3.0",
+  "url": "https://github.com/XavierB100/vv-gpt4/releases/download/v4.3.0/vvgpt-stories-demo-v4.3.0.zip",
+  "run_id": "155f4e2dcc524a9391c072b201364229",
+  "bytes": 12858173,
+  "sha256": "f33cafbd8a2176ff278f640b5d8b085089593ac28890d9617b5760b4c4008bf0",
+  "checkpoint_sha256": "619bb1a770aab3c74a95830b496d2a99e27e2ab58371a86b7b71c2631a625ff7",
+  "model_card": "../docs/MODEL_CARD.md"
+}

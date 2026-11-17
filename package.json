@@ -1,0 +1,8 @@
+{
+  "name": "vv-gpt4-browser-checks",
+  "private": true,
+  "version": "4.3.0",
+  "description": "Optional browser verification for the local Python studio",
+  "scripts": {"test": "node scripts/verify_ui.cjs"},
+  "devDependencies": {"@playwright/test": "1.58.2"}
+}

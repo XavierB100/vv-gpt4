@@ -4,7 +4,7 @@ const {spawn}=require('node:child_process');
 const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),temporary=fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(),'vv-gpt4-ui-')));
 const port=5064,url=`http://127.0.0.1:${port}`;
-const server=spawn(path.join(root,'.venv/bin/python'),['app.py'],{cwd:root,env:{...process.env,VVGPT_PORT:String(port),VVGPT_DATA:temporary},stdio:['ignore','ignore','pipe']});
+const server=spawn(process.env.VVGPT_PYTHON||path.join(root,'.venv/bin/python'),['app.py'],{cwd:root,env:{...process.env,VVGPT_PORT:String(port),VVGPT_DATA:temporary,VVGPT_LEGACY_MODELS:path.join(temporary,'no-legacy')},stdio:['ignore','ignore','pipe']});
 let browser,serverErrors='';server.stderr.on('data',x=>serverErrors+=x);
 (async()=>{
   let ready=false;
@@ -15,9 +15,13 @@ let browser,serverErrors='';server.stderr.on('data',x=>serverErrors+=x);
   page.on('pageerror',e=>errors.push(e.message));
   page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
   await page.goto(url);
-  await page.waitForFunction(()=>document.querySelector('#sample-model').options.length>=3);
+  await page.waitForFunction(()=>document.querySelector('#sample-model').options.length===1);
+  assert(await page.locator('#sample-submit').isDisabled());
   assert.equal(await page.locator('#tokenizer').inputValue(),'gpt2');
   await page.locator('#new-run').click();
+  await page.locator('#setup-example').click();
+  await page.waitForFunction(()=>document.querySelector('#dataset option').value!=='');
+  assert.equal(await page.locator('#setup-example').isVisible(),false);
   await page.locator('#dataset-file').setInputFiles({name:'ui-smoke.txt',mimeType:'text/plain',buffer:Buffer.from('A river flows through the valley. The village sleeps beneath the stars.\n'.repeat(400))});
   await page.waitForFunction(()=>document.querySelector('#dataset option').value!=='');
   await page.locator('[name=name]').fill('UI smoke only');
@@ -39,7 +43,8 @@ let browser,serverErrors='';server.stderr.on('data',x=>serverErrors+=x);
   await page.locator('#model-library').getByText('UI smoke only',{exact:true}).waitFor();
   await page.keyboard.press('Escape');
   await page.locator('[data-open=play]').click();
-  await page.locator('#sample-model').selectOption('legacy:shakespeare-small-v1');
+  const trained=await (await fetch(url+'/api/state')).json();
+  await page.locator('#sample-model').selectOption('run:'+trained.runs[0].id);
   await page.locator('#sample-prompt').fill('ROMEO:\nThe night is quiet, and');
   await page.locator('#sample-form summary').click();
   await page.locator('#sample-tokens').fill('40');
@@ -49,7 +54,6 @@ let browser,serverErrors='';server.stderr.on('data',x=>serverErrors+=x);
   await page.waitForFunction(()=>!document.querySelector('#sample-submit').disabled&&document.querySelector('#enhanced-meta').textContent.includes('seed 123'),{},{timeout:90000});
   const output=await page.locator('#enhanced-output').innerText();
   assert(output.length>5);
-  await page.screenshot({path:path.join(root,'docs/playground-desktop.png'),fullPage:true});
   await page.reload();
   await page.keyboard.press('Escape');
   await page.locator('[data-open=play]').click();
@@ -97,9 +101,15 @@ let browser,serverErrors='';server.stderr.on('data',x=>serverErrors+=x);
   await page.locator('#new-run').click();
   await page.keyboard.press('Escape');
   assert.equal(await page.locator('dialog[open]').count(),0);
-  await page.screenshot({path:path.join(root,'docs/studio-mobile.png'),fullPage:true});
+  for (const width of [320,768,1024,1440]) {
+    await page.setViewportSize({width,height:900});
+    for (const view of ['train','play','models','data']) {
+      await page.goto(url+'/#'+view);
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`${view} overflow at ${width}`);
+    }
+  }
   assert.deepEqual(errors,[]);
-  const report={date:'2026-11-17',passed:true,checks:['original vocabulary default','dataset upload','real compact training','held-out score','chart hover and pace','legacy model generation comparison','sample and settings persistence','continued training with inherited settings','model-to-model comparison','four persistent destinations without mobile overflow','no browser errors']};
+  const report={date:'2026-11-17',passed:true,checks:['original vocabulary default','bundled example without legacy files','dataset upload','real compact training','held-out score','chart hover and pace','own trained model generation comparison','sample and settings persistence','continued training with inherited settings','model-to-model comparison','four persistent destinations without mobile overflow','320-1440px responsive destinations','no browser errors']};
   fs.writeFileSync(path.join(root,'docs/ui-verification.json'),JSON.stringify(report,null,2)+'\n');
   console.log(JSON.stringify(report));
 })().catch(error=>{console.error(error);console.error(serverErrors.slice(-2000));process.exitCode=1;}).finally(async()=>{

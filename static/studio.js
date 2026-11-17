@@ -69,6 +69,7 @@ async function refresh() {
     renderRuns(); renderModels(); renderData(); renderSamples();
     options($('#dataset'), state.datasets.map(d => ({value:d.id,label:d.name})), 'Import a dataset');
     datasetDetail(); initialDetail();
+    $('#setup-example').hidden = !!state.datasets.length;
     if (selectedRun) await loadRun(selectedRun);
     $('#workspace-status').textContent = state.runs.some(r => ['running','queued','evaluating'].includes(r.status)) ? 'Training locally' : 'Local workspace';
   } finally { refreshing = false; }
@@ -100,7 +101,7 @@ async function loadRun(id) {
   $('#run-time').textContent = duration(summary.elapsed); $('#run-progress').value = run.step / config.steps * 100;
   $('#run-error').textContent = run.error || '';
   $('#run-detail').textContent = summary.parameters ? `${(summary.parameters/1e6).toFixed(2)}M parameters, ${summary.architecture || 'classic'} Transformer${summary.initial_model ? ', continued from your checkpoint' : ''}` : 'Preparing dataset…';
-  $('#run-context').textContent = `${config.context} token context on ${summary.device?.toUpperCase() || 'your device'}`;
+  $('#run-context').textContent = `${summary.release_demo ? 'Recorded demo · ' : ''}${config.context} token context on ${summary.device?.toUpperCase() || 'your device'}`;
   $('#use-run').disabled = !state.models.some(model => model.id === 'run:' + id);
   const startLoss = metrics[0]?.val;
   $('#loss-change').textContent = startLoss > 0 && run.best != null && run.best < startLoss ? `${((1-run.best/startLoss)*100).toFixed(1)}% below first evaluation` : '';
@@ -234,6 +235,8 @@ function renderModels() {
   if (!state.models.length) target.append(node('p','empty','Your trained models will appear here.'));
   const list=state.models.map(m=>({value:m.id,label:m.name}));
   options($('#sample-model'),list,'Train a model first');
+  $('#sample-submit').disabled = busy || !list.length;
+  $('#generation-help').hidden = !!list.length;
   if (!modelSelectionReady && list.length) {
     const current = 'run:' + selectedRun;
     if (list.some(item => item.value === current)) $('#sample-model').value = current;
@@ -296,6 +299,7 @@ $('#new-run').onclick=()=>openDrawer('new');$('#refresh').onclick=handle(refresh
 $('#dataset').onchange=datasetDetail;$('#initial-model').onchange=()=>{initialDetail();$('#training-form [name=lr]').value=$('#initial-model').value?'0.0001':'0.0003';};
 $('#compare').onchange=()=>$('#comparison-settings').hidden=!$('#compare').checked;
 $('#dataset-file').onchange=handle(event=>upload(event.target));$('#data-file').onchange=handle(event=>upload(event.target));
+$('#setup-example').onclick=()=>$('#example').click();
 $('#example').onclick=handle(async()=>{await api('/api/datasets/example',{method:'POST'});await refresh();openDrawer('new');});
 $('#compare-run').onchange=handle(()=>loadRun(selectedRun));$('#chart-mode').onchange=()=>{hover=-1;draw();};
 $('#loss-chart').addEventListener('pointermove',event=>{
@@ -315,7 +319,7 @@ $('#training-form').onsubmit=handle(async event=>{
 });
 document.querySelectorAll('[data-control]').forEach(button=>button.onclick=handle(async()=>{await api(`/api/runs/${selectedRun}/${button.dataset.control}`,{method:'POST'});await loadRun(selectedRun);}));
 $('#sample-form').onsubmit=handle(async event=>{
-  event.preventDefault();if(busy)return;busy=true;$('#sample-submit').disabled=true;$('#notice').hidden=true;$('#enhanced-output').textContent='Generating…';
+  event.preventDefault();if(busy || !state.models.length)return;busy=true;$('#sample-submit').disabled=true;$('#notice').hidden=true;$('#enhanced-output').textContent='Generating…';
   try{
     const settings={model:$('#sample-model').value,prompt:$('#sample-prompt').value,tokens:Number($('#sample-tokens').value),temperature:Number($('#temperature').value),repetition_penalty:Number($('#penalty').value),no_repeat_ngram:Number($('#ngram').value),seed:Number($('#sample-seed').value),compare:$('#compare').checked,baseline_model:$('#baseline-model').value};
     const result=await api('/api/sample',{method:'POST',body:settings});resultView({...result,model:settings.model,prompt:settings.prompt,settings});await refresh();

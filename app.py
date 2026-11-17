@@ -72,7 +72,7 @@ def create_app(data_dir=None):
         for run in runs:run['summary']=lab.run_summary(store,run['id'])
         return jsonify(datasets=lab.dataset_info(store),runs=runs,models=lab.library(store),
                        samples=store.rows('SELECT id,model,prompt,created FROM samples ORDER BY created DESC LIMIT 12'),
-                       version='4.2-research',mode='custom-models')
+                       version='4.3.0',mode='custom-models')
 
     @app.post('/api/datasets')
     def dataset_upload():
@@ -89,8 +89,7 @@ def create_app(data_dir=None):
     def dataset_example():
         rows=store.rows('SELECT id FROM datasets WHERE name=?',('Shakespeare · original corpus',))
         if rows:return jsonify(id=rows[0]['id'])
-        path=lab.LEGACY.parent/'data/input.txt'
-        if not path.exists():raise ValueError('Original example not found. Import your text file instead.')
+        path=ROOT/'examples/shakespeare.txt'
         return jsonify(id=lab.add_dataset(store,'Shakespeare · original corpus',path.read_text(encoding='utf-8')))
 
     @app.post('/api/runs')

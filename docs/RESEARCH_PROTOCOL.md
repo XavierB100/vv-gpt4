@@ -21,7 +21,9 @@ This round focuses on learned weights and training, following the user's request
 
 Report continued-training improvement relative to the user's actual existing checkpoint separately from the scratch architecture comparison. Same steps are not necessarily same elapsed compute. Retain losing candidates. Do not describe lower likelihood loss or mechanically reduced repetition as proof of general intelligence. New architecture cannot directly load incompatible old weights; continuing existing models keeps their architecture and vocabulary.
 
-## Design
+## Historical initial design
+
+This section records the first design direction. The accepted release interface supersedes it; see [INTERFACE_REVISION.md](INTERFACE_REVISION.md).
 
 User selected: research first, one large learning chart, all other functions in drawers. Remove the permanent sidebar, motivational headlines, duplicated summary panels, and the always-visible configuration column. Keep a quiet top bar, experiment selector, a large chart with train/validation labels, a compact result line and controls. New experiment, datasets/models and generation open only when requested.
 

@@ -41,6 +41,8 @@ const root=path.resolve(__dirname,'..'),url=process.env.STUDIO_URL||'http://127.
    await page.evaluate(()=>scrollTo(0,0));
    await page.screenshot({path:path.join(root,'docs/playground-desktop.png'),fullPage:true});
   }
+  await page.locator('[data-open=data]').click();
+  await page.screenshot({path:path.join(root,'docs/data-desktop.png'),fullPage:true});
   await page.goto(url+'/report');
   assert.match(await page.title(),/Coherence research/);
   await page.screenshot({path:path.join(root,'docs/report-preview.png'),fullPage:false});
