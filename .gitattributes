@@ -1,0 +1,2 @@
+# Preserve the upstream example byte-for-byte, including its two trailing spaces.
+examples/shakespeare.txt -text -whitespace
