@@ -25,7 +25,7 @@ npx playwright install chromium
 VVGPT_PYTHON=python npm test
 ```
 
-On Linux CI use `npx playwright install --with-deps chromium`. If Chromium is already installed, `PLAYWRIGHT_EXECUTABLE_PATH` selects its executable. `PLAYWRIGHT_MODULE` can select an existing Playwright module; otherwise the pinned local package is used.
+GitHub CI uses the Chrome executable already included in the Ubuntu 24.04 runner, avoiding an extra browser/OS dependency installation. For a Linux machine without browser libraries, use `npx playwright install --with-deps chromium`. If Chromium is already installed, `PLAYWRIGHT_EXECUTABLE_PATH` selects its executable. `PLAYWRIGHT_MODULE` can select an existing Playwright module; otherwise the pinned local package is used.
 
 `scripts/verify_ui.cjs` starts a server at port 5064 with an empty temporary workspace and an absent legacy-model directory. It imports text, really trains a short compact model, generates from those weights, restores saved samples/settings, continues a copy of the model and compares the checkpoints. It checks chart inspection, persistent destinations and mobile overflow. It never needs private training data or original checkpoints. Do not run a second copy on the same port.
 
