@@ -4,7 +4,7 @@ jobs:
   regression:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-15]
+        os: [ubuntu-24.04, macos-15]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -21,7 +21,7 @@ jobs:
       - run: node --check static/studio.js
       - run: bash -n VV_GPT4.command
   browser:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
