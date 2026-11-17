@@ -53,11 +53,13 @@ let browser,serverErrors='';server.stderr.on('data',x=>serverErrors+=x);
   await page.reload();
   await page.keyboard.press('Escape');
   await page.locator('[data-open=play]').click();
+  await page.locator('.saved-section summary').click();
   await page.locator('#samples button').first().click();
   await page.waitForFunction(value=>document.querySelector('#enhanced-output').innerText===value,output);
   assert.equal(await page.locator('#enhanced-output').innerText(),output);
   assert.equal(await page.locator('#sample-seed').inputValue(),'123');
-  assert.equal(await page.locator('dialog[open]').count(),1);
+  assert.equal(await page.locator('dialog[open]').count(),0);
+  assert.equal(await page.locator('#drawer-play').isVisible(),true);
   assert.equal(await page.locator('#sample-tokens').inputValue(),'40');
   // Train a child through the drawer; the parent's architecture/context/vocabulary must inherit.
   await page.keyboard.press('Escape');
@@ -86,16 +88,18 @@ let browser,serverErrors='';server.stderr.on('data',x=>serverErrors+=x);
   await page.setViewportSize({width:390,height:844});
   await page.keyboard.press('Escape');
   for(const name of ['history','play','data','models']){
+    if(name==='history') await page.locator('[data-view=train]').click();
     await page.locator(`[data-open=${name}]`).click();
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth || [...document.querySelectorAll('dialog[open]')].some(d=>d.scrollWidth>d.clientWidth)),false,`${name} overflows on mobile`);
     await page.keyboard.press('Escape');
   }
+  await page.locator('[data-view=train]').click();
   await page.locator('#new-run').click();
   await page.keyboard.press('Escape');
   assert.equal(await page.locator('dialog[open]').count(),0);
   await page.screenshot({path:path.join(root,'docs/studio-mobile.png'),fullPage:true});
   assert.deepEqual(errors,[]);
-  const report={date:'2026-11-17',passed:true,checks:['original vocabulary default','dataset upload','real compact training','held-out score','chart hover and pace','legacy model generation comparison','sample and settings persistence','continued training with inherited settings','model-to-model comparison','four mobile drawers without overflow','no browser errors']};
+  const report={date:'2026-11-17',passed:true,checks:['original vocabulary default','dataset upload','real compact training','held-out score','chart hover and pace','legacy model generation comparison','sample and settings persistence','continued training with inherited settings','model-to-model comparison','four persistent destinations without mobile overflow','no browser errors']};
   fs.writeFileSync(path.join(root,'docs/ui-verification.json'),JSON.stringify(report,null,2)+'\n');
   console.log(JSON.stringify(report));
 })().catch(error=>{console.error(error);console.error(serverErrors.slice(-2000));process.exitCode=1;}).finally(async()=>{

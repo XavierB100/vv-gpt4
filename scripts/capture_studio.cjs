@@ -9,7 +9,8 @@ const root=path.resolve(__dirname,'..'),url=process.env.STUDIO_URL||'http://127.
   page.on('pageerror',e=>errors.push(e.message));
   page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
   await page.goto(url);
-  await page.waitForFunction(()=>document.querySelector('#run-name').textContent!=='No experiment selected');
+  await page.waitForFunction(()=>document.querySelector('#run-step').textContent!=='—');
+  await page.evaluate(()=>document.fonts.ready);
   await page.locator('[data-open=history]').click();
   await page.locator('#runs button').filter({hasText:'Simple stories / further learning'}).click();
   await page.waitForFunction(()=>document.querySelector('#run-name').textContent==='Simple stories / further learning');
@@ -37,7 +38,7 @@ const root=path.resolve(__dirname,'..'),url=process.env.STUDIO_URL||'http://127.
    await page.locator('#sample-submit').click();
    await page.waitForFunction(()=>!document.querySelector('#sample-submit').disabled&&document.querySelector('#enhanced-meta').textContent.includes('seed 42'),{},{timeout:90000});
    await page.locator('#sample-form summary').click();
-   await page.locator('#drawer-play').evaluate(dialog=>dialog.scrollTop=0);
+   await page.evaluate(()=>scrollTo(0,0));
    await page.screenshot({path:path.join(root,'docs/playground-desktop.png'),fullPage:true});
   }
   await page.goto(url+'/report');

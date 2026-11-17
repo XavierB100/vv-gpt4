@@ -4,7 +4,7 @@ const path=require('node:path'),assert=require('node:assert/strict');
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];
  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
  await page.goto(process.env.STUDIO_URL||'http://127.0.0.1:5054');
- await page.waitForFunction(()=>document.querySelector('#run-name').textContent!=='No experiment selected');
+ await page.waitForFunction(()=>document.querySelector('#run-step').textContent!=='—');
  await page.locator('[data-open=history]').click();
  await page.locator('#runs button').filter({hasText:'Shakespeare / continued learning'}).click();
  await page.waitForFunction(()=>document.querySelector('#run-name').textContent==='Shakespeare / continued learning');
@@ -26,10 +26,12 @@ const path=require('node:path'),assert=require('node:assert/strict');
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
  await page.screenshot({path:path.resolve('docs/research-mobile.png'),fullPage:true});
  for(const name of ['history','models','data','play']){
+  if(name==='history') await page.locator('[data-view=train]').click();
   await page.locator(`[data-open=${name}]`).click();
   assert.equal(await page.evaluate(()=>[...document.querySelectorAll('dialog[open]')].some(d=>d.scrollWidth>d.clientWidth)),false,name+' overflow');
   await page.keyboard.press('Escape');
  }
+ await page.locator('[data-view=train]').click();
  await page.locator('#new-run').click();
  await page.screenshot({path:path.resolve('docs/research-drawer-mobile.png'),fullPage:false});
  assert.equal(await page.evaluate(()=>[...document.querySelectorAll('dialog[open]')].some(d=>d.scrollWidth>d.clientWidth)),false,'setup overflow');

@@ -35,7 +35,7 @@ Earlier negative findings remain in [training-comparison.json](docs/training-com
 
 ## The simpler interface
 
-One large learning chart is the main screen. **Experiments**, **Models**, **Data**, **Generate** and **New run** open drawers. A quiet measurement strip, hover values, compatible validation overlays, pace view and collapsed measurement table make the visualizations useful without a dashboard full of panels. Drawers support keyboard focus, Escape/backdrop close and full-width mobile layouts.
+A persistent **Train / Generate / Models / Data** navigation bar keeps the main tasks one click away. Train leads with one learning surface that groups the metrics, real curves and comparison controls. Generate has a dedicated prompt-and-output workspace. Models and Data are searchable libraries. Experiment switching, setup and raw measurements use focused drawers. The selected experiment survives reloads; browser Back restores your previous page. “Try this model” opens the selected run’s checkpoint directly. Larger locally hosted Manrope typography and responsive layouts keep controls readable. Native setup drawers retain keyboard focus and Escape/backdrop close.
 
 To continue one of your trained models, open **Models → Continue training**, choose appropriate training text, name the new run and start. The source weights are copied to that run; architecture, context and vocabulary are inherited. The starting checkpoint is evaluated and saved at step zero. Further training must beat it on validation to replace the best weights. Use a genuinely new holdout when you need independent evidence: automatically splitting text cannot undo a model having seen it previously.
 
