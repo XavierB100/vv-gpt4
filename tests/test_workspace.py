@@ -53,3 +53,20 @@ def test_generation_failure_releases_slot_and_success_persists(app,client,header
     assert saved['prompt']=='Hello' and saved['settings']==payload
     assert saved['result']['baseline']['seed']==saved['result']['enhanced']['seed']==12
     assert calls[-1]['no_repeat_ngram']==0 and calls[-1]['repetition_penalty']==1
+
+
+def test_weight_comparison_matches_sampling_and_persists_both_models(client,headers,monkeypatch):
+    calls=[]
+    def generate(store,model,prompt,length,settings,cache):
+        calls.append((model,prompt,length,dict(settings)))
+        return {'text':model,'seed':settings['seed']}
+    monkeypatch.setattr(lab,'generate_sample',generate)
+    payload={'model':'child','baseline_model':'parent','prompt':'Hello','tokens':20,'seed':42,
+             'compare':True,'temperature':.8,'repetition_penalty':1.1,'no_repeat_ngram':4}
+    response=client.post('/api/sample',headers=headers,json=payload)
+    assert response.status_code==200 and response.json['comparison_kind']=='weights'
+    assert [call[0] for call in calls]==['child','parent']
+    assert calls[0][1:]==calls[1][1:]
+    saved=client.get('/api/samples/'+response.json['id']).json
+    assert saved['settings']==payload
+    assert saved['result']['enhanced']['text']=='child' and saved['result']['baseline']['text']=='parent'

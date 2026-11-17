@@ -1,0 +1,852 @@
+{
+  "provenance": {
+    "dataset": "roneneldan/TinyStories",
+    "revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",
+    "url": "https://huggingface.co/datasets/roneneldan/TinyStories/resolve/f54c09fd23315a6f9c86f9dc80f725de7d8f9c64/TinyStoriesV2-GPT4-train.txt",
+    "license": "CDLA-Sharing-1.0",
+    "license_url": "https://cdla.dev/sharing-1-0/",
+    "counts": {
+      "train": 20000,
+      "validation": 500,
+      "test": 500
+    },
+    "downloaded_bytes": 17275507,
+    "deduplicated": "exact whole-story hash",
+    "separator": "<|endoftext|>",
+    "tokenizer_requirement": "compact recognizes EOS separators"
+  },
+  "runs": [
+    {
+      "kind": "stories_revised",
+      "run": "e65fe480badd4a56ba0011c82815164d",
+      "config": {
+        "name": "Simple stories / learned language",
+        "dataset": "575dcf93025140d589e448a2ea1b236b",
+        "size": "mini",
+        "architecture": "revised",
+        "tokenizer": "compact",
+        "steps": 5000,
+        "batch": 16,
+        "context": 256,
+        "seed": 42,
+        "lr": 0.0005,
+        "dropout": 0.1,
+        "eval_every": 250,
+        "patience": 12
+      },
+      "summary": {
+        "parameters": 3443136,
+        "vocab_size": 4096,
+        "tokenizer": "compact",
+        "train_tokens": 4121379,
+        "validation_tokens": 102013,
+        "test_chars": 410062,
+        "device": "mps",
+        "dataset_sha256": "429da2304468ebee13a422ff5c260e0f1692563d424e1f03fa419caca4d7722c",
+        "split": "Explicit research partitions",
+        "architecture": "revised",
+        "initial_model": null,
+        "unlikelihood": 0.0,
+        "step": 5000,
+        "elapsed": 474.9663197909995,
+        "training_seconds": 459.4087892090338,
+        "steady_training_seconds": 458.02034758503214,
+        "steady_steps": 4990,
+        "steady_ms_per_step": 91.78764480661967,
+        "tokens_per_second": 44579.03392588659,
+        "best_loss": 2.043279767036438,
+        "best_step": 5000,
+        "test": {
+          "bits_per_byte": 0.656937557656522,
+          "loss": 1.8816298177419615,
+          "tokens": 1936,
+          "bytes": 8000,
+          "chars": 8000,
+          "context_tokens": 256,
+          "text_sha256": "34da2eb5f43eaa27c390df36b2c4aa89eb846f10afebfbb50ce6458a6bf7bf04"
+        }
+      },
+      "metrics": [
+        {
+          "step": 1,
+          "train": 8.332363367080688,
+          "val": 8.319322347640991,
+          "lr": 1e-05,
+          "elapsed": 0.8600618749987916
+        },
+        {
+          "step": 250,
+          "train": 3.507773756980896,
+          "val": 3.5000088810920715,
+          "lr": 0.000498207865295394,
+          "elapsed": 24.51068162499905
+        },
+        {
+          "step": 500,
+          "train": 3.0224282145500183,
+          "val": 3.0254653692245483,
+          "lr": 0.0004909261068961884,
+          "elapsed": 48.19081158299923
+        },
+        {
+          "step": 750,
+          "train": 2.778201162815094,
+          "val": 2.773279905319214,
+          "lr": 0.0004782198047641915,
+          "elapsed": 71.97231212499901
+        },
+        {
+          "step": 1000,
+          "train": 2.6100111603736877,
+          "val": 2.6154561042785645,
+          "lr": 0.0004604081694505856,
+          "elapsed": 95.68624504099898
+        },
+        {
+          "step": 1250,
+          "train": 2.4995319843292236,
+          "val": 2.515288233757019,
+          "lr": 0.00043793866882343025,
+          "elapsed": 119.43113916599941
+        },
+        {
+          "step": 1500,
+          "train": 2.4222031235694885,
+          "val": 2.4281485080718994,
+          "lr": 0.00041137578668025236,
+          "elapsed": 143.192577541
+        },
+        {
+          "step": 1750,
+          "train": 2.3430176377296448,
+          "val": 2.3619887232780457,
+          "lr": 0.0003813868416604047,
+          "elapsed": 166.95794445799947
+        },
+        {
+          "step": 2000,
+          "train": 2.2808732390403748,
+          "val": 2.3099068999290466,
+          "lr": 0.0003487252227176306,
+          "elapsed": 190.5778709999995
+        },
+        {
+          "step": 2250,
+          "train": 2.2143490314483643,
+          "val": 2.2620546221733093,
+          "lr": 0.0003142114623150291,
+          "elapsed": 214.21637529100008
+        },
+        {
+          "step": 2500,
+          "train": 2.1631600856781006,
+          "val": 2.22575181722641,
+          "lr": 0.00027871262282582653,
+          "elapsed": 237.7844404159987
+        },
+        {
+          "step": 2750,
+          "train": 2.13334858417511,
+          "val": 2.183636486530304,
+          "lr": 0.00024312051399938861,
+          "elapsed": 261.3779127909984
+        },
+        {
+          "step": 3000,
+          "train": 2.105322778224945,
+          "val": 2.151760160923004,
+          "lr": 0.0002083292887181366,
+          "elapsed": 284.9753875409988
+        },
+        {
+          "step": 3250,
+          "train": 2.0744653940200806,
+          "val": 2.132045269012451,
+          "lr": 0.00017521297988975555,
+          "elapsed": 308.63627266599906
+        },
+        {
+          "step": 3500,
+          "train": 2.0474448800086975,
+          "val": 2.1146347522735596,
+          "lr": 0.0001446035427978857,
+          "elapsed": 332.2885728329984
+        },
+        {
+          "step": 3750,
+          "train": 2.0260371565818787,
+          "val": 2.0959786772727966,
+          "lr": 0.00011726995453625504,
+          "elapsed": 355.9879369579994
+        },
+        {
+          "step": 4000,
+          "train": 2.0095198154449463,
+          "val": 2.0795551538467407,
+          "lr": 9.389889559491935e-05,
+          "elapsed": 379.5942338749992
+        },
+        {
+          "step": 4250,
+          "train": 1.9937536418437958,
+          "val": 2.0671416521072388,
+          "lr": 7.507749892010393e-05,
+          "elapsed": 403.20070037499863
+        },
+        {
+          "step": 4500,
+          "train": 1.9861966967582703,
+          "val": 2.056187391281128,
+          "lr": 6.127859982960499e-05,
+          "elapsed": 426.9511476659991
+        },
+        {
+          "step": 4750,
+          "train": 1.9727849960327148,
+          "val": 2.0513159036636353,
+          "lr": 5.2848857338660486e-05,
+          "elapsed": 450.7651677499998
+        },
+        {
+          "step": 5000,
+          "train": 1.9688684940338135,
+          "val": 2.043279767036438,
+          "lr": 5.000004531498655e-05,
+          "elapsed": 474.5538329579995
+        }
+      ]
+    }
+  ],
+  "test": {
+    "bits_per_byte": 0.7438939286591011,
+    "loss": 2.062264445409419,
+    "tokens": 25003,
+    "bytes": 100000,
+    "chars": 100000,
+    "context_tokens": 256,
+    "sha256": "8f1f7cc017bcaf5b02715c3c87fff484d0ea5474414d42e3364b82cabdc9e999"
+  },
+  "generation": {
+    "own_original": {
+      "model": "legacy:shakespeare-small-v1",
+      "samples": [
+        {
+          "text": "\nhath a little; 'tis more, I, to see:\nAway with my good, for a little thing, I am too much\nare you not so.\n\n<|paragraph|>\nNurse:\nNay, sir, come, sir, that I think you have you;\nto be it were a man's not.\n\n<|paragraph|>\nPETRUCHIO:\nWhat is't, sir, no more.\n\n<|paragraph|>\nNurse:\nSir, sir, sir, is a word; I'll not a thing of\nto be the good sir.\n\n<|paragraph|>\nDUKE VINCENTIO:\nI have been a man, my good fellow",
+          "tokens": 160,
+          "seconds": 2.716,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.14012738853503182,
+          "seed": 42,
+          "prompt_tokens": 26,
+          "used_prompt_tokens": 26,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": "\nbe an ass it a man.\n\n<|paragraph|>\nDUKE VINCENTIO:\nGo, then, sir, you, a month, that you are a word, and a\nshe have you have but I was her good to be a man\nthanio.\n\n<|paragraph|>\nProvost:\nI have done, sir; you to you.\n\n<|paragraph|>\nDUKE VINCENTIO:\nI think you, for you,--\n\n<|paragraph|>\nISABELLA:\nWhat! O, a bawd.\n\n<|paragraph|>\nISABELLA:\nNay, what is the dost:\nYou will not",
+          "tokens": 160,
+          "seconds": 2.558,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.2420382165605095,
+          "seed": 123,
+          "prompt_tokens": 26,
+          "used_prompt_tokens": 26,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": "\nhath a little; 'tis more, I, to the one thing and\npithee, for thy poor thing he is not\nhe were a very time to see the duke: which would I will, he's a\ninius have been so, but a doth she was a man;\nto be it were a man's not a man.\n\n<|paragraph|>\nFirst Citizen:\nWhy, sir, sir, sir; and I think 'tis so he is not.\n\n<|paragraph|>\nPOMPEY:\nIt is a woman; and he's to the good sir.\n\n<|paragraph|>\nDUKE VINCENTIO:\nI have been a man, my good fellow",
+          "tokens": 160,
+          "seconds": 2.326,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.08280254777070062,
+          "seed": 42,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": "\nand a great men are a little: he shall have made\na-she's the man; that thou art a man,\nand a word of him in the people's no other.\n\n<|paragraph|>\nFirst Citizen:\nHow is the duke is the duke:\nAnd, we will not for the gods?\n\n<|paragraph|>\nSICINIUS:\nWhat, you, he that we have\nto be done the truth; and to my house: you,--\n\n<|paragraph|>\nSICINIUS:\nI am not a word.\n\n<|paragraph|>\nFirst Citizen:\nLet us, we will find\nHe hath the gods be an't; and the",
+          "tokens": 160,
+          "seconds": 2.402,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.17834394904458595,
+          "seed": 123,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " I would have a\nmest, for my lord, to see: then, I'll say it.\n\n<|paragraph|>\nROMEO:\nMy lord, sir, my lord, for I will,\nMy soul, and I have been so,\nI would not for thyself to see your heart.\n\n<|paragraph|>\nGLOUCESTER:\nMy lord, my lord, good lord;\nI shall not have been a little more than I know\nAnd not that is that thou art a mother,\nThat is as thou know I have done to me,\nAnd to the king.\n\n<|paragraph|>\nGLOUCESTER:\n\n<|paragraph|>\nKING EDWARD IV:",
+          "tokens": 160,
+          "seconds": 2.375,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.1719745222929936,
+          "seed": 42,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ben and Anna found a little bird with a hurt wing. They wanted to help it, so",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": ", I do I must have a little\nand a man shall not by your daughter's house, my heart;\nOr shall be not, as I do it is come,\nWith a child, no more of it is,\nOf our general was nothing; I am a man\nOr to-t a bawd, I am not?\n\n<|paragraph|>\nLUCIO:\nMy lord, then, what is't.\n\n<|paragraph|>\nJULIET:\nWell, I would I cannot do.\n\n<|paragraph|>\nROMEO:\nI love me, but I wouldst thou art\nA man, I must not a word of your tongue.\n\n<|paragraph|>\nL",
+          "tokens": 160,
+          "seconds": 2.332,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.1146496815286624,
+          "seed": 123,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ben and Anna found a little bird with a hurt wing. They wanted to help it, so",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": "\nOr shall not, I have heard the Vols,\nBut what'st thou hast thou hast not for thy father;\nI am too much as I'll not so.\n\n<|paragraph|>\nNurse:\nO, it is not so, sir.\n\n<|paragraph|>\nROMEO:\nBut I was not, I have more than me to be.\n\n<|paragraph|>\nJULIET:\nI have not, sir, he is not.\n\n<|paragraph|>\nNurse:\nNo; I have I love me,\nAnd to the king is not? I'll find thee!\nI'll hear me to my name?\n\n<|paragraph|>\nROMEO:",
+          "tokens": 160,
+          "seconds": 2.708,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.197452229299363,
+          "seed": 42,
+          "prompt_tokens": 15,
+          "used_prompt_tokens": 15,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "It was raining outside. Mia wanted to stay dry, so she took her",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": "\nTo do I must have spoke.\n\n<|paragraph|>\nMARCIUS:\nWhat, I know the people: I will,\nThat I will be made you.\n\n<|paragraph|>\nWARWICK:\nGood morrow, my lord, no more:\nAnd, we will not all, and with me;\nBut he cannot speak no more than he would.\n\n<|paragraph|>\nKING RICHARD II:\nBut then, I will not for you,\nMy lord, my brother, to be married.\n\n<|paragraph|>\nRICHARD II:\nHow! it is the king is not like a little,\nAnd I will die, the king'st,\nThe crown",
+          "tokens": 160,
+          "seconds": 2.402,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.1273885350318471,
+          "seed": 123,
+          "prompt_tokens": 15,
+          "used_prompt_tokens": 15,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "It was raining outside. Mia wanted to stay dry, so she took her",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " I would have a\nmest, the Vols, to the one thing of the crown,\nthe doth be the people that he is an hour,\nThat you.\n\n<|paragraph|>\nPOLIXENES:\nNo, good lords, sir, that you were done?\n\n<|paragraph|>\nLEONTES:\nAnd,--\n\n<|paragraph|>\nLEONTES:\nCome, sir, no more.\n\n<|paragraph|>\nPOLIXENES:\nO, sir, my lord.\n\n<|paragraph|>\nCORIOLYCUS:\nYou may be no more, as he, you to do\nThat's a word to the dost: for your honour",
+          "tokens": 160,
+          "seconds": 2.365,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.21019108280254772,
+          "seed": 42,
+          "prompt_tokens": 15,
+          "used_prompt_tokens": 15,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Sam had two apples. He gave one to his friend. Now Sam had",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " not\nPray, you, but a good lord, for you\nI have seen the Duke of that you well-morrow.\n\n<|paragraph|>\nFirst Servingman:\nO, sir, sir,\nMy brother, I was not have you be made you are.\n\n<|paragraph|>\nISABELLA:\nI do not, good lord.\n\n<|paragraph|>\nISABELLA:\nSir, sir.\n\n<|paragraph|>\nANGELO:\nWell, you.\n\n<|paragraph|>\nISABELLA:\nAy, but I wouldst it,\nA: but I must not call him;\nThat she is the house of your tongue\nTis",
+          "tokens": 160,
+          "seconds": 2.376,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.2292993630573248,
+          "seed": 123,
+          "prompt_tokens": 15,
+          "used_prompt_tokens": 15,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Sam had two apples. He gave one to his friend. Now Sam had",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": "\nOr shall you have done in this night,\nTo-morrow, then, I'll say it not for his father.\n\n<|paragraph|>\nLEONTES:\nA:\nWe'll not, then, sir, and give us have done,\nI would not for our good to see\nTo speak it out a man's face.\n\n<|paragraph|>\nEL:\nO, what's come; you,\nO, my soul is no, sir;\nAnd not that is so;\nI had I am not, as you\nOr let us to come, as they have the business.\n\n<|paragraph|>\nPAULINA:\nO,\nIt is it be too well: you have made you",
+          "tokens": 160,
+          "seconds": 2.444,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.08280254777070062,
+          "seed": 42,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "A little dog was lost in the park. A girl saw him and said,",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": "\nThe gods I must have spoke of his wife\nI'll not by your person: I shall be done;\nOr else to be, as I do him; I'll come to his friends\nTo have a thousand men have done\nIn't but his tongue to be made,\nBut to our voices, and we will not:\nWhen I have no more than he cannot speak\nTo make the law to thee: yet be so.\n\n<|paragraph|>\nLEONTES:\nTo your brother,\nThe matter, I cannot do.\n\n<|paragraph|>\nPOLIXENES:\nAy, but I wouldst it,\nA pretty word: but what I would not your tongue\nAnd, he is an't beheld the",
+          "tokens": 160,
+          "seconds": 2.399,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.03821656050955413,
+          "seed": 123,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "A little dog was lost in the park. A girl saw him and said,",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " her\nthe a little-up-house, I am a gentleman: and\nfret, it not for a little thing he is not\nhe were a very time to see the duke:\nbe a man, a woman, and so, I have been a\na-morrow for a man to see the\nem upon the time of the time.\n\n<|paragraph|>\nClown:\nYou'll be your brother's a word, no more.\n\n<|paragraph|>\nNurse:\n\n<|paragraph|>\nClown:\nNay, sir, he's a man of the dost.\n\n<|paragraph|>\nClown:\n\n<|paragraph|>\nShepherd:\nI",
+          "tokens": 160,
+          "seconds": 2.356,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.197452229299363,
+          "seed": 42,
+          "prompt_tokens": 20,
+          "used_prompt_tokens": 20,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " an\nPray, a man is a good to my wife.\n\n<|paragraph|>\nDUKE VINCENTIO:\nO, a doth come, I pray you not the time to you have\nand now I was to have you to her.\n\n<|paragraph|>\nANGELO:\nWhy, no; I have done, what I have heard it.\n\n<|paragraph|>\nDUKE VINCENTIO:\nI think you, for you,--\n\n<|paragraph|>\nISABELLA:\nWhat! O, a bawd.\n\n<|paragraph|>\nISABELLA:\nI'll give me, you would not be it be gone?",
+          "tokens": 160,
+          "seconds": 2.463,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.2420382165605095,
+          "seed": 123,
+          "prompt_tokens": 20,
+          "used_prompt_tokens": 20,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": "\nfor the man, I have heard the Vols, to see the old man,\nto-morrow for thy father; for that I have made anon you not\ndureseech you. I will, he's a true; and all\nand, sir, that I think you have with the\nto be it were a man's not.\n\n<|paragraph|>\nCLAUDIO:\nCome, sir; you, sir, no more.\n\n<|paragraph|>\nESCALUS:\nO, sir, my lord.\n\n<|paragraph|>\nTRANIO:\nO, it is a little more, as he's no?\n\n<|paragraph|>\nLUCIO:\nI",
+          "tokens": 160,
+          "seconds": 2.423,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.1146496815286624,
+          "seed": 42,
+          "prompt_tokens": 20,
+          "used_prompt_tokens": 20,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Max planted a seed in a small pot. Every day he gave it water. After a week,",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": "\nto thy head, a man is a noble lord!\n\n<|paragraph|>\nROMEO:\nHow now, then, sir, for him in the king'st, a word,\nBy all the Duke of the day:\nHow is the duke is the crown of our hands;\nWhat will not all, and all the way of the king'st!\n\n<|paragraph|>\nKING RICHARD III:\nMy lord, I will,\nAnd I will not for you, and I would I cannot do.\n\n<|paragraph|>\nKING RICHARD III:\nWell, I will not the king, I do not:\nThat I would be your tongue to be.\n\n<|paragraph|>",
+          "tokens": 160,
+          "seconds": 2.335,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.15286624203821653,
+          "seed": 123,
+          "prompt_tokens": 20,
+          "used_prompt_tokens": 20,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Max planted a seed in a small pot. Every day he gave it water. After a week,",
+          "word_repeat_fraction": 0.011235955056179803
+        }
+      ],
+      "mean_word_repeat_fraction": 0.0007022471910112377
+    },
+    "stories_revised": {
+      "model": "run:e65fe480badd4a56ba0011c82815164d",
+      "samples": [
+        {
+          "text": " saw a big box of toys. Lily was very happy. She took the box and played with it all day.\nThe next day, Lily went back to her room. She looked at her favorite toy car. She saw that she was sad. She wanted to help her mom. She put her toys on the shelf and went to her room. At the end of the day, Lily went home and had a great time.\n",
+          "tokens": 87,
+          "seconds": 1.866,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.023809523809523836,
+          "seed": 42,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " saw a big, mean dog. The dog barked at Lily and said, \"No, I am a bad dog!\" Lily was sad and cried. She knew she had to go home.\nLily learned that it is important to be nice to her friends and not to be mean. She learned that sometimes, things don't happen to her friends and be friends. She learned that being kind and kind is a good thing to do.\n",
+          "tokens": 88,
+          "seconds": 1.366,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.02352941176470591,
+          "seed": 123,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and",
+          "word_repeat_fraction": 0.014285714285714235
+        },
+        {
+          "text": " a bowl. He started to eat the cake. He was very happy.\nAfter eating, Tom was not hungry. He ate the cake all at the kitchen. He was very happy. But then, something unexpected happened. The bowl started to burn! Tom was sad. He did not know that the pot was not their way back.\nTom's mommy saw what happened. She told him that he was not a good job. She said he was sorry and learned that it was okay to be mad. From that day on, Tom always remembered to be kind and help others. And he never went to sleep in his house again.\n",
+          "tokens": 129,
+          "seconds": 2.789,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.023809523809523836,
+          "seed": 42,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and",
+          "word_repeat_fraction": 0.009615384615384581
+        },
+        {
+          "text": " threw it in the kitchen. The spoon was very bitter. Tom was sad, but he had an idea.\nTom gave the spoon to his mom and said, \"Now you can have some soup, but you must be careful.\" Tom was very sad and started to cry. His mom was very happy and said, \"It's okay, Tom. We can fix the soup together.\"\n",
+          "tokens": 79,
+          "seconds": 1.189,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.013157894736842146,
+          "seed": 123,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " they picked it up.\n\"Look, Anna, this is a nice nest. Do you want to see what it is?\" Ben asked.\n\"Yes, I want to see!\" Anna said. \"But I can't reach the nest. It's very hard. Do you want to climb it?\"\nBen nodded. He said, \"Yes, you can. But be careful. You can do it. I can try.\"\n\"OK, Lily, I will help you.\" Ben said. He threw the nest in the nest and the nest. It went from the nest. It looked fun.\nBut Ben did not see the nest. It was a big bird. It could not fly. It was angry. It wanted to see what was inside. It did not know how",
+          "tokens": 160,
+          "seconds": 2.544,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.031847133757961776,
+          "seed": 42,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ben and Anna found a little bird with a hurt wing. They wanted to help it, so",
+          "word_repeat_fraction": 0.00877192982456143
+        },
+        {
+          "text": " they tried to fly away. The bird flew away with a big smile on its face. Ben and Lily were happy to be friends again, and they all played together.\n",
+          "tokens": 35,
+          "seconds": 0.546,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ben and Anna found a little bird with a hurt wing. They wanted to help it, so",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " mommy to the park. \nMia asked her mommy if she could go outside and play. Her mommy said yes, but Mia was too scared. Mia was sad. She wanted to help her mommy. Her mommy gave her a big hug and said, \"I will be careful when you're scared. But you have to listen to me.\"\nMia was sad, but she knew her mommy was right. She asked her mommy if she could help. Her mommy told her to be careful and not be scared. Mia did not want to listen to the mommy. Her mommy said, \"Don't worry, Mia. We will go to the park.\"\nMia was sad, but she didn't know that the park was gone. She thought it would be fun to play with the sun and the",
+          "tokens": 160,
+          "seconds": 2.45,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.06369426751592355,
+          "seed": 42,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "It was raining outside. Mia wanted to stay dry, so she took her",
+          "word_repeat_fraction": 0.046875
+        },
+        {
+          "text": " toy gun outside. She put it in the sky and went outside to play.\nWhen Mia got home, she saw the rain and her toy car was gone. Mia felt sad and sorry for her toy car. She asked her mom for help. Her mom said they would come back to the park and play together again. Mia felt very happy and thanked her mom. From that day on, Mia and her mom always looked for the toy car and played together again.\n",
+          "tokens": 95,
+          "seconds": 1.461,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "It was raining outside. Mia wanted to stay dry, so she took her",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " a big, shiny box. Sam was very happy.\nSam and Sam had a great time playing together. They knew they would always help each other when they needed it. They went back home, happy and full.\n",
+          "tokens": 45,
+          "seconds": 0.927,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 42,
+          "prompt_tokens": 15,
+          "used_prompt_tokens": 15,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Sam had two apples. He gave one to his friend. Now Sam had",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " a nice ball. Sam was very happy.\nSam said, \"Thank you, Sam. You are a good helper.\" Sam smiled and said, \"You're welcome. I'm glad you are happy.\"\nSam smiled and said, \"Thank you, Sam. You are the best friend.\"\n",
+          "tokens": 62,
+          "seconds": 0.958,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.15254237288135597,
+          "seed": 123,
+          "prompt_tokens": 15,
+          "used_prompt_tokens": 15,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Sam had two apples. He gave one to his friend. Now Sam had",
+          "word_repeat_fraction": 0.10810810810810811
+        },
+        {
+          "text": " \"Why are you sad, dog?\" The little girl said, \"I am lost and I can't find him.\"\nThe little girl was sad, but she wanted to help him. So, she tried to find his way back to the big park. She tried and tried, but she could not find the way home. The little girl was sad, but she had a bad day.\n",
+          "tokens": 80,
+          "seconds": 1.215,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.051948051948051965,
+          "seed": 42,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "A little dog was lost in the park. A girl saw him and said,",
+          "word_repeat_fraction": 0.06666666666666665
+        },
+        {
+          "text": " \"Why are you sad?\" The dog said, \"I lost my toy. I will find it.\" The girl was very happy and said, \"I will help you find my toy.\" The girl agreed and they walked together. They looked under trees, under trees and behind the trees.\nAfter a while, they saw a little girl sitting under a tree. She said, \"Hi, I'm a baby bird. Do you want to play with me?\" The girl said, \"Yes, I am happy to have my toy back. I am the best friend!\" The girl and the little girl became best friends. They played and had fun together.\n",
+          "tokens": 133,
+          "seconds": 2.009,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.007692307692307665,
+          "seed": 123,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "A little dog was lost in the park. A girl saw him and said,",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " a little better.\n\"Thank you, Anna,\" she said. \"You're welcome, Poppy. I love your tower.\"\nAnna smiled and said, \"Thank you, Ella. You are my best friend. I love you too. And I love you too.\"\n",
+          "tokens": 57,
+          "seconds": 0.88,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.01851851851851849,
+          "seed": 42,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt",
+          "word_repeat_fraction": 0.030303030303030276
+        },
+        {
+          "text": " so happy. She said, \"Thank you, Pandy!\"\nThe mommy smiled and said, \"You are a great helper, Pinky!\"\nMimi and the little girl played together in the yard, and soon it was time to go home.\n",
+          "tokens": 54,
+          "seconds": 0.822,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " Max gave the seed a big hug. He felt very happy and loved.\nOne day, Max was playing with his tiny seed. He saw a big, shiny rock. Max wanted to show the leaf to his friend, a small bird named Chirpy. Blue was sad because he did not have a big leaf.\nOne day, Max saw a little bug on the ground. He thought it was a good idea. He asked Chirpy to help him. Chirpy flew to Cat and said, \"I can help you. I can't move the leaf to help you.\" Whiskers and Cat were happy. They became good friends.\nFrom that day on, Max and Jerry became good friends. They played together every day. They would fly, jump, and laugh all day. And they lived happily ever",
+          "tokens": 160,
+          "seconds": 2.48,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.02547770700636942,
+          "seed": 42,
+          "prompt_tokens": 21,
+          "used_prompt_tokens": 21,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Max planted a seed in a small pot. Every day he gave it water. After a week,",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " the seed grew in a beautiful flower. Max was very happy.\nThe next day, Max went to the kitchen to get a yummy fruit. He brought the plant to the garden. He took it home and ate it all by himself. Max was happy and not jealous anymore.\n",
+          "tokens": 57,
+          "seconds": 0.958,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 21,
+          "used_prompt_tokens": 21,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Max planted a seed in a small pot. Every day he gave it water. After a week,",
+          "word_repeat_fraction": 0.0
+        }
+      ],
+      "mean_word_repeat_fraction": 0.01778911461271658
+    }
+  },
+  "limitations": "Exploratory clean-language data experiment; one run/seed, restricted synthetic story domain. Comparing task capability with a Shakespeare-trained parent is not a controlled architecture comparison. No general assistant or factuality claim. EOS separators count toward the loss denominator."
+}

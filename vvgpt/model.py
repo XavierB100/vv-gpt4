@@ -22,6 +22,15 @@ class GPTConfig:
     n_embd: int = 768
     dropout: float = 0.0
     bias: bool = True  # True: bias in Linears and LayerNorms, like GPT-2. False: a bit better and faster
+    architecture: str = 'classic'
+
+    def __post_init__(self):
+        if self.architecture not in ('classic', 'revised'):
+            raise ValueError('Unknown Transformer architecture.')
+        if self.architecture == 'revised':
+            if self.n_embd % self.n_head or (self.n_embd // self.n_head) % 2:
+                raise ValueError('Rotary attention requires an even head dimension.')
+            self.bias = False
 
     # Model size presets
     @classmethod
@@ -30,6 +39,7 @@ class GPTConfig:
         presets = {
             'nano': {'n_layer': 3, 'n_head': 3, 'n_embd': 144},
             'micro': {'n_layer': 4, 'n_head': 4, 'n_embd': 192},
+            'mini': {'n_layer': 6, 'n_head': 6, 'n_embd': 192},
             'tiny': {'n_layer': 6, 'n_head': 6, 'n_embd': 384},
             'small': {'n_layer': 8, 'n_head': 8, 'n_embd': 512},
             'medium': {'n_layer': 12, 'n_head': 12, 'n_embd': 768},
@@ -56,6 +66,35 @@ class LayerNorm(nn.Module):
     def forward(self, input):
         return F.layer_norm(input, self.weight.shape, self.weight, self.bias, 1e-5)
 
+
+class RMSNorm(nn.Module):
+    def __init__(self, width):
+        super().__init__()
+        self.weight = nn.Parameter(torch.ones(width))
+
+    def forward(self, x):
+        normalized = x.float() * torch.rsqrt(x.float().pow(2).mean(-1, keepdim=True) + 1e-5)
+        return normalized.to(x.dtype) * self.weight
+
+
+def norm(config):
+    return RMSNorm(config.n_embd) if config.architecture == 'revised' else LayerNorm(config.n_embd, config.bias)
+
+
+class RotaryEmbedding(nn.Module):
+    def __init__(self, dimension, context):
+        super().__init__()
+        frequencies = 1.0 / (10000 ** (torch.arange(0, dimension, 2).float() / dimension))
+        angles = torch.outer(torch.arange(context).float(), frequencies)
+        self.register_buffer('cos', angles.cos(), persistent=False)
+        self.register_buffer('sin', angles.sin(), persistent=False)
+
+    def forward(self, x, offset=0):
+        c = self.cos[offset:offset+x.size(-2)].to(x.dtype)
+        s = self.sin[offset:offset+x.size(-2)].to(x.dtype)
+        even, odd = x[..., ::2], x[..., 1::2]
+        return torch.stack((even*c-odd*s, even*s+odd*c), dim=-1).flatten(-2)
+
 class CausalSelfAttention(nn.Module):
     """Multi-head causal self-attention with improvements"""
 
@@ -73,6 +112,7 @@ class CausalSelfAttention(nn.Module):
         self.n_head = config.n_head
         self.n_embd = config.n_embd
         self.dropout = config.dropout
+        self.rotary = RotaryEmbedding(config.n_embd // config.n_head, config.block_size) if config.architecture == 'revised' else None
 
         # Causal mask to ensure that attention is only applied to the left in the input sequence
         self.register_buffer("bias", torch.tril(torch.ones(config.block_size, config.block_size))
@@ -86,6 +126,10 @@ class CausalSelfAttention(nn.Module):
         k = k.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
         q = q.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
         v = v.view(B, T, self.n_head, C // self.n_head).transpose(1, 2) # (B, nh, T, hs)
+
+        if self.rotary is not None:
+            offset = past_key_value[0].size(-2) if past_key_value is not None else 0
+            q, k = self.rotary(q, offset), self.rotary(k, offset)
 
         if past_key_value is not None:
             past_k, past_v = past_key_value
@@ -139,15 +183,29 @@ class MLP(nn.Module):
         x = self.dropout(x)
         return x
 
+
+class GatedMLP(nn.Module):
+    def __init__(self, config):
+        super().__init__()
+        # Three matrices instead of two; 8d/3 preserves approximately the 8d² FFN budget.
+        hidden = 32 * math.ceil((8 * config.n_embd / 3) / 32)
+        self.gate = nn.Linear(config.n_embd, hidden, bias=False)
+        self.up = nn.Linear(config.n_embd, hidden, bias=False)
+        self.c_proj = nn.Linear(hidden, config.n_embd, bias=False)
+        self.dropout = nn.Dropout(config.dropout)
+
+    def forward(self, x):
+        return self.dropout(self.c_proj(F.silu(self.gate(x)) * self.up(x)))
+
 class Block(nn.Module):
     """Transformer block with pre-normalization"""
 
     def __init__(self, config):
         super().__init__()
-        self.ln_1 = LayerNorm(config.n_embd, bias=config.bias)
+        self.ln_1 = norm(config)
         self.attn = CausalSelfAttention(config)
-        self.ln_2 = LayerNorm(config.n_embd, bias=config.bias)
-        self.mlp = MLP(config)
+        self.ln_2 = norm(config)
+        self.mlp = GatedMLP(config) if config.architecture == 'revised' else MLP(config)
 
     def forward(self, x, use_cache=False, past_key_value=None):
         # Pre-normalization (more stable training)
@@ -172,11 +230,12 @@ class GPT(nn.Module):
 
         self.transformer = nn.ModuleDict(dict(
             wte = nn.Embedding(config.vocab_size, config.n_embd),
-            wpe = nn.Embedding(config.block_size, config.n_embd),
             drop = nn.Dropout(config.dropout),
             h = nn.ModuleList([Block(config) for _ in range(config.n_layer)]),
-            ln_f = LayerNorm(config.n_embd, bias=config.bias),
+            ln_f = norm(config),
         ))
+        if config.architecture == 'classic':
+            self.transformer['wpe'] = nn.Embedding(config.block_size, config.n_embd)
         self.lm_head = nn.Linear(config.n_embd, config.vocab_size, bias=False)
 
         # Weight tying: share weights between input embedding and output projection
@@ -202,7 +261,7 @@ class GPT(nn.Module):
         params are actually used as weights in the final layer, so we include them.
         """
         n_params = sum(p.numel() for p in self.parameters())
-        if non_embedding:
+        if non_embedding and 'wpe' in self.transformer:
             n_params -= self.transformer.wpe.weight.numel()
         return n_params
 
@@ -230,8 +289,7 @@ class GPT(nn.Module):
 
         # Forward the GPT model itself
         tok_emb = self.transformer.wte(idx) # token embeddings of shape (b, t, n_embd)
-        pos_emb = self.transformer.wpe(pos) # position embeddings of shape (t, n_embd)
-        x = self.transformer.drop(tok_emb + pos_emb)
+        x = self.transformer.drop(tok_emb + self.transformer.wpe(pos) if 'wpe' in self.transformer else tok_emb)
 
         presents = [] if use_cache else None
 

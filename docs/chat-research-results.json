@@ -1,0 +1,293 @@
+{
+  "results": {
+    "original": {
+      "model": "legacy:chat",
+      "checkpoint_step": 1900,
+      "historical_test": {
+        "bits_per_byte": 1.370781999326754,
+        "loss": 2.7876751372397615,
+        "tokens": 71217,
+        "bytes": 208945,
+        "chars": 208885,
+        "context_tokens": 512,
+        "sha256": "ccb1e43f3e4600543f263723fd72572af77f406bfeacc42cf9f3a443a359115a"
+      }
+    },
+    "chat_ce": {
+      "model": "run:f8aa43c5faef49eca5346fd420b76200",
+      "checkpoint_step": 600,
+      "historical_test": {
+        "bits_per_byte": 1.3696841573904066,
+        "loss": 2.7854425235403713,
+        "tokens": 71217,
+        "bytes": 208945,
+        "chars": 208885,
+        "context_tokens": 512,
+        "sha256": "ccb1e43f3e4600543f263723fd72572af77f406bfeacc42cf9f3a443a359115a"
+      }
+    },
+    "chat_ul": {
+      "model": "run:86aa8da011ca4a328ca39401f369a23c",
+      "checkpoint_step": 600,
+      "historical_test": {
+        "bits_per_byte": 1.3694571383125351,
+        "loss": 2.784980848788753,
+        "tokens": 71217,
+        "bytes": 208945,
+        "chars": 208885,
+        "context_tokens": 512,
+        "sha256": "ccb1e43f3e4600543f263723fd72572af77f406bfeacc42cf9f3a443a359115a"
+      }
+    }
+  },
+  "runs": [
+    {
+      "kind": "chat_ce",
+      "run": "f8aa43c5faef49eca5346fd420b76200",
+      "config": {
+        "name": "Chat / continued learning",
+        "dataset": "f4b4660e806944f48f0189dbd57dc578",
+        "initial_model": "legacy:chat",
+        "steps": 800,
+        "batch": 4,
+        "context": 512,
+        "lr": 3e-05,
+        "dropout": 0.1,
+        "eval_every": 100,
+        "patience": 4,
+        "seed": 42,
+        "unlikelihood": 0
+      },
+      "summary": {
+        "parameters": 30142848,
+        "vocab_size": 50257,
+        "tokenizer": "gpt2",
+        "train_tokens": 1281897,
+        "validation_tokens": 71217,
+        "test_chars": 208885,
+        "device": "mps",
+        "dataset_sha256": "23c6bd109af4d4800a70def71cabbff957cee906f96a7b4fe0ce593ff196c9e9",
+        "split": "Explicit research partitions",
+        "architecture": "classic",
+        "initial_model": "legacy:chat",
+        "unlikelihood": 0.0,
+        "step": 800,
+        "elapsed": 130.3642297080005,
+        "training_seconds": 117.886190049996,
+        "steady_training_seconds": 116.09376421899469,
+        "steady_steps": 790,
+        "steady_ms_per_step": 146.9541319227781,
+        "tokens_per_second": 13898.15040510808,
+        "best_loss": 1.4835942685604095,
+        "initial_val": 1.4983789920806885,
+        "best_step": 600,
+        "test": {
+          "bits_per_byte": 1.3524860655544908,
+          "loss": 3.0749385915070393,
+          "tokens": 2439,
+          "bytes": 8000,
+          "chars": 8000,
+          "context_tokens": 512,
+          "text_sha256": "4680cf133e49a48455d823ebe167ed5201d724838797aaf3f02555c3e996b720"
+        }
+      },
+      "metrics": [
+        {
+          "step": 0,
+          "train": 1.7474104762077332,
+          "val": 1.4983789920806885,
+          "lr": 0.0,
+          "elapsed": 0.728923874999964
+        },
+        {
+          "step": 1,
+          "train": 1.7473308145999908,
+          "val": 1.4983536303043365,
+          "lr": 6.000000000000001e-07,
+          "elapsed": 1.9011835000001156
+        },
+        {
+          "step": 100,
+          "train": 1.7222362160682678,
+          "val": 1.4900984168052673,
+          "lr": 2.9716633857664152e-05,
+          "elapsed": 17.805100208001022
+        },
+        {
+          "step": 200,
+          "train": 1.719859391450882,
+          "val": 1.486065149307251,
+          "lr": 2.745487198381837e-05,
+          "elapsed": 33.84208995799963
+        },
+        {
+          "step": 300,
+          "train": 1.719837099313736,
+          "val": 1.486785352230072,
+          "lr": 2.3298913222082773e-05,
+          "elapsed": 49.78539108299992
+        },
+        {
+          "step": 400,
+          "train": 1.717123955488205,
+          "val": 1.4861911237239838,
+          "lr": 1.79673605980615e-05,
+          "elapsed": 65.61344300000019
+        },
+        {
+          "step": 500,
+          "train": 1.7142270505428314,
+          "val": 1.488698571920395,
+          "lr": 1.2382087996082856e-05,
+          "elapsed": 81.43085054100084
+        },
+        {
+          "step": 600,
+          "train": 1.713198959827423,
+          "val": 1.4835942685604095,
+          "lr": 7.508839789637604e-06,
+          "elapsed": 97.44668679099959
+        },
+        {
+          "step": 700,
+          "train": 1.7114612460136414,
+          "val": 1.4851322174072266,
+          "lr": 4.19024486569023e-06,
+          "elapsed": 113.42547904099956
+        },
+        {
+          "step": 800,
+          "train": 1.7094524502754211,
+          "val": 1.4847673177719116,
+          "lr": 3.000118435079642e-06,
+          "elapsed": 129.27032487500037
+        }
+      ]
+    },
+    {
+      "kind": "chat_ul",
+      "run": "86aa8da011ca4a328ca39401f369a23c",
+      "config": {
+        "name": "Chat / repetition objective",
+        "dataset": "f4b4660e806944f48f0189dbd57dc578",
+        "initial_model": "legacy:chat",
+        "steps": 800,
+        "batch": 4,
+        "context": 512,
+        "lr": 3e-05,
+        "dropout": 0.1,
+        "eval_every": 100,
+        "patience": 4,
+        "seed": 42,
+        "unlikelihood": 0.1
+      },
+      "summary": {
+        "parameters": 30142848,
+        "vocab_size": 50257,
+        "tokenizer": "gpt2",
+        "train_tokens": 1281897,
+        "validation_tokens": 71217,
+        "test_chars": 208885,
+        "device": "mps",
+        "dataset_sha256": "23c6bd109af4d4800a70def71cabbff957cee906f96a7b4fe0ce593ff196c9e9",
+        "split": "Explicit research partitions",
+        "architecture": "classic",
+        "initial_model": "legacy:chat",
+        "unlikelihood": 0.1,
+        "step": 800,
+        "elapsed": 160.83211145799942,
+        "training_seconds": 148.43464969998058,
+        "steady_training_seconds": 146.36170282398416,
+        "steady_steps": 790,
+        "steady_ms_per_step": 185.2679782582078,
+        "tokens_per_second": 11037.85405437053,
+        "best_loss": 1.4833400249481201,
+        "initial_val": 1.4983789920806885,
+        "best_step": 600,
+        "test": {
+          "bits_per_byte": 1.3524263067857911,
+          "loss": 3.0748027272281124,
+          "tokens": 2439,
+          "bytes": 8000,
+          "chars": 8000,
+          "context_tokens": 512,
+          "text_sha256": "4680cf133e49a48455d823ebe167ed5201d724838797aaf3f02555c3e996b720"
+        }
+      },
+      "metrics": [
+        {
+          "step": 0,
+          "train": 1.7474104762077332,
+          "val": 1.4983789920806885,
+          "lr": 0.0,
+          "elapsed": 0.5807548749999114
+        },
+        {
+          "step": 1,
+          "train": 1.7473237216472626,
+          "val": 1.4983527660369873,
+          "lr": 6.000000000000001e-07,
+          "elapsed": 1.8066102909997426
+        },
+        {
+          "step": 100,
+          "train": 1.7219594419002533,
+          "val": 1.489987552165985,
+          "lr": 2.9716633857664152e-05,
+          "elapsed": 21.019513957999152
+        },
+        {
+          "step": 200,
+          "train": 1.7194344103336334,
+          "val": 1.485852986574173,
+          "lr": 2.745487198381837e-05,
+          "elapsed": 40.352466582999114
+        },
+        {
+          "step": 300,
+          "train": 1.719532310962677,
+          "val": 1.4866781532764435,
+          "lr": 2.3298913222082773e-05,
+          "elapsed": 59.54230375000043
+        },
+        {
+          "step": 400,
+          "train": 1.7166097462177277,
+          "val": 1.4860734045505524,
+          "lr": 1.79673605980615e-05,
+          "elapsed": 78.89941954099959
+        },
+        {
+          "step": 500,
+          "train": 1.7140547931194305,
+          "val": 1.4885850846767426,
+          "lr": 1.2382087996082856e-05,
+          "elapsed": 98.85537283299891
+        },
+        {
+          "step": 600,
+          "train": 1.712788164615631,
+          "val": 1.4833400249481201,
+          "lr": 7.508839789637604e-06,
+          "elapsed": 119.4365316659987
+        },
+        {
+          "step": 700,
+          "train": 1.711095780134201,
+          "val": 1.484930545091629,
+          "lr": 4.19024486569023e-06,
+          "elapsed": 139.7502596659997
+        },
+        {
+          "step": 800,
+          "train": 1.709057480096817,
+          "val": 1.4845657348632812,
+          "lr": 3.000118435079642e-06,
+          "elapsed": 159.91878524999993
+        }
+      ]
+    }
+  ],
+  "privacy": "Raw data and any outputs stay in local runtime. Public evidence contains aggregate scores only.",
+  "limitation": "Original checkpoint was previously selected on the full historical validation tail. No fresh external chat corpus or independent human coherence ratings were used."
+}

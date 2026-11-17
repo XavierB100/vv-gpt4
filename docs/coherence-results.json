@@ -1,0 +1,2822 @@
+{
+  "protocol": "docs/RESEARCH_PROTOCOL.md",
+  "conditions": {
+    "original": {
+      "model": "legacy:shakespeare-small-v1",
+      "checkpoint_step": 850,
+      "scores": {
+        "historical_test": {
+          "bits_per_byte": 2.5999581009985646,
+          "loss": 5.585175001809633,
+          "tokens": 16326,
+          "bytes": 50597,
+          "chars": 50597,
+          "context_tokens": 256,
+          "sha256": "b2f8da70fb11f49f6c0f5b14d8a6388a29e2e283addce1d63b4f44832e72bcb6"
+        },
+        "external_hamlet": {
+          "bits_per_byte": 2.517906714907158,
+          "loss": 5.748616404317689,
+          "tokens": 9108,
+          "bytes": 30000,
+          "chars": 30000,
+          "context_tokens": 256,
+          "sha256": "25e40e97681017685e7490dc5dd5c2b9a32fa305f7fddbc59649aab44c23b2c7"
+        }
+      },
+      "samples": [
+        {
+          "text": " I would have a word;\nHe will not to me to see: then, I'll say it.\n\n<|paragraph|>\nROMEO:\nMy lord, sir, but I'll be thyself,\nMy soul, and, I have done,\nI would not for thyself to see;\nTo meet thee, I was not with me.\n\n<|paragraph|>\nJULIET:\nThou wert not have been a happy gentleman,\nThan thou not that thou? thou art thou,\nAnd, is this name is not with a woman;\nThat I have the king is not?\n\n<|paragraph|>\nROMEO:\nI know not be it be too well:\nI would not",
+          "tokens": 160,
+          "seconds": 2.368,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.10191082802547768,
+          "seed": 42,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 3
+        },
+        {
+          "text": " not with thee to make a word.\n\n<|paragraph|>\nJULIET:\nCome, my poor, then, thou,\nThat thou doth that thou wilt thou not be thine.\n\n<|paragraph|>\nNurse:\nHow mayst thou know thee, now,\nI am not? but not this world is thine.\n\n<|paragraph|>\nROMEO:\nAnd I have I am in thee?\n\n<|paragraph|>\nFRIAR LAURENCE:\nO, for that, thou shalt be thee!\nO, by a subject.\n\n<|paragraph|>\nROMEO:\nMy lords, wert thou hast thou art not be,\nThou",
+          "tokens": 160,
+          "seconds": 2.274,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.1847133757961783,
+          "seed": 123,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 5
+        },
+        {
+          "text": " I would have a word.\n\n<|paragraph|>\nJULIET:\nO, for thy father, I'll not for thy tongue,\nThat you, is dead!\n\n<|paragraph|>\nROMEO:\nI have I am thy heart.\n\n<|paragraph|>\nROMEO:\nO, my hand, let me in me.\n\n<|paragraph|>\nROMEO:\nIET: thou art thou not be, I know's love.\n\n<|paragraph|>\nJULIET:\nO, my sovereign, and say 'tis the king.\n\n<|paragraph|>\nROMEO:\nMy son, then, be it be too!\n\n<|paragraph",
+          "tokens": 160,
+          "seconds": 2.731,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.35031847133757965,
+          "seed": 42,
+          "prompt_tokens": 12,
+          "used_prompt_tokens": 12,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 6
+        },
+        {
+          "text": " not to thee to make me,\nFor what I am a child, I am come on,\nWhat thou art not be done: then, I do, I will,\nBut now, I would have a thousand men have done.\n\n<|paragraph|>\nROMEO:\nWhat, I do not,\nI am not? but not, by my lord,\nO, but it, if I do love,\nAnd I am I have a little:\nBut then I'll have mine eyes to thy daughter,\nFor my brother, to be done,\nThou wilt thou, then a bawd.\n\n<|paragraph|>\nROMEO:\nMy lord, I will die,\n\n<|paragraph|>\n",
+          "tokens": 160,
+          "seconds": 2.354,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.09554140127388533,
+          "seed": 123,
+          "prompt_tokens": 12,
+          "used_prompt_tokens": 12,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 3
+        },
+        {
+          "text": ", and by a little house\nMy heart, I, to see the king and mine own,\nFor for thy father, for that I'll take me,\nThat you, with me with thee, for this night,\nMy soul, and, this good lords,\nI would I think you have with your mother's hand\nI would I was not with me.\n\n<|paragraph|>\nKING RICHARD II:\nCome, my lord; and I should be,\nThan thou not that thou? thou shalt give it,\nThat is as thou know I have done to me,\nAnd never look to make it? I'll make thee to my lord,\nTo make my name to see your grace to the night:\nI do you",
+          "tokens": 160,
+          "seconds": 2.311,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.006369426751592355,
+          "seed": 42,
+          "prompt_tokens": 12,
+          "used_prompt_tokens": 12,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 1
+        },
+        {
+          "text": ", I do I must.\n\n<|paragraph|>\nQUEEN ELIZABETH:\nWhy, my lord, my lord, so, I will,\nWith this a holy king's brother's crown,\nOf our father, his tongue to be my lord.\n\n<|paragraph|>\nWARWICK:\nSo, my lord, my lord, I have but it.\n\n<|paragraph|>\nKING RICHARD III:\nBut then I do my uncle'st, my lord,\nTo do I to the crown'd, and thy face.\n\n<|paragraph|>\nQUEEN ELIZABETH:\nNow, what I would I'll give me,\n\n<|paragraph|>\n",
+          "tokens": 160,
+          "seconds": 2.327,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.2420382165605095,
+          "seed": 123,
+          "prompt_tokens": 12,
+          "used_prompt_tokens": 12,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.014084507042253502,
+          "paragraph_markers": 5
+        },
+        {
+          "text": " more than he was,\nAnd, for my lord, to see:\nAway, my love, for thy father,\nI am too much as I'll not so.\n\n<|paragraph|>\nBUCKINGHAM:\nNo, good lord, sir, that I think you have with your mother;\nAs he would I was not have I have more than your honour,\nMy soul was my lord, my lord;\nI shall not have been in this gentleman,\nThan what I do not so; but 'tis not be,\nThat thou know I have done to me,\nAnd to the king.\n\n<|paragraph|>\nGLOUCESTER:\n\n<|paragraph|>\nKING EDWARD IV:",
+          "tokens": 160,
+          "seconds": 2.807,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.07006369426751591,
+          "seed": 42,
+          "prompt_tokens": 11,
+          "used_prompt_tokens": 11,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 3
+        },
+        {
+          "text": " will I do I.\n\n<|paragraph|>\nGLOUCESTER:\nO, madam, my lord, my husband.\n\n<|paragraph|>\nGLOUCESTER:\n\n<|paragraph|>\nBUCKINGHAM:\nMy lord, my lord.\n\n<|paragraph|>\nGLOUCESTER:\n\n<|paragraph|>\nGLOUCESTER:\n\n<|paragraph|>\nGLOUCESTER:\nWell, I would I cannot do.\n\n<|paragraph|>\nGLOUCESTER:\nWell, I wouldst thou, to your father's blood.\n\n<|paragraph|>\nQUEEN ELIZABETH:",
+          "tokens": 160,
+          "seconds": 2.343,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.5222929936305732,
+          "seed": 123,
+          "prompt_tokens": 11,
+          "used_prompt_tokens": 11,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.04761904761904767,
+          "paragraph_markers": 8
+        },
+        {
+          "text": " I would have a little;\nHe will not to me to see: then, I'll say it.\n\n<|paragraph|>\nROMEO:\nMy lord, sir, but I'll be a man,\nMy soul, and, I have done, but a doth she was dead.\n\n<|paragraph|>\nJULIET:\nNay, I have no more than my face,\nAnd I'll tell me, no more.\n\n<|paragraph|>\nNurse:\nAy, I cannot be gone, sir.\n\n<|paragraph|>\nJULIET:\nNow, I would you that I cannot be,\nThe heavens have heard of a word to-day:\nI'll tell",
+          "tokens": 160,
+          "seconds": 2.256,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.15286624203821653,
+          "seed": 42,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 4
+        },
+        {
+          "text": " and I do I must have a little:\nI am a child, I have seen, if my heart;\nOr shall be not, as I do, I will,\nWith a child, no more of it not have\nOf our general, and then to be a time\nBut to-t a bawdils of her good-morrow;\nBut I cannot speak no more\nMyself to thee to do; and I have I am\nAs now in a time,\nI'll take your brother to have been so, I cannot do.\n\n<|paragraph|>\nPOLIXENES:\nAy, but I wouldst it,\nA man, sir, what I would be your tongue\nAnd, I can be to be gone,",
+          "tokens": 160,
+          "seconds": 2.293,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 1
+        },
+        {
+          "text": "\n\n<|paragraph|>\nQUEEN MARGARET:\nIt is my love, for thy father,\nAnd let me from me, and I will.\n\n<|paragraph|>\nBUCKINGHAM:\nThou liest, my heart that I think thy head?\nI'll speak it were a man's face.\n\n<|paragraph|>\nKING EDWARD IV:\nWhy, I know, and the crown and I not from his blood.\n\n<|paragraph|>\nGLOUCESTER:\n\n<|paragraph|>\nQUEEN ELIZABETH:\nAnd I am no more, as he, for our son,\nBut that he be the dost thou wert.",
+          "tokens": 160,
+          "seconds": 2.665,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.15923566878980888,
+          "seed": 42,
+          "prompt_tokens": 14,
+          "used_prompt_tokens": 14,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 5
+        },
+        {
+          "text": "\n\n<|paragraph|>\nGLOUCESTER:\nI am I did, my lord;\nOr else to be the king, so, for I'll come to his friends.\n\n<|paragraph|>\nQUEEN ELIZABETH:\nHow may we have of Norfolk,\nIn that I, then, but not like a king'st,\nA little more to thee to do;\nThat ever I am I have a little.\n\n<|paragraph|>\nLADY ANNE:\nYou do to be the crown, and for his heart,\nIn a king is his body's son,\nAs he didst not like a little else\nAnd in my death, the king'st,\nThou",
+          "tokens": 160,
+          "seconds": 2.366,
+          "checkpoint": "best",
+          "step": 850,
+          "repeat_fraction": 0.08280254777070062,
+          "seed": 123,
+          "prompt_tokens": 14,
+          "used_prompt_tokens": 14,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 3
+        }
+      ],
+      "summary": {
+        "mean_repeated_token_4grams": 0.16401273885350318,
+        "mean_repeated_word_4grams": 0.0051419628884417645,
+        "paragraph_markers": 47,
+        "samples": 12
+      }
+    },
+    "continued_ce": {
+      "model": "run:eb0fb22e5e7b46b49fd9bb3cd2d973b7",
+      "checkpoint_step": 1200,
+      "scores": {
+        "historical_test": {
+          "bits_per_byte": 2.3308344971648007,
+          "loss": 5.00704936818809,
+          "tokens": 16326,
+          "bytes": 50597,
+          "chars": 50597,
+          "context_tokens": 256,
+          "sha256": "b2f8da70fb11f49f6c0f5b14d8a6388a29e2e283addce1d63b4f44832e72bcb6"
+        },
+        "external_hamlet": {
+          "bits_per_byte": 2.337604176383486,
+          "loss": 5.336968854167873,
+          "tokens": 9108,
+          "bytes": 30000,
+          "chars": 30000,
+          "context_tokens": 256,
+          "sha256": "25e40e97681017685e7490dc5dd5c2b9a32fa305f7fddbc59649aab44c23b2c7"
+        }
+      },
+      "samples": [
+        {
+          "text": " I would have a little\nAnd tell the hour that, to see the rest:\nAnd, it is a happy days;\nAnd let me take me what you not so.\n\nBENVOLIO:\nI'll speak, and so, I have done,\nI would not for thyself to see;\nIf it were a man's not.\n\nROMEO:\nI have no more but my face,\nAnd so long to the crown:\nAnd so much, I will keep it not that:\nAnd, 'tis not, I, as thou wilt,\nAs thou hast no less than the king.\n\nROMEO:\nNurse, be gone,\nO, then, be it be too much:\nI'll tell",
+          "tokens": 160,
+          "seconds": 2.287,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.03821656050955413,
+          "seed": 42,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " not to thy head.\n\nROMEO:\nI'll not by my lord; I shall be so;\nOr shall be not, as I do with a gentleman,\nThat I'll go at the time to thee.\n\nROMEO:\nFRIAR LAURENCE:\nNow, I wouldst thou not for thee, and with thee;\nFor 't thou wilt wilt die, I'll be with thee.\n\nROMEO:\nI'll tell thee, thou not, thou not,--\n\nROMEO:\nI shouldst thou hast thy brother'st!\n\nROMEO:\nI know thou liest,\nA pretty word thou art not love'st.\n\nJULIET:\nO thou would",
+          "tokens": 160,
+          "seconds": 2.292,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.1273885350318471,
+          "seed": 123,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " be gone.\n\nROMEO:\nWell, what is the king's son,\nThat it not for thy father's hand:\nAnd yet I will keep the crown.\n\nJULIET:\nI'll not be gone; and all'st not.\n\nROMEO:\nI'll tell thee, my son, I shall not.\n\nROMEO:\nI have no more but my face,\nAnd I'll tell thee, no more.\n\nROMEO:\nO, that is that thou art a mother,\nThat is as thou wilt have done to me,\nAnd never canst say not live.\n\nROMEO:\nCome, I will do beseech you, be too.\n\nROMEO:",
+          "tokens": 160,
+          "seconds": 2.316,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.14649681528662417,
+          "seed": 42,
+          "prompt_tokens": 12,
+          "used_prompt_tokens": 12,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " not to thee.\n\nJULIET:\nWhat is my lord?\n\nNurse:\nWhy, my lord?\n\nROMEO:\n'Tis no, a word, and a thousand men\nMy brother, I was nothing but to be.\n\nROMEO:\nAnd then, good lady!\n\nROMEO:\nI have done, that Romeo's name:\nWhere's good love's death is that word,\nAnd in a man, then I'll take my life.\n\nROMEO:\nO, a bawdo is thy face,\nAnd all my love is, but love in thy love,\nAnd I not like a little love'st.\n\nJULIET:\nWhat's the",
+          "tokens": 160,
+          "seconds": 2.387,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.12101910828025475,
+          "seed": 123,
+          "prompt_tokens": 12,
+          "used_prompt_tokens": 12,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": "'st on a little house\nMy heart's children, to see the king and thee\nThat it not for thy father's blood\nWith all the father's son and my crown'd me!\n\nKING RICHARD III:\nAy, and all the blood is but a grave:\nAnd by the Tower, by God's son,\nThat he hath he were more in your honour,\nMy soul was my gracious liege.\n\nKING RICHARD III:\nI, my lord, and not that is so;\nI had the cause, or is dead;\nOr that thou doth say 'tis the king.\n\nKING RICHARD III:\nThe king, to my lord: for that he be too much:\nI do not",
+          "tokens": 160,
+          "seconds": 2.259,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.08280254777070062,
+          "seed": 42,
+          "prompt_tokens": 12,
+          "used_prompt_tokens": 12,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": ", I do I.\n\nKING RICHARD III:\nGo, my lord, if my lord;\nOr shall be not, as I do with a traitor,\nWith a king, by the queen's son,\nOf our father, his tongue to be my lord.\n\nKING RICHARD III:\nMy Lord of my lord; let him have done.\n\nKING RICHARD III:\nI know what dost thou have I am in.\n\nKING RICHARD III:\nWell, I would I cannot do.\n\nKING RICHARD III:\nI am not a king; for I know.\n\nKING RICHARD III:\nThat I would be your grace to be.\n\nKING RICHARD III",
+          "tokens": 160,
+          "seconds": 2.332,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.2611464968152867,
+          "seed": 123,
+          "prompt_tokens": 12,
+          "used_prompt_tokens": 12,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.010752688172043001,
+          "paragraph_markers": 0
+        },
+        {
+          "text": ": and I was, I have heard\nTo do, to see the king and I'll find it.\n\nKING EDWARD IV:\nAnd tell me not I will.\n\nKING EDWARD IV:\nI'll not be true and give thee,\nTo bear a king I will bear my head.\n\nGLOUCESTER:\n\nGLOUCESTER:\nNow, we must not with your good?\n\nKING EDWARD IV:\nWell, my lord; you love thee, and then;\nI had not be, or you.\n\nGLOUCESTER:\nI'll have done to you.\n\nGLOUCESTER:\n\nGLOUCESTER:\n\nKING EDWARD IV:\n",
+          "tokens": 160,
+          "seconds": 2.504,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.2993630573248408,
+          "seed": 42,
+          "prompt_tokens": 11,
+          "used_prompt_tokens": 11,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " gentleman to thee.\n\nQUEEN MARGARET:\nI am my lord, my father;\nOr else, then, as I do with a traitor,\nWith that he is no more of it.\n\nQUEEN ELIZABETH:\nWhy, gentle father, that I do beseech your grace\nTo seek to your king.\n\nQUEEN ELIZABETH:\nI hope, my brother; I have a little grace\nIn such a little less than my friends,\nTo save my poor brother's daughter's death.\n\nQUEEN ELIZABETH:\nMy lord, that is it, to your father's blood\nThat I would be your grace to my lie\nIn that you have not my",
+          "tokens": 160,
+          "seconds": 2.296,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.13375796178343946,
+          "seed": 123,
+          "prompt_tokens": 11,
+          "used_prompt_tokens": 11,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I would have a little\nthe king, that I will be seen: then, I'll say it.\n\nMERCUTIO:\n'Tis a letter, that is a bawd.\n\nNurse:\nNay, sir, come, sir.\n\nMERCUTIO:\nAway! he is a man; a man.\n\nROMEO:\nMy master is my daughter, good?\n\nROMEO:\nI have not in a man; and I'll give it so.\n\nMERCUTIO:\nNo; I will I love me,\nhave not the better than it.\n\nMERCUTIO:\nYou have to do beseech you, sir; and I am a gentleman.",
+          "tokens": 160,
+          "seconds": 2.257,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.14012738853503182,
+          "seed": 42,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " and I will take it.\n\nJULIET:\nGo, I'll give thee; I'll bear my husband.\n\nJULIET:\nO, no, a word, and I love,\nMy brother, I was not yet to be gone.\n\nROMEO:\nI must say, I am not?\n\nJULIET:\nO, but it is a man that love's death.\n\nROMEO:\nI will, then I'll take thee for you.\n\nNurse:\nNo, I'll go, good sir.\n\nJULIET:\nI know that is it,\nAmen, I must not love thee to your tongue.\n\nJULIET:\nI",
+          "tokens": 160,
+          "seconds": 2.315,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.197452229299363,
+          "seed": 123,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": "\n\nQUEEN ELIZABETH:\nMy gracious lord, then and mine own\nFrom all that thy father's hand that hand\nAnd never, nor time will I'll go;\nAnd for this is, then, that thou art,\nMy brother, as a doth she was dead?\n\nQUEEN ELIZABETH:\nAnd so, in your honour, I have all.\n\nQUEEN ELIZABETH:\nYour majesty is no, I did;\nThe time is that thou shalt prove it:\nI, as thou know I have done her father,\nAnd never canst say not live.\n\nQUEEN ELIZABETH:\nI do not be it in the earth.\n\nQUE",
+          "tokens": 160,
+          "seconds": 2.288,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.1719745222929936,
+          "seed": 42,
+          "prompt_tokens": 14,
+          "used_prompt_tokens": 14,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": "\n\nQUEEN ELIZABETH:\nI'll not by your grace's house, my heart;\nOr else, then, as I do with a traitor,\nWith that he is no more of it.\n\nQUEEN ELIZABETH:\nWhy, my father, that I do beseech your grace\n\nQUEEN ELIZABETH:\nA little doubt, if I do love you.\n\nKING RICHARD III:\nMy lord, I will not for you,--\n\nQUEEN ELIZABETH:\nThou wilt say, then: by your tongue.\n\nQUEEN ELIZABETH:\nThat I would be your grace to be.\n\nKING RICHARD III",
+          "tokens": 160,
+          "seconds": 2.309,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.2420382165605095,
+          "seed": 123,
+          "prompt_tokens": 14,
+          "used_prompt_tokens": 14,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        }
+      ],
+      "summary": {
+        "mean_repeated_token_4grams": 0.16348195329087048,
+        "mean_repeated_word_4grams": 0.0008960573476702501,
+        "paragraph_markers": 0,
+        "samples": 12
+      }
+    },
+    "continued_ul": {
+      "model": "run:f0c6487682364d7d9005c07820f2b9b6",
+      "checkpoint_step": 1200,
+      "scores": {
+        "historical_test": {
+          "bits_per_byte": 2.3312423456681115,
+          "loss": 5.00792549971665,
+          "tokens": 16326,
+          "bytes": 50597,
+          "chars": 50597,
+          "context_tokens": 256,
+          "sha256": "b2f8da70fb11f49f6c0f5b14d8a6388a29e2e283addce1d63b4f44832e72bcb6"
+        },
+        "external_hamlet": {
+          "bits_per_byte": 2.3377088981330436,
+          "loss": 5.337207943711514,
+          "tokens": 9108,
+          "bytes": 30000,
+          "chars": 30000,
+          "context_tokens": 256,
+          "sha256": "25e40e97681017685e7490dc5dd5c2b9a32fa305f7fddbc59649aab44c23b2c7"
+        }
+      },
+      "samples": [
+        {
+          "text": " I would have a little\nAnd tell the hour that, to see the rest:\nAnd, it not for thy father,\nI am too much as I'll not so.\n\nJULIET:\nI'll speak, then; and I have done,\nI would not for thyself to see me:\nAnd, I had rather have been an oath,\nThy, I could not by my face,\nAnd I'll tell thee, no more.\n\nROMEO:\nO, that is that thou art a mother,\nThat is as thou wilt have done to me,\nAnd never canst say not live.\n\nROMEO:\nCome, I will do beseech you, be too.\n\nROMEO:",
+          "tokens": 160,
+          "seconds": 2.366,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.05095541401273884,
+          "seed": 42,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " not to thy head.\n\nROMEO:\nI'll not by my lord; I shall be so;\nOr shall be not, as I do with a gentleman,\nWith a thousand times, and I love,\nMy brother, I was nothing but to be gone.\n\nROMEO:\nI must be not for her good?\n\nJULIET:\nO, but it is my son:\nIt is the queen; I have a little:\nBut then I'll take my life to thy love.\n\nROMEO:\nI'll go, good sir.\n\nROMEO:\nAy, but I will go: you shall.\n\nJULIET:\nWell, what is the king'st thou art not?",
+          "tokens": 160,
+          "seconds": 2.298,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.1273885350318471,
+          "seed": 123,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " be gone.\n\nROMEO:\nWell, what is the king's son,\nThat it not for thy father's hand:\nAnd yet I will keep the crown.\n\nJULIET:\nI'll not be gone; and all'st not.\n\nROMEO:\nI'll tell thee, my son, I shall not.\n\nROMEO:\nI have no more but my face,\nAnd I'll tell thee, no more.\n\nROMEO:\nO, that is that thou art a mother,\nThat is as thou wilt have done to me,\nAnd never canst say not live.\n\nROMEO:\nCome, I will do beseech you, be too.\n\nROMEO:",
+          "tokens": 160,
+          "seconds": 2.332,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.14649681528662417,
+          "seed": 42,
+          "prompt_tokens": 12,
+          "used_prompt_tokens": 12,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " not to thee.\n\nJULIET:\nWhat is my lord?\n\nNurse:\nWhy, my lord?\n\nROMEO:\n'Tis no, a word, and a thousand men\nMy brother, I was nothing but to be.\n\nROMEO:\nAnd then, good lady!\n\nROMEO:\nI have done, that Romeo's name?\n\nJULIET:\nAnd I have I am in thee\nIn such a man'st thou hast done so?\n\nROMEO:\nI'll go, good sir.\n\nJULIET:\nI know that name that you shall.\n\nJULIET:\nWell, what is the king?\n\nROMEO:",
+          "tokens": 160,
+          "seconds": 2.256,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.21019108280254772,
+          "seed": 123,
+          "prompt_tokens": 12,
+          "used_prompt_tokens": 12,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": "'st on a little house\nMy heart's children, to see the king and thee\nThat it not for thy father's blood\nWith all the father's son and my crown'd me!\n\nKING RICHARD III:\nAy, and all the blood is but a grave:\nAnd by the Tower, by God's son,\nThat he hath he were more in your honour,\nMy soul was my gracious liege.\n\nKING RICHARD III:\nI, my lord, and not that is so;\nI had the cause, or else thou know;\nBut thou hast, as I am the king.\n\nKING RICHARD III:\nThe king, to my name is dead; I be too much:\nI do not",
+          "tokens": 160,
+          "seconds": 2.281,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.08280254777070062,
+          "seed": 42,
+          "prompt_tokens": 12,
+          "used_prompt_tokens": 12,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": ", I do I.\n\nKING RICHARD III:\nGo, my lord, if my lord;\nOr shall be not, as I do with a traitor,\nWith a king, by the queen's son,\nOf our father, his tongue to be my lord.\n\nKING RICHARD III:\nMy Lord of all.\n\nKING RICHARD III:\nMy Lord of York's good lord.\n\nKING RICHARD III:\nHere, then, to my lord.\n\nKING RICHARD III:\nWhy, my lords, my brother's name!\n\nKING RICHARD III:\nCome, my lord.\n\nKING RICHARD III:\nI have been much to the prince.\n\nKING",
+          "tokens": 160,
+          "seconds": 2.275,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.3184713375796179,
+          "seed": 123,
+          "prompt_tokens": 12,
+          "used_prompt_tokens": 12,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.09411764705882353,
+          "paragraph_markers": 0
+        },
+        {
+          "text": ": and I was, I have heard\nTo do, to see the king and I'll find it.\n\nKING EDWARD IV:\n'Tis not, my lord; and I am content.\n\nLADY GREY:\nI have no more than a doth answer to woe.\n\nGLOUCESTER:\nHow now? is a word to the time?\n\nQUEEN ELIZABETH:\nO, my lord, 'tis time;\nAnd I do not so; for 'tis not of this,\nI'll call a woman's daughter of the night\nThe better than it may do beseech your grace,\nYou have to do beseech you, to you well:\nI do you",
+          "tokens": 160,
+          "seconds": 2.465,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.006369426751592355,
+          "seed": 42,
+          "prompt_tokens": 11,
+          "used_prompt_tokens": 11,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " gentleman to thee.\n\nQUEEN MARGARET:\nI am my lord, my father;\nOr else he shall be it in this:\nIf, that is too late I would have a thousand men\nMy brother, I was nothing else to be;\nBut, to be a king, for that love I,\nBut 'tis too; or 't thou wert.\n\nLADY GREY:\nNo; I have a little:\nBut then I'll take your brother,\nOr I would I cannot do.\n\nGLOUCESTER:\nI am not a king; for I know that time\nAs well I do not like a little love.\n\nLADY ANNE:\nThou wilt",
+          "tokens": 160,
+          "seconds": 2.271,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.02547770700636942,
+          "seed": 123,
+          "prompt_tokens": 11,
+          "used_prompt_tokens": 11,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I would have a little man\nbeo my husband, to see her: and I'll say it.\n\nMERCUTIO:\n'Tis a letter, that is a bawd.\n\nNurse:\nNay, sir; I am but a tardy as I have to see the\nand as he would say, if it were a woman in\nthat, I have not for it with a good?\n\nROMEO:\nI have not in a man; it is not a man; for a\nbut I am a man; if it is a man's\nto say 'tis the better than it? I'll find you to\nof, I have to do beseech you, sir; and I am a\nit",
+          "tokens": 160,
+          "seconds": 2.284,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.0,
+          "seed": 42,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " and I will take it.\n\nBAPTISTA:\nI am I am, sir, if I know you,\nA gentleman, if it be so, that you must be gone.\n\nBENVOLIO:\nMarry, then, I am too much.\n\nLADY CAPULET:\nThou art not too; I cannot speak.\n\nNurse:\nWhy, then, what is that I have you now?\n\nNurse:\nI'll be you, sir?\n\nPETRUCHIO:\nHow now, he is your love?\n\nBENVOLIO:\nNay, I do not: but what love'st.\n\nJULIET:\nYou will not",
+          "tokens": 160,
+          "seconds": 2.304,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.0573248407643312,
+          "seed": 123,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": "\n\nQUEEN ELIZABETH:\nMy gracious lord, then and mine own\nFrom all that thy father's hand that hand\nAnd never didst not so.\n\nQUEEN ELIZABETH:\nO, and it is not so, as a doth she;\nI'll give thee as it were a man's face.\n\nKING RICHARD III:\nAway with my liege.\n\nQUEEN ELIZABETH:\nIf he is not for that is?\n\nQUEEN ELIZABETH:\nThe king'st thou hast no less\nThe better than it? hath done by me?\n\nQUEEN ELIZABETH:\nI do not for that thy sovereign,\n",
+          "tokens": 160,
+          "seconds": 2.634,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.21656050955414008,
+          "seed": 42,
+          "prompt_tokens": 14,
+          "used_prompt_tokens": 14,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": "\n\nQUEEN ELIZABETH:\nI'll not by your grace's house, my heart;\nOr else he shall be as I do with a king,\nWith that he is no more of it.\n\nQUEEN ELIZABETH:\nWhy, my lord, that I do beseech your grace\n\nQUEEN ELIZABETH:\nA little doubt, if I do love you.\n\nKING RICHARD III:\nMy lord, I will not for you,--\n\nQUEEN ELIZABETH:\nThou wilt say, then: by your tongue.\n\nQUEEN ELIZABETH:\nThat I would be your grace to be.\n\nKING RICHARD III",
+          "tokens": 160,
+          "seconds": 2.325,
+          "checkpoint": "best",
+          "step": 1200,
+          "repeat_fraction": 0.2420382165605095,
+          "seed": 123,
+          "prompt_tokens": 14,
+          "used_prompt_tokens": 14,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        }
+      ],
+      "summary": {
+        "mean_repeated_token_4grams": 0.12367303609341825,
+        "mean_repeated_word_4grams": 0.00784313725490196,
+        "paragraph_markers": 0,
+        "samples": 12
+      }
+    },
+    "classic_42": {
+      "model": "run:d089d803390f490dbf36486d078d6347",
+      "checkpoint_step": 1500,
+      "scores": {
+        "scratch_test": {
+          "bits_per_byte": 2.7751948131195543,
+          "loss": 5.341165850071697,
+          "tokens": 40170,
+          "bytes": 111537,
+          "chars": 111537,
+          "context_tokens": 128,
+          "sha256": "c007286a1018519e3e9e6cc35e191ceb0f6ed796f1564768ddeffd1078629f28"
+        }
+      },
+      "samples": [
+        {
+          "text": " by his king's\nBut, but that we have seen in such a king\nTo-busity.\n\nLEONTES:\nI'll meet him.\n\nSICINIUS:\nWhat is no more, I am much.\n\nROMEO:\nI thank you!\n\n\nROMEO:\nWhy, but, sir; then I am, if thou shalt be\nAnd I have be a cumb'd.\n\nGLOUCESTER:\nThe good cousin, but I'll see you should be so.\n\nQUEEN MARGARET:\nWhat's not:\nNo, I'll tell me; and I'll do it, my friends.\n\nBENVOLIO:\nAnd yet thou not not, my lord.\n\nROMEO:\nSo I have too.\n\n\nQUEEN MARGARET",
+          "tokens": 160,
+          "seconds": 4.595,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.03821656050955413,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say, and his heart,\nI'll be a noble lord, for my father's blood\nAnd for a fudy, and thy royal prince!\n\nJULIET:\nNay, thou art not, good, I have you will have no more\nThat all the matter.\n\nCLARENCE:\nNow, and it shall have I am I know,\nThe gods have the crown'd me:\nThat you'll be the grace.\n\nNurse:\nA prince, my life.\n\nKING RICHARD III:\nMy lord; I shall you, and you will not see the king,\nTo the people, I'll do't.\n\nKING EDWARD:\nWhat is a brother?\n\nJULIET:\nMy father, your lord, my lord.",
+          "tokens": 160,
+          "seconds": 1.821,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.019108280254777066,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " be be;\nA traitor, but that we have seen in such\nThan that I think it,\nIf you would I must be been: I have been.\n\nMENENIUS:\nFor you would I am't:\nI am.\n\nNurse:\nYour love your daughter of him.\n\nCORIOLANUS:\n'er, I do you:\nThat we will to make you that, I think.\n\nGLOUCESTER:\nThe good you must not, you, you should be so.\n\nQUEEN MARGARET:\nWhat's you:\nNo, I'll tell him.\n\nCORIOLANUS:\nThe day! what is not speak.\n\n\nMENENIUS:\nI will you may;\nYou are you will I have too.\n\n\nMENENIUS:",
+          "tokens": 160,
+          "seconds": 1.803,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.0573248407643312,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say,\nAnd we will die and the king,\nAnd I had I would not his royal father's a man\nMy lord.\n\n\nKING HENRY VI:\nIf I may be no;\nThe time I have you will have no more:\nI'er.\n\nCLARENCE:\nNow, and it shall have I am I know,\nThe gods have.\n\nGLOUCESTER:\nNow, my brother:\nTo be a day, I have a word to say.\n\nKING RICHARD III:\nMy lord; I shall you, and you will not see;\nThe other, the fid.\n\nROMEO:\nThe bums in the house of him?\n\nKING RICHARD III:\nI have no more.\n\n",
+          "tokens": 160,
+          "seconds": 1.813,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.031847133757961776,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " of his king.\n\nGLOUCESTER:\nI have not in the cause.\n\n\nBENVOLIO:\nIf you, good lords, sir.\n\nDUKE OF YORK:\nWhere is as you would I am't:\nI am.\n\nNurse:\nYour love the Tower.\n\nCORIOLANUS:\nYour lady's not, I do not:\nThat we will I, that thou, I think.\n\nGLOUCESTER:\nThe good you must not, if it, and you;\nI cannot make your noble lady,\nAnd I do not as I'll tell him.\n\nCAPULET:\nThe day! I will not speak a pillor.\n\nClown:\nHow;\nYou are you will the magest.\n\nCORIOLANUS:",
+          "tokens": 160,
+          "seconds": 2.078,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.031847133757961776,
+          "seed": 42,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " shall say, and his heart,\nI'll be a noble lord, for my father's blood\nAnd for a fudy, and thy royal prince,\nThat he'sters their queen, with thy father,\nAnd thou hast thou hast my father'st.\n\nGLOUCESTER:\nWhy,\nI know it shall have I speak thy hand,\nThe gods have thy heart?\n\nROMEO:\n\nWe have a til of thy lord.\n\nQUEEN ELIZABETH:\n\nIf I know, my lord?\n\nBUCKINGHAM:\nI'll make my brother, my lord, I do,\nIs I be.\n\nKING RICHARD II:\nI am it be my Lord of your eyes,\n\nAnd, that my queen'st:",
+          "tokens": 160,
+          "seconds": 1.795,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " of his king.\n\nGLOUCESTER:\nI have seen in the cause.\n\n\nBENVOLIO:\nIf you would I must be been:\nAnd have you say it in my brother,\nAnd, I am much to see;\nThat you will be a stun'd\nThe noble queen's good more, and so late,\nTo do not be so much for I,\nI will have your grace and in the Tower.\n\nROMEO:\nIf you, you should you;\nI cannot make your noble lady,\nAnd I do not so more, my mother.\n\nCORIOLANUS:\nThe day!\nI'll speak a pillor:\nBut that I am not;\nYou have done, the magest.\n\nQUEEN MARGARET",
+          "tokens": 160,
+          "seconds": 2.354,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.006369426751592355,
+          "seed": 42,
+          "prompt_tokens": 7,
+          "used_prompt_tokens": 7,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " as a noble man?\n\nQUEEN ELIZABETH:\nI know my lord, I would not but a father's a man\nMy lord.\n\nClown:\nA very man?\n\nCAMILLO:\nNo, I have you shall you have no more:\nI'er.\n\nQUEEN MARGARET:\nNay, it shall have I am I know,\nThe gods have.\n\nGLOUCESTER:\nNow,\nWe have a tiled,\nWe have a very other as the people.\n\nPAULINA:\nWhich, what I shall you,\nI will not see the king, I do, I will.\n\nROMEO:\nThe bums in the house of him?\n\nPOLIXENES:\nMy father, your lord, sir.\n",
+          "tokens": 160,
+          "seconds": 1.842,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.019108280254777066,
+          "seed": 123,
+          "prompt_tokens": 7,
+          "used_prompt_tokens": 7,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " by his king.\n\nGLOUCESTER:\nI have not in the cause.\n\n\nBENVOLIO:\nIf you, good lords, sir.\n\nDUKE OF YORK:\nWhere is as you would I am't:\nI am.\n\nNurse:\nYour love your daughter of him.\n\nCORIOLANUS:\n'Tis I am, if thou shalt be but I am,\nI will have your grace and in the Tower.\n\nROMEO:\nIf you, you should you;\nI cannot make your noble lady,\nAnd I do not as I'll tell him.\n\nCORIOLANUS:\nThe day!\n\nSICINIUS:\nAnd, sir, sir; and I am not;\nYou are you will I have too.\n\n\nMENENIUS:",
+          "tokens": 160,
+          "seconds": 1.788,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.04458598726114649,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say, and his heart?\n\nANGELO:\nI have not, I would not but you,\nAnd you to the crown of thy royal prince.\n\nJULIET:\nI may be no:\nA time I have you will have no more:\nI'er.\n\nCLARENCE:\nNow, and it shall have I am I know,\nThe gods have.\n\nGLOUCESTER:\nNow, my lord, if you, I am it.\n\nQUEEN ELIZABETH:\nBut I'll make your lord, I am not do not be,\n\nHow that he can you know I do, I will.\n\nROMEO:\nThe bumed in the house of him?\n\nJULIET:\nMy father, your lord, my lord.",
+          "tokens": 160,
+          "seconds": 1.827,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.019108280254777066,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": "\n\nNurse:\nI will not that we have seen in the cause.\n\n\nBENVOLIO:\nIf you would I must be been:\nAnd have you say it in my brother,\nAnd, I am much to see;\nThat you will be a stun'd\nThe noble queen's good more,\nAnd then I am he may be in the fud'd,\nAnd, I think I'll be a man.\n\nROMEO:\nIf you, you should be so.\n\nQUEEN MARGARET:\nWhat's not:\nNo, I, my mother, and I'll swear\nThe day of my name.\n\nNurse:\n\nI thank you are you may;\nYou are my lord.\n\nGLOUCESTER:\n\nTo see",
+          "tokens": 160,
+          "seconds": 1.806,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.031847133757961776,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say, and his heart to me;\n\nKING RICHARD III:\nAnd I will be seen, for a man,\nTo bear thy royal prince!\n\nJULIET:\nI may be no;\nA thock have you will have no more:\nI'er.\n\nCLARENCE:\nNow, and it shall have I am I know,\nThe gods have.\n\nGLOUCESTER:\nNow, my brother:\nTo be a day, I have a word to say.\n\nKING RICHARD III:\nMy lord; I shall you, thou, my brother,\nThe world is dead, I will.\n\nROMEO:\nThe bums in the house of him?\n\nKING RICHARD III:\nI have no more, what is",
+          "tokens": 160,
+          "seconds": 1.87,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.0573248407643312,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        }
+      ],
+      "summary": {
+        "mean_repeated_token_4grams": 0.02972399150743099,
+        "mean_repeated_word_4grams": 0.0,
+        "paragraph_markers": 0,
+        "samples": 12
+      }
+    },
+    "revised_42": {
+      "model": "run:6c9bb10c41f5430a8fa71a9ee205cb2b",
+      "checkpoint_step": 1400,
+      "scores": {
+        "scratch_test": {
+          "bits_per_byte": 2.6238747296988953,
+          "loss": 5.049933804603901,
+          "tokens": 40170,
+          "bytes": 111537,
+          "chars": 111537,
+          "context_tokens": 128,
+          "sha256": "c007286a1018519e3e9e6cc35e191ceb0f6ed796f1564768ddeffd1078629f28"
+        }
+      },
+      "samples": [
+        {
+          "text": " by his king's death.\n\nROMEO:\nO, come, so we have a tapbar of his good,\nAnd he'st thou hast a fudge that is no matter,\nBut to be a thing.\n\nNurse:\nHow now,\nThe king is not so so much to the people,\nTo do him in the fudence of this world,\nThat I'll be a man, for they are to do.\n\nROMEO:\nWell, and thou hast been a man, as thou art.\n\nKING RICHARD III:\nI must be the king, and thou shalt be the people.\n\nJULIET:\nBut that thou art a porty that she will be not,\nWhich he, of thee",
+          "tokens": 160,
+          "seconds": 2.598,
+          "checkpoint": "best",
+          "step": 1400,
+          "repeat_fraction": 0.019108280254777066,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say, and I speak,\nI'll give my noble lord.\n\nCAMILLO:\nNo, for a woman,\nTo bear your royal crown!\n\nJULIET:\nNay, thou art not to see it it.\n\nJULIET:\nI will not go, as I should not give him:\nO, my lord, and I know, we do not know.\n\nGLOUCESTER:\nNow, what that the duke is a cagyy\nAnd tell us all the people.\n\nPAULINA:\nMy lord,\nAnd you that is, my lord, I'll know it.\n\nSecond Senator:\nI will not have done, you will come to be;\nAnd, for that you have been too: he will not\nA",
+          "tokens": 160,
+          "seconds": 2.063,
+          "checkpoint": "best",
+          "step": 1400,
+          "repeat_fraction": 0.03821656050955413,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " not be;\nAnd, for I will not be so in the hand;\nAnd yet they do not be much: I must be;\nHe was a cetares to take for them.\n\nBUCKINGHAM:\nI am not the sun, and I'll be the Tower.\n\nCORIOLANUS:\nThou wilt not be done!\n\nClown:\nO, I see, my lord.\n\nLADY ANNE:\nHow, good cousin!\n\nMENENIUS:\nI would not be done:\nI cannot be a subject: I'll not say,\nI'll make his take; and, but then I can tell,\nAnd, not so far as you are much.\n\nROMEO:\nSo I have too too.\n\nCORIOLANUS:",
+          "tokens": 160,
+          "seconds": 2.041,
+          "checkpoint": "best",
+          "step": 1400,
+          "repeat_fraction": 0.01273885350318471,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " be a noble man?\n\nQUEEN ELIZABETH:\nThe noble lord, my lord, and his friends,\nAnd you shall have done me, and do me do.\n\nGLOUCESTER:\nWhy, I am, I have you so much more.\n\nGLOUCESTER:\nThe king hath not the king's death, and it shall,\nIn thy hand, we had not know thy heart.\n\nROMEO:\nO, the duke is a cood, and with a word.\n\nMERCUTIO:\nI will not speak in the king of the world,\nAnd with a man's blood, and I, as you were,\nI will not have done, you will come to be;\nAnd, for that I have been too: she will, what is",
+          "tokens": 160,
+          "seconds": 2.051,
+          "checkpoint": "best",
+          "step": 1400,
+          "repeat_fraction": 0.02547770700636942,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " of his hands hath done.\n\nROMEO:\nO, come, so we have been this ped-night.\n\nROMEO:\nHe'st thou, and my soul's as thou art,\nBut to be a thing.\n\nNurse:\nHow now,\nThe king is not so so much to the people,\nTo do him in the fudence of this world,\nThat I'll be the common king, and go\nTo be our royal, and you were gone.\n\nNurse:\nWhat! you are you?\n\nLADY CAPULET:\nI must be;\nFor God's as he did, and not, not so far\nThat I was a porty-gell'd, and the crown of\nbu",
+          "tokens": 160,
+          "seconds": 2.246,
+          "checkpoint": "best",
+          "step": 1400,
+          "repeat_fraction": 0.03821656050955413,
+          "seed": 42,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " shall say, and what we will.\n\nROMEO:\nA man, by the king and me, for a woman's man,\nThat he was but a cuny-lourpor with\nA thock. Ullil'd me, if thou say'st:\nHow? O, as thou dost not speak me?\n\nHASTINGS:\nO, a gentleman!\n\nLEONTES:\nAy, then, I am a very tit, my lord.\n\nKING RICHARD III:\nMy lord, I'll be, and you will not see the\ncunth, I am an a little king,\nTo be his puded, and my Lord of your eyes,\nTo have the crown'd by our own own",
+          "tokens": 160,
+          "seconds": 2.136,
+          "checkpoint": "best",
+          "step": 1400,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " of his king's death.\n\nROMEO:\nO, come, so we have but taped my mind:\nBut what's he's name, you'll make it not that,\nAnd, I am not to see a traitor and to thee.\n\nKING RICHARD III:\nI'll make it well, I'll do you, if you be.\n\nISABELLA:\nI will have your grace and in that.\n\nGLOUCESTER:\nNow, if it be so too; or now I had,\nThat I'll not hear you.\n\nLADY CAPULET:\nI must be;\nFor God's as he did, and not, not so far\nThat I am a porty.\n\nFirst Murderer:\nAy, good good brother",
+          "tokens": 160,
+          "seconds": 2.31,
+          "checkpoint": "best",
+          "step": 1400,
+          "repeat_fraction": 0.0,
+          "seed": 42,
+          "prompt_tokens": 7,
+          "used_prompt_tokens": 7,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": ", a noble lord.\n\nQUEEN ELIZABETH:\nThe noble lord, my lord, and his friends,\nAnd you to the crown of thy royal crown!\n\nJULIET:\nNay, thou art not to see it it.\n\nJULIET:\nI will not go, as I should not give him.\n\nKING RICHARD III:\nAnd, for we do not know thy heart.\n\nROMEO:\nO, the duke is this: but it is the prince,\nAnd in the day is not, with you are gone;\nOr you, and you will not see the king.\n\nKING EDWARD IV:\nThe king shall not have done, and I am,\nAnd she was, for I am not of mine:\nAy, what is",
+          "tokens": 160,
+          "seconds": 2.085,
+          "checkpoint": "best",
+          "step": 1400,
+          "repeat_fraction": 0.019108280254777066,
+          "seed": 123,
+          "prompt_tokens": 7,
+          "used_prompt_tokens": 7,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " if you will give me.\n\nMENENIUS:\nO, come, I am no,\nMy lord.\n\nLEONTES:\nYou are a man;\nAnd what it is: as you would, I am much.\n\nROMEO:\nI thank you, I'll make him hence.\n\nCORIOLANUS:\n'Tis done!\n\nClown:\nO, I'll be a cature.\n\nGLOUCESTER:\nThe good cousin is not well, it may be too;\nAnd thou art, by the gods' you are gone.\n\nLADY CAPULET:\nI must be;\nFor God's as he did, and not, not so far\nThat I am a porty.\n\nFirst Murderer:\nAy, good good brother",
+          "tokens": 160,
+          "seconds": 2.042,
+          "checkpoint": "best",
+          "step": 1400,
+          "repeat_fraction": 0.006369426751592355,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say, and you speak to me;\nWhich he should have not, I would not go with him.\n\nKING RICHARD III:\nA prince!\n\nJULIET:\nNay, thou art not to see it for you:\n\nYORK:\nO, cousin, as you should not give him?\n\nKING RICHARD III:\nAnd, my lord, that I had not a gentleman.\n\nLEONTES:\nAy, then, I am a very tit, my lord.\n\nKING RICHARD III:\nMy lord, I'll be, and you will not see;\nThe other of the people, I'll do't:\nThe people, you will come, and will you hear,\nAnd, that you do not be a thing.\n",
+          "tokens": 160,
+          "seconds": 2.063,
+          "checkpoint": "best",
+          "step": 1400,
+          "repeat_fraction": 0.0573248407643312,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.010309278350515427,
+          "paragraph_markers": 0
+        },
+        {
+          "text": "\n\nNurse:\nI will not.\n\nFirst Murderer:\nAy, sir, my lord; my lord.\n\nSecond Keeper:\nI have you so.\n\nCORIOLANUS:\nYou are you, sir.\n\nROMEO:\nI thank you, I'll make him hence.\n\nCORIOLANUS:\n'Tis done!\n\nClown:\nO, I'll be a cature.\n\nVOLUMNIA:\nThe good lady\nAs I'll see you that would tell your grace.\n\nJULIET:\nI must not do.\n\nFirst Gentleman:\nI must be the king, and then, and not a a pillor.\n\nClown:\nHow were you a little?\n\nMENENIUS:\nAy, good good brother",
+          "tokens": 160,
+          "seconds": 2.08,
+          "checkpoint": "best",
+          "step": 1400,
+          "repeat_fraction": 0.05095541401273884,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say, and what thou dost,\nFor thy father's death, for I would not go:\nSo is the city to this father, and thy brother.\n\nKING RICHARD III:\nTo do it, how I have a happy name\nOf my grace, the mutals of his father:\nO, my lord, and thy hand, and my brother's.\n\nGLOUCESTER:\nNow, my lord, if you have a traitor with the\nAnd tell us all the people's eye.\n\nDUCHESS OF YORK:\nO, that thou art my brother, I'll know\nTo the fasces of my love, and see him,\nAnd I am a brother, for they are in this\nA mound-wer'd by",
+          "tokens": 160,
+          "seconds": 2.046,
+          "checkpoint": "best",
+          "step": 1400,
+          "repeat_fraction": 0.01273885350318471,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        }
+      ],
+      "summary": {
+        "mean_repeated_token_4grams": 0.023354564755838636,
+        "mean_repeated_word_4grams": 0.0008591065292096189,
+        "paragraph_markers": 0,
+        "samples": 12
+      }
+    },
+    "classic_123": {
+      "model": "run:e8ee2761096949d3bbf1879dceacbdc7",
+      "checkpoint_step": 1500,
+      "scores": {
+        "scratch_test": {
+          "bits_per_byte": 2.7589221137992,
+          "loss": 5.309847261017165,
+          "tokens": 40170,
+          "bytes": 111537,
+          "chars": 111537,
+          "context_tokens": 128,
+          "sha256": "c007286a1018519e3e9e6cc35e191ceb0f6ed796f1564768ddeffd1078629f28"
+        }
+      },
+      "samples": [
+        {
+          "text": " by his king,\nIn our hand that we have seen in the hand;\nI'll never do not my lord.\n\nROMEO:\nHe'st thou hast thou canst not that,\nAnd I am thy king to me for thy death.\n\nFirst Senator:\n\nThe king, that you will, and I may I am,\nBut I say we will I see, that,\nThat I'll be that thou canst not?\n\nKING HENRY VI:\nMy lord;\nI cannot make thy lord, sir!\n\nKING RICHARD III:\nI'll make his lord, and thy heart of thy father.\n\nWARWICK:\nTo me not not, my lord, my lord, I had been the rest,\nWhich you, I see",
+          "tokens": 160,
+          "seconds": 1.773,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.006369426751592355,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say,\nAnd for him and the world hath he's death,\nAnd I not his royal father's a woman,\nTo bear thy royal prince,\nThat he'st thy father'st with thy father,\nAnd thou hast thou hast thee:\nAnd I do not in the stamyy-day,\nAnd I could never be dead, my brother'st,\nAnd I may I'll meeting the blood.\n\nNurse:\nA prince, my life,\nAnd now!\n\nDUCHESS OF YORK:\nAnd you, thou! my brother, I, for my father,\nIs an a little love, and I am,\nAnd I am a brother, like, for that I fear,\nWhere is a millst",
+          "tokens": 160,
+          "seconds": 1.746,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.019108280254777066,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " be a king.\n\nGLOUCESTER:\nI have not in the cause!\n\n\nBENVOLIO:\nIf you:\nI say, he'st thou hast a man!\n\nAUTOLYCUS:\nTo take my lord.\n\nROMEO:\nI thank you! I may\n\nROMEO:\nI will, sir; then I am he may be in.\n\nLEONTES:\nI will have your grace:\nThat thou canst thou?\n\nKING HENRY VI:\nI would not be done to make thy life,\nI must I do not as I'll tell me.\n\nCAPULET:\nWhy, and my lord!\n\nNurse:\nNo, you have I am not; that may I had not the rest,\nA king, I see",
+          "tokens": 160,
+          "seconds": 1.772,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.02547770700636942,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say,\nAnd for him and the world hath he's death,\nAnd I will tell me, for a woman of the crown.\n\nCAPULET:\nA sweet lord;\nBut thou art thou art, I have been a budes\nI will tell the morted in the king;\nIn thy grace in the king and thy hand,\nThe gods have thy heart'st:\nThat you, that the ground, as he was a very tamy\nAnd in thy blood is not,\nAnd in the king of the feted with my brother,\nThe world and my noble lord,\nAnd do not in the king,\nTo see the house of him,\nAs I am not this,\nBut then, by my lords",
+          "tokens": 160,
+          "seconds": 1.909,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " of his king.\n\nGLOUCESTER:\nI have seen in the cause.\n\n\nBENVOLIO:\nIf you:\nBut what'st thou dost thou hast it.\n\nCORIOLANUS:\nI know I am much.\n\nROMEO:\nI thank you! I may\n\nGLOUCESTER:\nI will, and I may I am he may be in the fudence,\nI will have your grace of his lord.\n\nGLOUCESTER:\nNow, if it, that would not be done to make thy life,\nI must I do not as I'll tell me.\n\nCAPULET:\nWhy, and my lord, I can not,\nNow, you have I am not;\nWhich I had not the rest is the good king,\nAnd",
+          "tokens": 160,
+          "seconds": 1.882,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.03821656050955413,
+          "seed": 42,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " shall say,\nAnd we will die and the king of your blood,\nAnd I will tell me, for our lord,\nTo bear thy royal prince I do.\n\nKING EDWARD IV:\nMy lord, I have have you will have no more:\nI know, as the king:\nHow shall not know it shall have I speak, and I'll swear,\nBy his face of her.\n\nQUEEN MARGARET:\nTo see this,\nAnd with a word to the Duke of my lord.\n\nDUCHESS OF YORK:\nAnd you, thou, my brother, I have not know,\nI am an pour'd in your life,\nTo see them, and my Lord of your eyes,\nMy father, like my heart'st:",
+          "tokens": 160,
+          "seconds": 1.794,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " of his king,\nIn our hand that we have seen in the cause.\n\n\nBENVOLIO:\nIf you:\nI say, he'st thou hast it is it not that is no more,\nBut I must be a sweet and to my lord.\n\nBUCKINGHAM:\nThe queen, good lord, and I may I am,\nBut I say we will I see,\nAnd I think I'll be that thou canst not?\n\nKING HENRY VI:\nMy lord;\nI cannot make thy lord, sir:\nNo, for me, no more than thou wilt not be made\nThe day of my name's death's blood,\nTo give you have done.\n\nQUEEN ELIZABETH:\nSo I not thy life.\n\n\nKING",
+          "tokens": 160,
+          "seconds": 1.849,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.01273885350318471,
+          "seed": 42,
+          "prompt_tokens": 7,
+          "used_prompt_tokens": 7,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " as a noble man?\n\nQUEEN ELIZABETH:\nI know my lord, I would not but a father's a man;\nTo bear thy father, I do.\n\nGLOUCESTER:\nWhy, I am, I have you shall not have no more:\nI know, as you, and his father?\n\nMENENIUS:\nTo speak!\n\nClown:\nWhy, sir, sir?\n\nLEONTES:\n\nYou'll be a man! I have a word to say.\n\nCORIOLANUS:\n\nI will, what'st you, and you will not see the king.\n\nANGELO:\nThe duke.\n\nKING RICHARD III:\nI am he be a man, and not to me not,\nWhere is a millst",
+          "tokens": 160,
+          "seconds": 1.837,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.01273885350318471,
+          "seed": 123,
+          "prompt_tokens": 7,
+          "used_prompt_tokens": 7,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " by his king's\nIn mine own father and you to the earth\nThan we have but this pent.\n\nLEONTES:\nYou are not; and you say.\n\nCORIOLANUS:\nYou are I am much.\n\nROMEO:\nI thank you, I may\nThe noble brother's good lord,\nAnd then I am he may be in the fudence,\nAnd, I must I'll be a man.\n\nROMEO:\nIf you, you should be so.\n\nQUEEN MARGARET:\nWhat's not:\nNo, I'll tell me, and I'll do not, my lord.\n\nKING HENRY VI:\n\nDUCHESS OF YORK:\nHow, that may I had not the rest is the good king,\nAnd",
+          "tokens": 160,
+          "seconds": 1.825,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.02547770700636942,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say, and what we will.\n\nROMEO:\nA country, I would not but a man?\n\nFLORIZEL:\nO, sir, I do.\n\nAUTOLYCUS:\nWhy, I am, it not have you:\nAnd you have not, if you will not not:\nI do not know it shall have I am I know,\nThe gods have the way a thousand: the matter?\n\n\nMENENIUS:\nI am a very sir, but to say.\n\nCORIOLANUS:\n\nI will, what I shall you, and you will not see you,\nSo shall be, you.\n\nROMEO:\nThe people, you will come, a brother?\n\nPOLIXENES:\nMy father, your lord, and what is",
+          "tokens": 160,
+          "seconds": 1.798,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.019108280254777066,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": "\n\nNurse:\nI will not that we have seen in the cause.\n\n\nBENVOLIO:\nIf you:\nI say, he'st thou hast a man!\n\nAUTOLYCUS:\nTo take my lord.\n\nROMEO:\nI thank you, I may not be no.\n\nCORIOLANUS:\n'er I am he may be?\n\nCORIOLANUS:\nThe world, I must I'll be,\nI have? I do not, if it, and you;\nI cannot make thy noble lady,\nAnd I do not as I'll tell me.\n\nThird Senator:\nIf thou, and I have a piring me;\nBut, you may be to thy son?\n\nMENENIUS:\nAy,\nBut,",
+          "tokens": 160,
+          "seconds": 1.91,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.01273885350318471,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say, and what we will die;\nThou hast in my lord, I would not but a man\nAnd not to the crown of thy father,\nAnd, so, my lord, thou art not to see it not have been:\nAnd you have thy brother'st thou never not:\nHow I must not a great man I could never be dead,\nAnd I had not a true: the matter?\n\nQUEEN MARGARET:\nI am a very noble lord,\nNo, I pray you know,\nAnd I am not do not be, and that my brother,\nThe world and my noble lord,\nAnd do not in your life, and thou dost thou hast a brother,\nAs I am not this,\nBut then, by my lords",
+          "tokens": 160,
+          "seconds": 1.873,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.01273885350318471,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        }
+      ],
+      "summary": {
+        "mean_repeated_token_4grams": 0.015392781316348192,
+        "mean_repeated_word_4grams": 0.0,
+        "paragraph_markers": 0,
+        "samples": 12
+      }
+    },
+    "revised_123": {
+      "model": "run:515955b21fc647c6ac955f403e040101",
+      "checkpoint_step": 1500,
+      "scores": {
+        "scratch_test": {
+          "bits_per_byte": 2.605715653734931,
+          "loss": 5.014984677447471,
+          "tokens": 40170,
+          "bytes": 111537,
+          "chars": 111537,
+          "context_tokens": 128,
+          "sha256": "c007286a1018519e3e9e6cc35e191ceb0f6ed796f1564768ddeffd1078629f28"
+        }
+      },
+      "samples": [
+        {
+          "text": " by his king's\nIn mine own father and a noble house;\nAnd we for her own, for my life, I must be\nTieved upon your wife.\n\nCORIOLANUS:\nO, I am much.\n\nROMEO:\nI thank you, I'll make him all.\n\nCORIOLANUS:\n'Tis I now, if I be so; for I'll be a\nwin-morrow: I would not have been gone to do.\n\nROMEO:\nWell, and I had heard you know, my lord.\n\nPOLIXENES:\nI'll make this?\n\nKING RICHARD II:\nI'll speak a pillor.\n\nClown:\nHow, that may I had been the magriril,\nAnd",
+          "tokens": 160,
+          "seconds": 2.117,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.04458598726114649,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say,\nAnd we to your father's heart is in them.\n\nLADY ANNE:\nMy lord, you'll stay it.\n\nMENENIUS:\nA matter, my lord:\nTo do it, I have have a man to me;\nAnd yet I do say, and, and I do not know\nThe man of her hands and so, if it be,\nAnd not a mater-graitation,\nWhich with the earth will not take the Duke of blood\nI had not speak in the king of it.\n\nFirst Citizen:\nAnd, for I do, I am an a little love\nTo see him on this man?\n\nMENENIUS:\nLet me not speak.\n\nSICINIUS:\nWe are by",
+          "tokens": 160,
+          "seconds": 2.123,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.019108280254777066,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "ROMEO:\nThe night is quiet, and",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " be be, or so much\nBut that we have seen in such a king\nTo-biled my lord.\n\nROMEO:\nHe'st thou to the people'st, and the king;\nA queen, for thy death is in the rest,\nAnd in the king'st of it, and I am,\nTo be the king, but that I was a world,\nAnd I'll be a word.\n\nROMEO:\nIf thou do see thy hand; or now thou wouldst\nMy noble husband'st: he is a man,\nAnd yet I must be made thy heart of thy father.\n\nWARWICK:\nTo me, and thou hast not a portyy;\nWhat thou is the crown of York of thee",
+          "tokens": 160,
+          "seconds": 2.109,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.019108280254777066,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " stand in peace.\n\nKING EDWARD IV:\nThe noble lord, my lord, and his friends,\nAnd you shall have too much, and do me do.\nI am a father's crown; but, how it is:\nI'll be the Tower, if you will be not:\nHow shall I know it is so? and I know,\nThe gods are the crown'd of her.\n\nQUEEN MARGARET:\nWhat, I am a very day to tell thee?\n\nKING HENRY VI:\nI will not be a word.\n\nKING RICHARD III:\nThe world is an, I am an a little love\nTo see him on this man?\n\nQUEEN ELIZABETH:\nI am not this, that I'll be a man:",
+          "tokens": 160,
+          "seconds": 2.128,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.006369426751592355,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "JULIET:\nWhen morning comes, I shall",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " of his king's death.\n\nROMEO:\nO, come, I am no more than my brother.\n\nGLOUCESTER:\nFoge him, you'll make it not that, but the\nA world and to see the sea and to go.\n\nKING RICHARD III:\nI'll make it well to the people, and he's good,\nAnd by the matter, that will have your graceed:\nO, for your grace to our country,\nWhich should you tell your grace to make him,\nThat you must be gone.\n\nGLOUCESTER:\nMy gracious lord, and I'll live with me.\n\nWARWICK:\nTo me, good lord, and then I will be done.\n\nMENENIUS:\nO, good good brother",
+          "tokens": 160,
+          "seconds": 2.083,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.031847133757961776,
+          "seed": 42,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " shall be not so much;\nAnd then I will be your grace in their blood.\n\nHENRY BOLINGBROKE:\nI'll stay again.\n\nROMEO:\nA matter, my lord, thou shall not be,\nTo have a happy head of my father's head.\n\nGLOUCESTER:\nWhy, I must know it in the king and me?\n\nHASTINGS:\nO, my lord!\n\nLEONTES:\n\nKING EDWARD IV:\nThen I have a word to say.\n\nKING RICHARD III:\nMy lord, I shall be, and you will not see;\nThe other shall be a man.\n\nROMEO:\nThe bipp-day is a brother?\n\nKING RICHARD III:\nI have no more mill'd",
+          "tokens": 160,
+          "seconds": 2.132,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.04458598726114649,
+          "seed": 123,
+          "prompt_tokens": 10,
+          "used_prompt_tokens": 10,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "KING RICHARD III:\nMy lord, the people",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " of a king's death.\n\nROMEO:\nO, come, I am no more than my brother.\n\nGLOUCESTER:\nFoge him, you'll make it not that, but the\nA world and to see a name and to thee.\n\nKING RICHARD III:\nI'll make it well to the people, and he's good,\nAnd by the matter, that will have your graceed:\nO, for your grace to our country,\nWhich should you tell your grace to make him\nThat I'll take the queen of your father,\nAnd yet I must be made of the Tower.\n\nSICINIUS:\nAnd, not you.\n\nLEONTES:\nBut that I have done\nWhat you should make no king, I did",
+          "tokens": 160,
+          "seconds": 2.098,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.006369426751592355,
+          "seed": 42,
+          "prompt_tokens": 7,
+          "used_prompt_tokens": 7,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": ", a noble father,\nAnd what hath the king is in my country,\nAnd not his friends, for our body's daughter,\nThat you do me do the people's heart\nBut thou shall not be, and I have a happy\nAnd from my soul, I do say in the king.\n\nGLOUCESTER:\nI have not so much, for we had not know.\n\nGLOUCESTER:\nNow, my lord, and then I have been a very\nAnd tell thee as I, I'll make your king's life,\nAnd I have no man of my brother's life,\nAnd I, I am an pogle: but, I'll see them,\nAnd now, and not to this word, that we do,\nAnd by",
+          "tokens": 160,
+          "seconds": 2.081,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.03821656050955413,
+          "seed": 123,
+          "prompt_tokens": 7,
+          "used_prompt_tokens": 7,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "GLOUCESTER:\nI have a secret",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " if you will give\naaa.\n\nFirst Citizen:\nAy, sir, you do not be you: I must be done:\nI have you so.\n\nCORIOLANUS:\nYou are you, sir.\n\nFirst Citizen:\nWe'll be gone.\n\nESCALUS:\nI will, sir; but I am, if you be so?\n\nCORIOLANUS:\nNo, sir.\n\nVOLUMNIA:\nThe good cousin\nCreft, you should be so.\n\nFirst Murderer:\nWhat's you, you should be, you shall be seen, sir.\n\nJULIET:\nI will not speak to you, sir.\n\nClown:\nHow, that will I had been the magriril, I see",
+          "tokens": 160,
+          "seconds": 2.083,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.10828025477707004,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say, and what we will.\n\nROMEO:\nA man, I would not tell me, for a woman's man,\nThat I do not do the people's queen,\nTo do not to see it.\n\nQUEEN MARGARET:\nI will not go: I'll not: how I do not know it.\n\nHENRY BOLINGBROKE:\nI do not know the way?\n\nROMEO:\nO, the ground.\n\nNurse:\nA prince, my lord.\n\nCORIOLANUS:\n\nDUCHESS OF YORK:\nO, we'll tell you that he is, for I do,\nIs an a little love of your life,\nTo see them, and will your grace and not to me\nTo give your royal queen.\n\n",
+          "tokens": 160,
+          "seconds": 2.089,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.02547770700636942,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Nurse:\nCome, my dear child,",
+          "word_repeat_fraction": 0.010204081632653073,
+          "paragraph_markers": 0
+        },
+        {
+          "text": "\n\nNurse:\nI will not.\n\nFirst Citizen:\nAy, sir, my lord; my lord: I must be done:\nI have you so.\n\nCORIOLANUS:\nYou are you, and to see the sea and to go.\n\nFirst Citizen:\nThe queen's good sir, it is not, and he's one?\n\nCORIOLANUS:\nThe world is a son.\n\nVOLUMNIA:\nThe good cousin\nCreft, you should be so.\n\nFirst Murderer:\nWhat! you are gone?\n\nFirst Gentleman:\nI must be the king, and then I can tell,\nAnd, not not; and, I am a porty.\n\nFirst Murderer:\nAy, I'll see",
+          "tokens": 160,
+          "seconds": 2.156,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.08280254777070062,
+          "seed": 42,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        },
+        {
+          "text": " I say, and what we will.\n\nRICHARD:\nA king, my lord, and you have said,\nIf you go, or my lord, by the people's queen\nBut thou shall not be, and I have a happy\nAnd from my soul, I do say in the king.\n\nGLOUCESTER:\nI have not so much.\n\nHASTINGS:\nO, my lord!\n\nLEONTES:\n\nKING EDWARD IV:\nThen I have a word to say.\n\nKING RICHARD III:\nMy lord, I shall be, and you will not see;\nThe other shall be, you were a little love\nTo see the world and will come to be;\nAnd, for I am not, that we'll be a man:",
+          "tokens": 160,
+          "seconds": 2.122,
+          "checkpoint": "best",
+          "step": 1500,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 9,
+          "used_prompt_tokens": 9,
+          "context": 128,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "QUEEN ELIZABETH:\nWhere is my son?",
+          "word_repeat_fraction": 0.0,
+          "paragraph_markers": 0
+        }
+      ],
+      "summary": {
+        "mean_repeated_token_4grams": 0.03556263269639065,
+        "mean_repeated_word_4grams": 0.0008503401360544227,
+        "paragraph_markers": 0,
+        "samples": 12
+      }
+    }
+  },
+  "limitations": "Original best checkpoint was previously selected using the whole historical validation tail. Current partitions are disjoint but the test is not selection-naive for that original checkpoint.",
+  "runs": [
+    {
+      "kind": "continued_ce",
+      "run": "eb0fb22e5e7b46b49fd9bb3cd2d973b7",
+      "config": {
+        "name": "Shakespeare / continued learning",
+        "dataset": "c1a18a6855bf414ab17edc2d79a3d047",
+        "initial_model": "legacy:shakespeare-small-v1",
+        "steps": 1200,
+        "batch": 8,
+        "context": 256,
+        "lr": 0.0001,
+        "dropout": 0.1,
+        "eval_every": 100,
+        "patience": 6,
+        "seed": 42,
+        "unlikelihood": 0
+      },
+      "summary": {
+        "parameters": 30044544,
+        "vocab_size": 50257,
+        "tokenizer": "gpt2",
+        "train_tokens": 305018,
+        "validation_tokens": 16660,
+        "test_chars": 50597,
+        "device": "mps",
+        "dataset_sha256": "68db5bfef16f20ec580473b0264a3c9d7ff640aee4a900ea335a52b708a96058",
+        "split": "Explicit research partitions",
+        "architecture": "classic",
+        "initial_model": "legacy:shakespeare-small-v1",
+        "unlikelihood": 0.0,
+        "step": 1200,
+        "elapsed": 188.86517441700016,
+        "training_seconds": 171.21370164900145,
+        "steady_training_seconds": 165.45257669100283,
+        "steady_steps": 1190,
+        "steady_ms_per_step": 139.03577873193515,
+        "tokens_per_second": 14353.991393972838,
+        "best_loss": 4.450863838195801,
+        "best_step": 1200,
+        "test": {
+          "bits_per_byte": 1.896377983864448,
+          "loss": 3.920862200720643,
+          "tokens": 2682,
+          "bytes": 8000,
+          "chars": 8000,
+          "context_tokens": 256,
+          "text_sha256": "bde5481b7a481cb65ece1c7aa116e066719491d9875c360e5ce1b104da8f9d30"
+        }
+      },
+      "metrics": [
+        {
+          "step": 1,
+          "train": 4.279721140861511,
+          "val": 4.9788408279418945,
+          "lr": 2.0000000000000003e-06,
+          "elapsed": 5.173691250000047
+        },
+        {
+          "step": 100,
+          "train": 3.892257869243622,
+          "val": 4.555664539337158,
+          "lr": 9.959744042404665e-05,
+          "elapsed": 20.090077042001212
+        },
+        {
+          "step": 200,
+          "train": 3.8443806767463684,
+          "val": 4.539912819862366,
+          "lr": 9.632333069195738e-05,
+          "elapsed": 35.33765295900048
+        },
+        {
+          "step": 300,
+          "train": 3.8083906173706055,
+          "val": 4.509289026260376,
+          "lr": 8.998445856410467e-05,
+          "elapsed": 50.537517417000345
+        },
+        {
+          "step": 400,
+          "train": 3.785536229610443,
+          "val": 4.514929294586182,
+          "lr": 8.105094918780091e-05,
+          "elapsed": 65.57692258399948
+        },
+        {
+          "step": 500,
+          "train": 3.7705379128456116,
+          "val": 4.505897641181946,
+          "lr": 7.018536008540056e-05,
+          "elapsed": 80.80223079200005
+        },
+        {
+          "step": 600,
+          "train": 3.7228498458862305,
+          "val": 4.493152976036072,
+          "lr": 5.8193542293866e-05,
+          "elapsed": 96.12256974999946
+        },
+        {
+          "step": 700,
+          "train": 3.688661813735962,
+          "val": 4.477001667022705,
+          "lr": 4.596487407987926e-05,
+          "elapsed": 111.38131204199999
+        },
+        {
+          "step": 800,
+          "train": 3.672338128089905,
+          "val": 4.472107291221619,
+          "lr": 3.440629982243712e-05,
+          "elapsed": 126.7523012090005
+        },
+        {
+          "step": 900,
+          "train": 3.6555017828941345,
+          "val": 4.468908190727234,
+          "lr": 2.4375066097255232e-05,
+          "elapsed": 141.93086291700092
+        },
+        {
+          "step": 1000,
+          "train": 3.6436771750450134,
+          "val": 4.459033250808716,
+          "lr": 1.6615143619889604e-05,
+          "elapsed": 157.14080229200044
+        },
+        {
+          "step": 1100,
+          "train": 3.6318140029907227,
+          "val": 4.458016514778137,
+          "lr": 1.1702050341203226e-05,
+          "elapsed": 172.3146653750009
+        },
+        {
+          "step": 1200,
+          "train": 3.624361276626587,
+          "val": 4.450863838195801,
+          "lr": 1.0000167913770074e-05,
+          "elapsed": 187.52163891700002
+        }
+      ]
+    },
+    {
+      "kind": "continued_ul",
+      "run": "f0c6487682364d7d9005c07820f2b9b6",
+      "config": {
+        "name": "Shakespeare / repetition objective",
+        "dataset": "c1a18a6855bf414ab17edc2d79a3d047",
+        "initial_model": "legacy:shakespeare-small-v1",
+        "steps": 1200,
+        "batch": 8,
+        "context": 256,
+        "lr": 0.0001,
+        "dropout": 0.1,
+        "eval_every": 100,
+        "patience": 6,
+        "seed": 42,
+        "unlikelihood": 0.1
+      },
+      "summary": {
+        "parameters": 30044544,
+        "vocab_size": 50257,
+        "tokenizer": "gpt2",
+        "train_tokens": 305018,
+        "validation_tokens": 16660,
+        "test_chars": 50597,
+        "device": "mps",
+        "dataset_sha256": "68db5bfef16f20ec580473b0264a3c9d7ff640aee4a900ea335a52b708a96058",
+        "split": "Explicit research partitions",
+        "architecture": "classic",
+        "initial_model": "legacy:shakespeare-small-v1",
+        "unlikelihood": 0.1,
+        "step": 1200,
+        "elapsed": 223.5115563750005,
+        "training_seconds": 205.5829550160015,
+        "steady_training_seconds": 201.95374647300196,
+        "steady_steps": 1190,
+        "steady_ms_per_step": 169.70903064958148,
+        "tokens_per_second": 11954.298447596073,
+        "best_loss": 4.451104402542114,
+        "best_step": 1200,
+        "test": {
+          "bits_per_byte": 1.8963442308073637,
+          "loss": 3.9207924144824524,
+          "tokens": 2682,
+          "bytes": 8000,
+          "chars": 8000,
+          "context_tokens": 256,
+          "text_sha256": "bde5481b7a481cb65ece1c7aa116e066719491d9875c360e5ce1b104da8f9d30"
+        }
+      },
+      "metrics": [
+        {
+          "step": 1,
+          "train": 4.27972674369812,
+          "val": 4.9788124561309814,
+          "lr": 2.0000000000000003e-06,
+          "elapsed": 2.5939650000000256
+        },
+        {
+          "step": 100,
+          "train": 3.891257345676422,
+          "val": 4.555412173271179,
+          "lr": 9.959744042404665e-05,
+          "elapsed": 20.787252959000398
+        },
+        {
+          "step": 200,
+          "train": 3.844725012779236,
+          "val": 4.540785789489746,
+          "lr": 9.632333069195738e-05,
+          "elapsed": 39.085569750001014
+        },
+        {
+          "step": 300,
+          "train": 3.8081029653549194,
+          "val": 4.509356498718262,
+          "lr": 8.998445856410467e-05,
+          "elapsed": 57.398224750000736
+        },
+        {
+          "step": 400,
+          "train": 3.7857001423835754,
+          "val": 4.515046000480652,
+          "lr": 8.105094918780091e-05,
+          "elapsed": 75.59580358399944
+        },
+        {
+          "step": 500,
+          "train": 3.770259737968445,
+          "val": 4.505807518959045,
+          "lr": 7.018536008540056e-05,
+          "elapsed": 93.97352620899983
+        },
+        {
+          "step": 600,
+          "train": 3.7234755158424377,
+          "val": 4.49360454082489,
+          "lr": 5.8193542293866e-05,
+          "elapsed": 112.37848762500107
+        },
+        {
+          "step": 700,
+          "train": 3.6889686584472656,
+          "val": 4.477168560028076,
+          "lr": 4.596487407987926e-05,
+          "elapsed": 130.806689250001
+        },
+        {
+          "step": 800,
+          "train": 3.672730565071106,
+          "val": 4.472525596618652,
+          "lr": 3.440629982243712e-05,
+          "elapsed": 149.11162270900059
+        },
+        {
+          "step": 900,
+          "train": 3.6555824875831604,
+          "val": 4.468785762786865,
+          "lr": 2.4375066097255232e-05,
+          "elapsed": 167.4102766670003
+        },
+        {
+          "step": 1000,
+          "train": 3.64419686794281,
+          "val": 4.459264874458313,
+          "lr": 1.6615143619889604e-05,
+          "elapsed": 185.69667104200016
+        },
+        {
+          "step": 1100,
+          "train": 3.632667601108551,
+          "val": 4.458735108375549,
+          "lr": 1.1702050341203226e-05,
+          "elapsed": 204.1965516250002
+        },
+        {
+          "step": 1200,
+          "train": 3.6249297857284546,
+          "val": 4.451104402542114,
+          "lr": 1.0000167913770074e-05,
+          "elapsed": 222.49326158400072
+        }
+      ]
+    },
+    {
+      "kind": "classic_42",
+      "run": "d089d803390f490dbf36486d078d6347",
+      "config": {
+        "name": "Classic / seed 42",
+        "dataset": "6ea35dc170924c07b6457ee85cf6b444",
+        "architecture": "classic",
+        "tokenizer": "compact",
+        "size": "micro",
+        "steps": 1500,
+        "batch": 16,
+        "context": 128,
+        "lr": 0.0003,
+        "dropout": 0.1,
+        "eval_every": 100,
+        "patience": 100,
+        "seed": 42
+      },
+      "summary": {
+        "parameters": 2590848,
+        "vocab_size": 4096,
+        "tokenizer": "compact",
+        "train_tokens": 272112,
+        "validation_tokens": 36226,
+        "test_chars": 111537,
+        "device": "mps",
+        "dataset_sha256": "60974fad486084624837c0ab96504fa03208a0bda04fc0338d1713d96a74d169",
+        "split": "80/10/10 chronological",
+        "architecture": "classic",
+        "initial_model": null,
+        "unlikelihood": 0.0,
+        "step": 1500,
+        "elapsed": 65.45536249999896,
+        "training_seconds": 60.05900154705341,
+        "steady_training_seconds": 58.79488734005281,
+        "steady_steps": 1490,
+        "steady_ms_per_step": 39.45965593292135,
+        "tokens_per_second": 51149.70147469455,
+        "best_loss": 4.7989689111709595,
+        "best_step": 1500,
+        "test": {
+          "bits_per_byte": 2.663120607227698,
+          "loss": 5.249724963785193,
+          "tokens": 2813,
+          "bytes": 8000,
+          "chars": 8000,
+          "context_tokens": 128,
+          "text_sha256": "32671005d40755be6ec42a60664ce166e5da54d4c291e302fc820dd3ee9248b4"
+        }
+      },
+      "metrics": [
+        {
+          "step": 1,
+          "train": 8.315919637680054,
+          "val": 8.311002492904663,
+          "lr": 5.999999999999999e-06,
+          "elapsed": 1.090251083000112
+        },
+        {
+          "step": 100,
+          "train": 5.761557102203369,
+          "val": 5.872555255889893,
+          "lr": 0.000299239933256452,
+          "elapsed": 5.31937808299881
+        },
+        {
+          "step": 200,
+          "train": 5.266969442367554,
+          "val": 5.435443162918091,
+          "lr": 0.00029302627126057595,
+          "elapsed": 9.580577916000038
+        },
+        {
+          "step": 300,
+          "train": 5.045096397399902,
+          "val": 5.270604491233826,
+          "lr": 0.00028082624311153597,
+          "elapsed": 13.901273207999111
+        },
+        {
+          "step": 400,
+          "train": 4.914161801338196,
+          "val": 5.175197601318359,
+          "lr": 0.0002632103085662238,
+          "elapsed": 18.14590945799864
+        },
+        {
+          "step": 500,
+          "train": 4.831270098686218,
+          "val": 5.119113564491272,
+          "lr": 0.00024100216914527313,
+          "elapsed": 22.375898499998584
+        },
+        {
+          "step": 600,
+          "train": 4.764135956764221,
+          "val": 5.060178995132446,
+          "lr": 0.0002152402527654335,
+          "elapsed": 26.608439915999043
+        },
+        {
+          "step": 700,
+          "train": 4.696584105491638,
+          "val": 4.998604655265808,
+          "lr": 0.0001871291580043127,
+          "elapsed": 30.85136783300004
+        },
+        {
+          "step": 800,
+          "train": 4.644044637680054,
+          "val": 4.943970322608948,
+          "lr": 0.0001579833284097028,
+          "elapsed": 35.12175262499841
+        },
+        {
+          "step": 900,
+          "train": 4.601674795150757,
+          "val": 4.918818950653076,
+          "lr": 0.00012916559058018484,
+          "elapsed": 39.34727479100002
+        },
+        {
+          "step": 1000,
+          "train": 4.563715815544128,
+          "val": 4.874289155006409,
+          "lr": 0.00010202342990805197,
+          "elapsed": 43.654493332998754
+        },
+        {
+          "step": 1100,
+          "train": 4.525224208831787,
+          "val": 4.848139047622681,
+          "lr": 7.782598365998808e-05,
+          "elapsed": 47.91899162499976
+        },
+        {
+          "step": 1200,
+          "train": 4.505149722099304,
+          "val": 4.831554412841797,
+          "lr": 5.7704697529022804e-05,
+          "elapsed": 52.165000040999075
+        },
+        {
+          "step": 1300,
+          "train": 4.486013174057007,
+          "val": 4.823609113693237,
+          "lr": 4.260042049143676e-05,
+          "elapsed": 56.430115207998824
+        },
+        {
+          "step": 1400,
+          "train": 4.473169922828674,
+          "val": 4.805563688278198,
+          "lr": 3.3219411754309246e-05,
+          "elapsed": 60.66515637500015
+        },
+        {
+          "step": 1500,
+          "train": 4.460343599319458,
+          "val": 4.7989689111709595,
+          "lr": 3.0000316859946e-05,
+          "elapsed": 64.93507599999975
+        }
+      ]
+    },
+    {
+      "kind": "revised_42",
+      "run": "6c9bb10c41f5430a8fa71a9ee205cb2b",
+      "config": {
+        "name": "Revised / seed 42",
+        "dataset": "6ea35dc170924c07b6457ee85cf6b444",
+        "architecture": "revised",
+        "tokenizer": "compact",
+        "size": "micro",
+        "steps": 1500,
+        "batch": 16,
+        "context": 128,
+        "lr": 0.0003,
+        "dropout": 0.1,
+        "eval_every": 100,
+        "patience": 100,
+        "seed": 42
+      },
+      "summary": {
+        "parameters": 2557632,
+        "vocab_size": 4096,
+        "tokenizer": "compact",
+        "train_tokens": 272112,
+        "validation_tokens": 36226,
+        "test_chars": 111537,
+        "device": "mps",
+        "dataset_sha256": "60974fad486084624837c0ab96504fa03208a0bda04fc0338d1713d96a74d169",
+        "split": "80/10/10 chronological",
+        "architecture": "revised",
+        "initial_model": null,
+        "unlikelihood": 0.0,
+        "step": 1500,
+        "elapsed": 71.462480917,
+        "training_seconds": 65.94567720901068,
+        "steady_training_seconds": 64.80031591601073,
+        "steady_steps": 1490,
+        "steady_ms_per_step": 43.490144910074314,
+        "tokens_per_second": 46583.79639143729,
+        "best_loss": 4.5501062870025635,
+        "best_step": 1400,
+        "test": {
+          "bits_per_byte": 2.508354254520044,
+          "loss": 4.944638974379273,
+          "tokens": 2813,
+          "bytes": 8000,
+          "chars": 8000,
+          "context_tokens": 128,
+          "text_sha256": "32671005d40755be6ec42a60664ce166e5da54d4c291e302fc820dd3ee9248b4"
+        }
+      },
+      "metrics": [
+        {
+          "step": 1,
+          "train": 8.312220811843872,
+          "val": 8.305115222930908,
+          "lr": 5.999999999999999e-06,
+          "elapsed": 0.8708230000011099
+        },
+        {
+          "step": 100,
+          "train": 5.786911249160767,
+          "val": 5.896222472190857,
+          "lr": 0.000299239933256452,
+          "elapsed": 5.532501542000318
+        },
+        {
+          "step": 200,
+          "train": 5.148362040519714,
+          "val": 5.326442003250122,
+          "lr": 0.00029302627126057595,
+          "elapsed": 10.163432792000094
+        },
+        {
+          "step": 300,
+          "train": 4.866392374038696,
+          "val": 5.091606616973877,
+          "lr": 0.00028082624311153597,
+          "elapsed": 14.784594624999954
+        },
+        {
+          "step": 400,
+          "train": 4.691694021224976,
+          "val": 4.954343795776367,
+          "lr": 0.0002632103085662238,
+          "elapsed": 19.42481412500092
+        },
+        {
+          "step": 500,
+          "train": 4.582026720046997,
+          "val": 4.842134714126587,
+          "lr": 0.00024100216914527313,
+          "elapsed": 24.06784429199979
+        },
+        {
+          "step": 600,
+          "train": 4.497652292251587,
+          "val": 4.779011607170105,
+          "lr": 0.0002152402527654335,
+          "elapsed": 28.76442387499992
+        },
+        {
+          "step": 700,
+          "train": 4.4207704067230225,
+          "val": 4.724101662635803,
+          "lr": 0.0001871291580043127,
+          "elapsed": 33.4182102499999
+        },
+        {
+          "step": 800,
+          "train": 4.363664984703064,
+          "val": 4.655996799468994,
+          "lr": 0.0001579833284097028,
+          "elapsed": 38.06982720900123
+        },
+        {
+          "step": 900,
+          "train": 4.316313147544861,
+          "val": 4.640971302986145,
+          "lr": 0.00012916559058018484,
+          "elapsed": 42.71942783400118
+        },
+        {
+          "step": 1000,
+          "train": 4.270519137382507,
+          "val": 4.612875699996948,
+          "lr": 0.00010202342990805197,
+          "elapsed": 47.43655308400048
+        },
+        {
+          "step": 1100,
+          "train": 4.234998464584351,
+          "val": 4.589119791984558,
+          "lr": 7.782598365998808e-05,
+          "elapsed": 52.11142362500141
+        },
+        {
+          "step": 1200,
+          "train": 4.201925992965698,
+          "val": 4.576454758644104,
+          "lr": 5.7704697529022804e-05,
+          "elapsed": 56.76955291700142
+        },
+        {
+          "step": 1300,
+          "train": 4.180447578430176,
+          "val": 4.573246121406555,
+          "lr": 4.260042049143676e-05,
+          "elapsed": 61.48111808400063
+        },
+        {
+          "step": 1400,
+          "train": 4.1625566482543945,
+          "val": 4.5501062870025635,
+          "lr": 3.3219411754309246e-05,
+          "elapsed": 66.15775675000077
+        },
+        {
+          "step": 1500,
+          "train": 4.149643301963806,
+          "val": 4.5560595989227295,
+          "lr": 3.0000316859946e-05,
+          "elapsed": 70.8218827920009
+        }
+      ]
+    },
+    {
+      "kind": "classic_123",
+      "run": "e8ee2761096949d3bbf1879dceacbdc7",
+      "config": {
+        "name": "Classic / seed 123",
+        "dataset": "6ea35dc170924c07b6457ee85cf6b444",
+        "architecture": "classic",
+        "tokenizer": "compact",
+        "size": "micro",
+        "steps": 1500,
+        "batch": 16,
+        "context": 128,
+        "lr": 0.0003,
+        "dropout": 0.1,
+        "eval_every": 100,
+        "patience": 100,
+        "seed": 123
+      },
+      "summary": {
+        "parameters": 2590848,
+        "vocab_size": 4096,
+        "tokenizer": "compact",
+        "train_tokens": 272112,
+        "validation_tokens": 36226,
+        "test_chars": 111537,
+        "device": "mps",
+        "dataset_sha256": "60974fad486084624837c0ab96504fa03208a0bda04fc0338d1713d96a74d169",
+        "split": "80/10/10 chronological",
+        "architecture": "classic",
+        "initial_model": null,
+        "unlikelihood": 0.0,
+        "step": 1500,
+        "elapsed": 65.16879008299838,
+        "training_seconds": 59.952595218977876,
+        "steady_training_seconds": 59.219441095976435,
+        "steady_steps": 1490,
+        "steady_ms_per_step": 39.7445913395815,
+        "tokens_per_second": 51240.48406544317,
+        "best_loss": 4.792068362236023,
+        "best_step": 1500,
+        "test": {
+          "bits_per_byte": 2.6563032749694417,
+          "loss": 5.236286173500796,
+          "tokens": 2813,
+          "bytes": 8000,
+          "chars": 8000,
+          "context_tokens": 128,
+          "text_sha256": "32671005d40755be6ec42a60664ce166e5da54d4c291e302fc820dd3ee9248b4"
+        }
+      },
+      "metrics": [
+        {
+          "step": 1,
+          "train": 8.328145503997803,
+          "val": 8.322845220565796,
+          "lr": 5.999999999999999e-06,
+          "elapsed": 0.4499412499990285
+        },
+        {
+          "step": 100,
+          "train": 5.771406292915344,
+          "val": 5.888468980789185,
+          "lr": 0.000299239933256452,
+          "elapsed": 4.719213124999442
+        },
+        {
+          "step": 200,
+          "train": 5.259514093399048,
+          "val": 5.438067197799683,
+          "lr": 0.00029302627126057595,
+          "elapsed": 8.991839582999091
+        },
+        {
+          "step": 300,
+          "train": 5.045698165893555,
+          "val": 5.259999394416809,
+          "lr": 0.00028082624311153597,
+          "elapsed": 13.252585457999885
+        },
+        {
+          "step": 400,
+          "train": 4.910564541816711,
+          "val": 5.166993856430054,
+          "lr": 0.0002632103085662238,
+          "elapsed": 17.51320645799933
+        },
+        {
+          "step": 500,
+          "train": 4.8348308801651,
+          "val": 5.108698606491089,
+          "lr": 0.00024100216914527313,
+          "elapsed": 21.87131112499992
+        },
+        {
+          "step": 600,
+          "train": 4.75176203250885,
+          "val": 5.042910575866699,
+          "lr": 0.0002152402527654335,
+          "elapsed": 26.236378624998906
+        },
+        {
+          "step": 700,
+          "train": 4.696066379547119,
+          "val": 4.983774304389954,
+          "lr": 0.0001871291580043127,
+          "elapsed": 30.45475179099958
+        },
+        {
+          "step": 800,
+          "train": 4.626871943473816,
+          "val": 4.932430863380432,
+          "lr": 0.0001579833284097028,
+          "elapsed": 34.71574724999846
+        },
+        {
+          "step": 900,
+          "train": 4.595971465110779,
+          "val": 4.909683465957642,
+          "lr": 0.00012916559058018484,
+          "elapsed": 38.97774524999841
+        },
+        {
+          "step": 1000,
+          "train": 4.5471566915512085,
+          "val": 4.8765270709991455,
+          "lr": 0.00010202342990805197,
+          "elapsed": 43.328229875000034
+        },
+        {
+          "step": 1100,
+          "train": 4.508121609687805,
+          "val": 4.834407567977905,
+          "lr": 7.782598365998808e-05,
+          "elapsed": 47.58359837499847
+        },
+        {
+          "step": 1200,
+          "train": 4.4921510219573975,
+          "val": 4.826924920082092,
+          "lr": 5.7704697529022804e-05,
+          "elapsed": 51.90120970799944
+        },
+        {
+          "step": 1300,
+          "train": 4.472988724708557,
+          "val": 4.808611869812012,
+          "lr": 4.260042049143676e-05,
+          "elapsed": 56.226899249999406
+        },
+        {
+          "step": 1400,
+          "train": 4.461846232414246,
+          "val": 4.805446028709412,
+          "lr": 3.3219411754309246e-05,
+          "elapsed": 60.49991987499925
+        },
+        {
+          "step": 1500,
+          "train": 4.450189828872681,
+          "val": 4.792068362236023,
+          "lr": 3.0000316859946e-05,
+          "elapsed": 64.80027308299941
+        }
+      ]
+    },
+    {
+      "kind": "revised_123",
+      "run": "515955b21fc647c6ac955f403e040101",
+      "config": {
+        "name": "Revised / seed 123",
+        "dataset": "6ea35dc170924c07b6457ee85cf6b444",
+        "architecture": "revised",
+        "tokenizer": "compact",
+        "size": "micro",
+        "steps": 1500,
+        "batch": 16,
+        "context": 128,
+        "lr": 0.0003,
+        "dropout": 0.1,
+        "eval_every": 100,
+        "patience": 100,
+        "seed": 123
+      },
+      "summary": {
+        "parameters": 2557632,
+        "vocab_size": 4096,
+        "tokenizer": "compact",
+        "train_tokens": 272112,
+        "validation_tokens": 36226,
+        "test_chars": 111537,
+        "device": "mps",
+        "dataset_sha256": "60974fad486084624837c0ab96504fa03208a0bda04fc0338d1713d96a74d169",
+        "split": "80/10/10 chronological",
+        "architecture": "revised",
+        "initial_model": null,
+        "unlikelihood": 0.0,
+        "step": 1500,
+        "elapsed": 71.28850529199917,
+        "training_seconds": 65.94236896105394,
+        "steady_training_seconds": 65.21990850005204,
+        "steady_steps": 1490,
+        "steady_ms_per_step": 43.771750671175866,
+        "tokens_per_second": 46586.1334434974,
+        "best_loss": 4.543109059333801,
+        "best_step": 1500,
+        "test": {
+          "bits_per_byte": 2.5054978948517577,
+          "loss": 4.9390083233995705,
+          "tokens": 2813,
+          "bytes": 8000,
+          "chars": 8000,
+          "context_tokens": 128,
+          "text_sha256": "32671005d40755be6ec42a60664ce166e5da54d4c291e302fc820dd3ee9248b4"
+        }
+      },
+      "metrics": [
+        {
+          "step": 1,
+          "train": 8.287482023239136,
+          "val": 8.290107727050781,
+          "lr": 5.999999999999999e-06,
+          "elapsed": 0.4493535839992546
+        },
+        {
+          "step": 100,
+          "train": 5.7827537059783936,
+          "val": 5.891836643218994,
+          "lr": 0.000299239933256452,
+          "elapsed": 5.116541874998802
+        },
+        {
+          "step": 200,
+          "train": 5.157908797264099,
+          "val": 5.341114521026611,
+          "lr": 0.00029302627126057595,
+          "elapsed": 9.825712709000072
+        },
+        {
+          "step": 300,
+          "train": 4.883207082748413,
+          "val": 5.084176182746887,
+          "lr": 0.00028082624311153597,
+          "elapsed": 14.530121709000014
+        },
+        {
+          "step": 400,
+          "train": 4.705669403076172,
+          "val": 4.952312350273132,
+          "lr": 0.0002632103085662238,
+          "elapsed": 19.216243708999173
+        },
+        {
+          "step": 500,
+          "train": 4.595537900924683,
+          "val": 4.868765354156494,
+          "lr": 0.00024100216914527313,
+          "elapsed": 23.9070195839995
+        },
+        {
+          "step": 600,
+          "train": 4.501496911048889,
+          "val": 4.7983845472335815,
+          "lr": 0.0002152402527654335,
+          "elapsed": 28.613831749999008
+        },
+        {
+          "step": 700,
+          "train": 4.416837573051453,
+          "val": 4.70887815952301,
+          "lr": 0.0001871291580043127,
+          "elapsed": 33.31963562499914
+        },
+        {
+          "step": 800,
+          "train": 4.34824812412262,
+          "val": 4.662150740623474,
+          "lr": 0.0001579833284097028,
+          "elapsed": 37.997636500000226
+        },
+        {
+          "step": 900,
+          "train": 4.3124144077301025,
+          "val": 4.641194939613342,
+          "lr": 0.00012916559058018484,
+          "elapsed": 42.699792125000386
+        },
+        {
+          "step": 1000,
+          "train": 4.257312536239624,
+          "val": 4.613545536994934,
+          "lr": 0.00010202342990805197,
+          "elapsed": 47.42305037500046
+        },
+        {
+          "step": 1100,
+          "train": 4.215914607048035,
+          "val": 4.58316445350647,
+          "lr": 7.782598365998808e-05,
+          "elapsed": 52.10742662499979
+        },
+        {
+          "step": 1200,
+          "train": 4.187586784362793,
+          "val": 4.573950886726379,
+          "lr": 5.7704697529022804e-05,
+          "elapsed": 56.79409245900024
+        },
+        {
+          "step": 1300,
+          "train": 4.1667351722717285,
+          "val": 4.568293571472168,
+          "lr": 4.260042049143676e-05,
+          "elapsed": 61.48828729199886
+        },
+        {
+          "step": 1400,
+          "train": 4.146088600158691,
+          "val": 4.556877613067627,
+          "lr": 3.3219411754309246e-05,
+          "elapsed": 66.1884401669995
+        },
+        {
+          "step": 1500,
+          "train": 4.132102966308594,
+          "val": 4.543109059333801,
+          "lr": 3.0000316859946e-05,
+          "elapsed": 70.88520241699916
+        }
+      ]
+    }
+  ]
+}

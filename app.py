@@ -72,7 +72,7 @@ def create_app(data_dir=None):
         for run in runs:run['summary']=lab.run_summary(store,run['id'])
         return jsonify(datasets=lab.dataset_info(store),runs=runs,models=lab.library(store),
                        samples=store.rows('SELECT id,model,prompt,created FROM samples ORDER BY created DESC LIMIT 12'),
-                       version='4.1-custom',mode='custom-models')
+                       version='4.2-research',mode='custom-models')
 
     @app.post('/api/datasets')
     def dataset_upload():
@@ -116,8 +116,10 @@ def create_app(data_dir=None):
             result=lab.generate_sample(store,data['model'],data['prompt'],data.get('tokens',120),data,cache)
             results={'enhanced':result}
             if data.get('compare'):
-                baseline=dict(data,repetition_penalty=1.,no_repeat_ngram=0)
-                results['baseline']=lab.generate_sample(store,data['model'],data['prompt'],data.get('tokens',120),baseline,cache)
+                comparison=data.get('baseline_model')
+                baseline=data if comparison else dict(data,repetition_penalty=1.,no_repeat_ngram=0)
+                results['baseline']=lab.generate_sample(store,comparison or data['model'],data['prompt'],data.get('tokens',120),baseline,cache)
+                results['comparison_kind']='weights' if comparison else 'sampling'
             sid=uid()
             store.execute('INSERT INTO samples VALUES(?,?,?,?,?,?)',(sid,data['model'],data['prompt'],json.dumps(results),time.time(),json.dumps(data)))
             return jsonify(id=sid,**results)

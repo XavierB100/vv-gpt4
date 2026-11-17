@@ -17,7 +17,7 @@ import threading
 _CODEC_LOCK = threading.Lock()
 
 LEGACY = Path('/Users/xavier/AI/hermes-workspace/vv-gpt3/models')
-PRESETS = {'nano', 'micro', 'tiny', 'small'}
+PRESETS = {'nano', 'micro', 'mini', 'tiny', 'small'}
 
 
 def tokenize(text):
@@ -47,10 +47,39 @@ def dataset_info(store):
     return result
 
 
+def dataset_splits(store, did):
+    text = (store.root/'datasets'/f'{did}.txt').read_text(encoding='utf-8')
+    manifest = store.root/'datasets'/f'{did}.splits.json'
+    if not manifest.exists():
+        return split_text(text)
+    info = json.loads(manifest.read_text())
+    if fingerprint(text) != info['sha256']:
+        raise ValueError('Explicit dataset partitions changed.')
+    first, second = info['cuts']
+    if not 0 < first < second < len(text):
+        raise ValueError('Invalid explicit dataset partitions.')
+    return {'train': text[:first], 'validation': text[first:second], 'test': text[second:]}
+
+
+def add_partitioned_dataset(store, name, splits, provenance):
+    """Internal research import: preserve independently defined partitions verbatim."""
+    did = uid()
+    text = ''.join(splits[key] for key in ('train','validation','test'))
+    prefix = store.root/'datasets'/did
+    prefix.with_suffix('.txt').write_text(text, encoding='utf-8')
+    prefix.with_suffix('.raw.txt').write_text(text, encoding='utf-8')
+    manifest = {'sha256':fingerprint(text),'cuts':[len(splits['train']),len(splits['train'])+len(splits['validation'])],
+                'provenance':provenance,'hashes':{k:fingerprint(v) for k,v in splits.items()}}
+    prefix.with_suffix('.splits.json').write_text(json.dumps(manifest,indent=2))
+    prefix.with_suffix('.json').write_text(json.dumps({'format':'text','split':'explicit','provenance':provenance,
+        'warnings':['Research partitions are fixed in the source manifest.'],'prepared_sha256':fingerprint(text)}))
+    store.execute('INSERT INTO datasets VALUES(?,?,?,?,?,?)',(did,name,len(tokenize(text)),len(text),fingerprint(text),time.time()))
+    return did
+
+
 def dataset_codec(store, did, kind):
     if kind not in ('compact','gpt2'): raise ValueError('Unknown tokenizer.')
-    source=store.root/'datasets'/f'{did}.txt'
-    splits=split_text(source.read_text(encoding='utf-8'))
+    splits=dataset_splits(store,did)
     target=store.root/'datasets'/f'{did}.{kind}.json'
     with _CODEC_LOCK:
         if target.exists():
@@ -71,8 +100,14 @@ def training_config(store, payload):
     if not dataset:
         raise ValueError('Select a dataset first.')
     config = {'dataset': dataset[0]['id'], 'dataset_sha256': dataset[0]['sha256'],
-              'size': payload.get('size', 'nano'), 'seed': 42, 'pipeline': 5,
+              'size': payload.get('size', 'nano'), 'seed': 42, 'pipeline': 6,
               'tokenizer':payload.get('tokenizer','gpt2')}
+    config['architecture'] = payload.get('architecture','revised')
+    if config['architecture'] not in ('classic','revised'):
+        raise ValueError('Unknown architecture.')
+    config['unlikelihood'] = float(payload.get('unlikelihood',0))
+    if not 0 <= config['unlikelihood'] <= 1:
+        raise ValueError('Unlikelihood must be between 0 and 1.')
     if config['size'] not in PRESETS:
         raise ValueError('Unknown model size.')
     for key, default, low, high in [('steps', 500, 2, 100000), ('context', 128, 16, 1024),
@@ -88,11 +123,24 @@ def training_config(store, payload):
     config['dropout'] = float(payload.get('dropout', 0.1))
     if not 0.000001 <= config['lr'] <= 0.01 or not 0 <= config['dropout'] <= 0.5:
         raise ValueError('Learning rate or dropout is out of range.')
-    codec,splits=dataset_codec(store,config['dataset'],config['tokenizer'])
+    initial = payload.get('initial_model')
+    if initial:
+        path = model_path(store, initial)
+        checkpoint = load_checkpoint(path)
+        model_config = checkpoint.get('config') or asdict(checkpoint['model_args'])
+        codec = Codec(checkpoint.get('codec'))
+        config.update(initial_model=initial,initial_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
+                      initial_config=model_config,context=model_config['block_size'],
+                      architecture=model_config.get('architecture','classic'),tokenizer=codec.spec['kind'])
+        splits = dataset_splits(store,config['dataset'])
+    else:
+        codec,splits=dataset_codec(store,config['dataset'],config['tokenizer'])
     lengths={key:len(codec.encode(value)) for key,value in splits.items()}
     if any(value<=config['context']+1 for value in lengths.values()):
         raise ValueError('A train/validation/test split is too short. Add more data or reduce context.')
     config['codec_sha256']=fingerprint(json.dumps(codec.spec,sort_keys=True))
+    config['split_sha256']=fingerprint(json.dumps({k:fingerprint(v) for k,v in splits.items()},sort_keys=True))
+    config['split_label']='Explicit research partitions' if (store.root/'datasets'/f'{config["dataset"]}.splits.json').exists() else '80/10/10 chronological'
     return config
 
 
@@ -135,6 +183,16 @@ def start_run(store, payload):
         db.execute('INSERT INTO runs(id,name,config,status,created,updated) VALUES(?,?,?,?,?,?)',
                    (rid, name, json.dumps(config), 'queued', time.time(), time.time()))
     try:
+        if config.get('initial_model'):
+            from .worker import atomic_save
+            folder=store.root/'runs'/rid
+            folder.mkdir(exist_ok=True)
+            path=model_path(store,config['initial_model'])
+            if hashlib.sha256(path.read_bytes()).hexdigest()!=config['initial_sha256']:
+                raise ValueError('Source checkpoint changed during setup. Try again.')
+            checkpoint=load_checkpoint(path)
+            atomic_save({'config':config['initial_config'],'model':checkpoint['model'],
+                         'codec':checkpoint.get('codec',{'kind':'gpt2'})},folder/'initial.pt')
         spawn(store, rid)
     except Exception as exc:
         store.execute("UPDATE runs SET status='failed',error=? WHERE id=?", (str(exc), rid))
@@ -258,7 +316,7 @@ def generate_sample(store, model_id, prompt, length, settings=None, cache=None):
     settings=settings or {}
     seed=integer(settings.get('seed',42), 'Seed')
     temperature=float(settings.get('temperature',.8))
-    penalty=float(settings.get('repetition_penalty',1.12))
+    penalty=float(settings.get('repetition_penalty',1.0))
     ngram=integer(settings.get('no_repeat_ngram',0), 'Phrase guard')
     if not 0<=seed<=2147483647 or not .1<=temperature<=2 or not 1<=penalty<=1.5 or ngram not in (0,3,4,5):
         raise ValueError('Generation settings are out of range.')

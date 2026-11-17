@@ -1,30 +1,270 @@
 'use strict';
-const $=s=>document.querySelector(s),token=$('meta[name="vv-token"]').content;
-let state,selectedRun=null,pageName='train',metrics=[],hover=-1,lastSample=null,busy=false,polling=false;
-const labels={train:'Training',play:'Playground',data:'Datasets',models:'My models'};
-const number=(v,d=2)=>typeof v==='number'&&Number.isFinite(v)?v.toFixed(d):'—';
-const duration=v=>v===undefined?'—':v<60?`${Math.round(v)}s`:`${Math.floor(v/60)}m ${Math.floor(v%60)}s`;
-function node(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
-function notice(text,error=false){$('#notice').textContent=text;$('#notice').className=error?'error':'';$('#notice').hidden=false;}
-const handle=fn=>async e=>{try{await fn(e);}catch(error){notice(error.message,true);}};
-async function api(url,options={}){const headers={'X-VV-Token':token};if(options.body&&!(options.body instanceof FormData)){headers['Content-Type']='application/json';options.body=JSON.stringify(options.body);}const r=await fetch(url,{...options,headers});const data=await r.json();if(!r.ok)throw Error(data.error||'Request failed.');return data;}
-function show(name){pageName=name;document.querySelectorAll('.page').forEach(n=>n.hidden=n.id!==`page-${name}`);document.querySelectorAll('[data-page]').forEach(n=>n.classList.toggle('active',n.dataset.page===name));$('#page-name').textContent=labels[name];if(name==='train')draw();window.scrollTo(0,0);}
-function options(select,items,empty){const old=select.value;select.replaceChildren();if(!items.length){const o=node('option','',empty);o.value='';select.append(o);}items.forEach(i=>{const o=node('option','',i.label);o.value=i.value;select.append(o);});if(items.some(i=>i.value===old))select.value=old;}
-async function refresh(){state=await api('/api/state');renderRuns();renderData();renderModels();renderSamples();options($('#dataset'),state.datasets.map(d=>({value:d.id,label:d.name})),'Import a dataset to begin');datasetDetail();if(!selectedRun&&state.runs.length)selectedRun=state.runs[0].id;if(selectedRun)await loadRun(selectedRun);}
-function renderRuns(){const target=$('#runs');target.replaceChildren();$('#run-count').textContent=state.runs.length;if(!state.runs.length)target.append(node('p','empty','Your experiments will appear here.'));state.runs.forEach(r=>{const b=node('button',r.id===selectedRun?'selected':'');b.append(node('span','',r.name),node('small','',r.status.replaceAll('_',' ')));b.title=r.name;b.onclick=handle(async()=>{selectedRun=r.id;show('train');await loadRun(r.id);});target.append(b);});}
-async function loadRun(id){const data=await api('/api/runs/'+id);selectedRun=id;const r=data.run,s=data.summary,c=JSON.parse(r.config);metrics=data.metrics;hover=-1;$('#chart-tooltip').hidden=true;$('#run-name').textContent=r.name;$('#run-status').textContent=r.status.replaceAll('_',' ');$('#run-step').textContent=`${r.step.toLocaleString()} / ${c.steps.toLocaleString()}`;$('#run-best').textContent=number(r.best,3);$('#run-speed').textContent=s.steady_ms_per_step?`${number(s.steady_ms_per_step,0)} ms`:'—';$('#run-time').textContent=duration(s.elapsed);$('#run-progress').value=r.step/c.steps*100;$('#run-error').textContent=r.error||'';$('#run-detail').textContent=s.parameters?`${(s.parameters/1e6).toFixed(2)}M parameters · ${s.vocab_size.toLocaleString()} vocabulary · ${s.device?.toUpperCase()}`:'Preparing dataset and tokenizer…';document.querySelectorAll('[data-control]').forEach(b=>b.disabled=b.dataset.control==='resume'?!['paused','failed','stopped','interrupted'].includes(r.status):!['running','queued','paused'].includes(r.status));$('#metric-rows').replaceChildren();metrics.forEach(m=>{const tr=node('tr');[m.step,number(m.train,4),number(m.val,4),m.lr.toExponential(2),duration(m.elapsed)].forEach(v=>tr.append(node('td','',v)));$('#metric-rows').append(tr);});const insight=$('#run-insight');insight.replaceChildren(node('span','','◎'));const copy=node('div');if(s.test){copy.append(node('h3','',`Final held-out score: ${number(s.test.bits_per_byte,3)} bits per byte`),node('p','',`Measured after choosing the best validation checkpoint at step ${s.best_step}. This score can compare vocabularies only when the held-out text matches. A shorter pilot is not a finished language model.`));}else{copy.append(node('h3','','Watch the gap, not just the drop.'),node('p','','Training and validation curves use fixed batches with dropout disabled. If validation stops improving, early stopping keeps the best weights and avoids wasted steps.'));}insight.append(copy);renderRuns();draw();}
-function draw(){const canvas=$('#loss-chart'),ctx=canvas.getContext('2d'),w=canvas.clientWidth,h=canvas.clientHeight,ratio=devicePixelRatio||1;if(!w||!h)return;canvas.width=w*ratio;canvas.height=h*ratio;ctx.scale(ratio,ratio);ctx.clearRect(0,0,w,h);const pad={l:43,r:20,t:24,b:35},speed=$('#chart-mode').value==='speed';const series=speed?[{label:'Steps/s',color:'#83b9e9',values:metrics.map((m,i)=>i?((m.step-metrics[i-1].step)/(m.elapsed-metrics[i-1].elapsed)):m.step/Math.max(.001,m.elapsed))}]:[{label:'Train',color:'#83b9e9',values:metrics.map(m=>m.train)},{label:'Validation',color:'#b6a0e9',values:metrics.map(m=>m.val)}];const vals=series.flatMap(s=>s.values).filter(Number.isFinite);let low=speed?0:Math.max(0,Math.min(...vals)-.25),high=vals.length?Math.max(...vals)*1.05:1;if(!vals.length)low=0;high=Math.max(high,low+.1);const maxStep=Math.max(1,...metrics.map(m=>m.step)),x=step=>pad.l+step/maxStep*(w-pad.l-pad.r),y=v=>pad.t+(high-v)/(high-low)*(h-pad.t-pad.b);ctx.font='10px -apple-system, sans-serif';ctx.textAlign='right';for(let i=0;i<=4;i++){const v=low+(high-low)*i/4,yy=y(v);ctx.strokeStyle='#222b3b';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();ctx.fillStyle='#65728a';if(vals.length)ctx.fillText(v.toFixed(1),pad.l-10,yy+3);}ctx.textAlign='center';for(let i=0;i<=4;i++){const step=Math.round(maxStep*i/4);ctx.fillStyle='#65728a';if(metrics.length)ctx.fillText(step.toLocaleString(),x(step),h-12);}$('#chart-empty').hidden=!!metrics.length;$('#chart-caption').textContent=speed?'Steps/s · includes evaluation and saves':'Loss ↓ · training steps → · hover to inspect';$('.legend').hidden=speed;series.forEach((s,j)=>{if(!metrics.length)return;ctx.beginPath();s.values.forEach((v,i)=>{i?ctx.lineTo(x(metrics[i].step),y(v)):ctx.moveTo(x(metrics[i].step),y(v));});ctx.strokeStyle=s.color;ctx.lineWidth=2;ctx.stroke();if(j===0){ctx.lineTo(x(metrics.at(-1).step),h-pad.b);ctx.lineTo(x(metrics[0].step),h-pad.b);ctx.closePath();const grad=ctx.createLinearGradient(0,pad.t,0,h-pad.b);grad.addColorStop(0,'#83b9e914');grad.addColorStop(1,'#83b9e900');ctx.fillStyle=grad;ctx.fill();}s.values.forEach((v,i)=>{ctx.beginPath();ctx.arc(x(metrics[i].step),y(v),i===hover?4:2.5,0,Math.PI*2);ctx.fillStyle=s.color;ctx.fill();});});if(hover>=0&&metrics[hover]){const m=metrics[hover],xx=x(m.step);ctx.strokeStyle='#73809a';ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(xx,pad.t);ctx.lineTo(xx,h-pad.b);ctx.stroke();ctx.setLineDash([]);const tip=$('#chart-tooltip');tip.hidden=false;tip.style.left=`${Math.min(w-170,Math.max(10,xx+16))}px`;tip.textContent=`Step ${m.step}\n`+series.map(s=>`${s.label}: ${s.values[hover].toFixed(3)}`).join('\n');}if(metrics.length)canvas.setAttribute('aria-label',`At step ${metrics.at(-1).step}, training loss ${metrics.at(-1).train.toFixed(3)} and validation loss ${metrics.at(-1).val.toFixed(3)}. The table below contains every measurement.`);canvas._x=x;}
-$('#loss-chart').addEventListener('mousemove',e=>{if(!metrics.length)return;const canvas=e.target,xx=e.clientX-canvas.getBoundingClientRect().left;hover=metrics.reduce((best,m,i)=>Math.abs(canvas._x(m.step)-xx)<Math.abs(canvas._x(metrics[best].step)-xx)?i:best,0);draw();});$('#loss-chart').addEventListener('mouseleave',()=>{hover=-1;$('#chart-tooltip').hidden=true;draw();});$('#chart-mode').onchange=()=>{hover=-1;draw();};window.addEventListener('resize',draw);
-function datasetDetail(){const d=state.datasets.find(d=>d.id===$('#dataset').value);$('#dataset-detail').textContent=d?`${d.chars.toLocaleString()} characters · ${d.analysis.format==='whatsapp'?'Chat export prepared':'Plain text'} · original retained`:'Import a text file to begin.';}
-function renderData(){const target=$('#datasets');target.replaceChildren();if(!state.datasets.length)target.append(node('p','empty','Add your own training text, or begin with the original Shakespeare corpus.'));state.datasets.forEach(d=>{const row=node('article','dataset-row'),info=node('div'),size=node('div'),prep=node('div'),a=d.analysis;info.append(node('h3','',d.name),node('p','',a.format==='whatsapp'?`${a.messages} chat messages · speaker labels retained`:'Plain text · Unicode preserved'));(a.warnings||[]).forEach(w=>info.append(node('p','warning',w)));size.append(node('span','dataset-number',d.chars.toLocaleString()),node('p','','Prepared characters'));prep.append(node('span','dataset-number',String(a.removed_blocks||0)),node('p','','Repeated long blocks removed'));row.append(info,size,prep);target.append(row);});}
-async function upload(input){if(!input.files.length)return;const form=new FormData();form.append('file',input.files[0]);input.disabled=true;try{const result=await api('/api/datasets',{method:'POST',body:form});await refresh();$('#dataset').value=result.id;datasetDetail();notice('Dataset prepared. Your original upload is preserved.');}finally{input.disabled=false;input.value='';}}
-function renderModels(){const target=$('#model-library');target.replaceChildren();state.models.forEach(m=>{const s=m.summary||{},card=node('article','model-card');card.append(node('span','model-origin',m.readonly?'VV-GPT3 · preserved best checkpoint':'VV-GPT4 · trained from scratch'),node('h2','',m.name));const dl=node('dl');const params=m.params||s.parameters;[['Parameters',params?`${(params/1e6).toFixed(2)}M`:'—'],['Vocabulary',(s.vocab_size||m.vocab||50257).toLocaleString()],['Validation loss',number(m.best,3)],['Final test bits/byte',number(s.test?.bits_per_byte,3)],['Context',`${m.context} tokens`]].forEach(([k,v])=>dl.append(node('dt','',k),node('dd','',v)));card.append(dl);const b=node('button','quiet','Try this model');b.onclick=()=>{$('#sample-model').value=m.id;show('play');$('#sample-prompt').focus();};card.append(b);target.append(card);});if(!state.models.length)target.append(node('p','empty','Your trained checkpoints will appear here.'));options($('#sample-model'),state.models.map(m=>({value:m.id,label:`${m.name} · ${m.origin}`})),'Train a model first');}
-function resultView(result){lastSample=result;const base=result.baseline;$('#sample-columns').classList.toggle('single',!base);$('.sample-card.baseline').hidden=!base;for(const key of ['baseline','enhanced']){const r=result[key];if(!r)continue;$(`#${key}-output`).textContent=r.text||'[End of text]';$(`#${key}-meta`).textContent=`${r.tokens} tokens · ${r.seconds}s · ${(r.repeat_fraction*100).toFixed(1)}% repeated 4-token phrases\nBest checkpoint step ${r.step} · Seed ${r.seed}`+(r.prompt_tokens>r.used_prompt_tokens?`\nPrompt trimmed to its last ${r.used_prompt_tokens} tokens.`:'');}}
-function renderSamples(){const target=$('#samples');target.replaceChildren();state.samples.forEach(s=>{const b=node('button','',s.prompt.slice(0,100));b.onclick=handle(async()=>{const data=await api('/api/samples/'+s.id);$('#sample-prompt').value=data.prompt;$('#sample-model').value=data.model;const settings=data.settings;for(const [id,key] of [['sample-tokens','tokens'],['temperature','temperature'],['penalty','repetition_penalty'],['ngram','no_repeat_ngram'],['sample-seed','seed']])if(settings[key]!==undefined)$('#'+id).value=settings[key];$('#compare').checked=!!settings.compare;resultView({...data.result,model:data.model,prompt:data.prompt,settings});show('play');});target.append(b);});}
-document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>show(b.dataset.page));$('.brand').onclick=e=>{e.preventDefault();show('train');};$('#new-run').onclick=()=>{$('#training-form').scrollIntoView({block:'start'});$('#training-form [name=name]').focus();};$('#refresh').onclick=handle(refresh);$('#dataset').onchange=datasetDetail;$('#tokenizer').onchange=()=>{$('#vocab-help').textContent=$('#tokenizer').value==='compact'?'Faster in our pilot, but a worse held-out score. Up to 4,096 tokens learned from training text.':'50,257-token vocabulary, matching your original model family.';};$('#dataset-file').onchange=handle(e=>upload(e.target));$('#data-file').onchange=handle(e=>upload(e.target));$('#example').onclick=handle(async()=>{await api('/api/datasets/example',{method:'POST'});await refresh();show('train');});
-$('#training-form').onsubmit=handle(async e=>{e.preventDefault();const b=e.target.querySelector('button[type=submit]');b.disabled=true;try{const result=await api('/api/runs',{method:'POST',body:Object.fromEntries(new FormData(e.target))});selectedRun=result.id;await refresh();notice('Training started. You can leave this page and return to the experiment.');}finally{b.disabled=false;}});
-document.querySelectorAll('[data-control]').forEach(b=>b.onclick=handle(async()=>{await api(`/api/runs/${selectedRun}/${b.dataset.control}`,{method:'POST'});await loadRun(selectedRun);}));
-$('#sample-form').onsubmit=handle(async e=>{e.preventDefault();if(busy)return;busy=true;$('#sample-submit').disabled=true;$('#notice').hidden=true;$('#enhanced-output').textContent='Generating with your own checkpoint…';$('#baseline-output').textContent='Waiting for the comparison…';try{const data={model:$('#sample-model').value,prompt:$('#sample-prompt').value,tokens:Number($('#sample-tokens').value),temperature:Number($('#temperature').value),repetition_penalty:Number($('#penalty').value),no_repeat_ngram:Number($('#ngram').value),seed:Number($('#sample-seed').value),compare:$('#compare').checked};const result=await api('/api/sample',{method:'POST',body:data});resultView({...result,model:data.model,prompt:data.prompt,settings:data});await refresh();}catch(error){$('#enhanced-output').textContent='Generation failed. See the message above.';throw error;}finally{busy=false;$('#sample-submit').disabled=false;}});
-$('#export-sample').onclick=()=>{if(!lastSample){notice('Generate a comparison first.');return;}const text=JSON.stringify(lastSample,null,2),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=node('a');a.href=url;a.download='vv-gpt-comparison.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
-setInterval(async()=>{if(polling||!state)return;polling=true;try{const wasRunning=state.runs.some(r=>['queued','running','paused','evaluating'].includes(r.status));if(wasRunning)await refresh();}catch(error){notice(error.message,true);}finally{polling=false;}},2500);
-refresh().catch(e=>notice(e.message,true));
+const $ = selector => document.querySelector(selector);
+const token = $('meta[name="vv-token"]').content;
+let state, selectedRun = null, metrics = [], comparisonMetrics = [], comparisonName = '', hover = -1;
+let lastSample = null, busy = false, refreshing = false, noticeTimer;
+let previousInitial = '', scratchSettings = null, modelSelectionReady = false;
+const number = (value, digits = 2) => typeof value === 'number' && Number.isFinite(value) ? value.toFixed(digits) : '—';
+const duration = value => value == null ? '—' : value < 60 ? `${Math.round(value)}s` : `${Math.floor(value / 60)}m ${Math.floor(value % 60)}s`;
+function node(tag, className, text) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  if (text !== undefined) el.textContent = text;
+  return el;
+}
+function notice(text, error = false) {
+  clearTimeout(noticeTimer);
+  $('#notice').textContent = text; $('#notice').className = error ? 'error' : ''; $('#notice').hidden = false;
+  const dialog = document.querySelector('dialog[open]');
+  (dialog || document.body).append($('#notice'));
+  if (!error) noticeTimer = setTimeout(() => $('#notice').hidden = true, 6000);
+}
+const handle = fn => async event => { try { await fn(event); } catch (error) { notice(error.message, true); } };
+async function api(url, options = {}) {
+  const headers = {'X-VV-Token': token};
+  if (options.body && !(options.body instanceof FormData)) {
+    headers['Content-Type'] = 'application/json'; options.body = JSON.stringify(options.body);
+  }
+  const response = await fetch(url, {...options, headers}), data = await response.json();
+  if (!response.ok) throw Error(data.error || 'Request failed.');
+  return data;
+}
+function closeDrawers() { document.querySelectorAll('dialog[open]').forEach(el => el.close()); }
+function openDrawer(name) {
+  closeDrawers(); $('#notice').hidden = true;
+  $('#drawer-' + name).showModal();
+}
+function options(select, items, empty) {
+  const previous = select.value; select.replaceChildren();
+  if (!items.length) items = [{value:'',label:empty}];
+  for (const item of items) { const option = node('option', '', item.label); option.value = item.value; select.append(option); }
+  if (items.some(item => item.value === previous)) select.value = previous;
+}
+async function refresh() {
+  if (refreshing) return;
+  refreshing = true;
+  try {
+    state = await api('/api/state');
+    if (!selectedRun && state.runs.length) selectedRun = state.runs[0].id;
+    renderRuns(); renderModels(); renderData(); renderSamples();
+    options($('#dataset'), state.datasets.map(d => ({value:d.id,label:d.name})), 'Import a dataset');
+    datasetDetail(); initialDetail();
+    if (selectedRun) await loadRun(selectedRun);
+    $('#workspace-status').textContent = state.runs.some(r => ['running','queued','evaluating'].includes(r.status)) ? 'Training locally' : 'Local workspace';
+  } finally { refreshing = false; }
+}
+function renderRuns() {
+  $('#run-count').textContent = state.runs.length;
+  const target = $('#runs'); target.replaceChildren();
+  if (!state.runs.length) target.append(node('p','empty','No experiments yet. Create a run to start training.'));
+  for (const run of state.runs) {
+    const button = node('button', run.id === selectedRun ? 'selected' : '');
+    button.append(node('span','',run.name), node('small','',`${run.status.replaceAll('_',' ')} / ${run.step.toLocaleString()} steps`));
+    button.onclick = handle(async () => { selectedRun = run.id; $('#compare-run').value = ''; closeDrawers(); await loadRun(run.id); });
+    target.append(button);
+  }
+}
+async function loadRun(id) {
+  const data = await api('/api/runs/' + id);
+  if (selectedRun !== id) return;
+  const run = data.run, summary = data.summary, config = JSON.parse(run.config);
+  metrics = data.metrics;
+  $('#run-name').textContent = run.name; $('#run-status').textContent = run.status.replaceAll('_',' ');
+  $('#run-step').textContent = `${run.step.toLocaleString()} / ${config.steps.toLocaleString()}`;
+  $('#run-best').textContent = number(run.best, 3);
+  $('#run-speed').textContent = summary.steady_ms_per_step ? `${number(summary.steady_ms_per_step,0)} ms` : '—';
+  $('#run-time').textContent = duration(summary.elapsed); $('#run-progress').value = run.step / config.steps * 100;
+  $('#run-error').textContent = run.error || '';
+  $('#run-detail').textContent = summary.parameters ? `${(summary.parameters/1e6).toFixed(2)}M parameters / ${summary.architecture || 'classic'} / ${summary.device?.toUpperCase()}${summary.initial_model ? ' / continued from your checkpoint' : ''}` : 'Preparing dataset…';
+  document.querySelectorAll('[data-control]').forEach(button => {
+    button.disabled = button.dataset.control === 'resume' ? !['paused','failed','stopped','interrupted'].includes(run.status) : !['running','queued','paused'].includes(run.status);
+  });
+  $('#run-insight').textContent = summary.test ? `Final test ${number(summary.test.bits_per_byte,3)} bits/byte / best step ${summary.best_step}` : 'Validation selects the best checkpoint';
+  $('#run-insight').title = `${summary.split || '80/10/10'}; test covers up to 8,000 characters. Compare scores only on matching held-out text. Historical research splits have prior-selection caveats in the research notes.`;
+  $('#metric-rows').replaceChildren();
+  metrics.forEach(m => {
+    const row = node('tr'); [m.step, number(m.train,4), number(m.val,4), m.lr.toExponential(2), duration(m.elapsed)].forEach(value => row.append(node('td','',value)));
+    $('#metric-rows').append(row);
+  });
+  const comparable = state.runs.filter(other => {
+    if (other.id === id) return false;
+    const candidate = JSON.parse(other.config);
+    return candidate.dataset === config.dataset && candidate.context === config.context && candidate.codec_sha256 === config.codec_sha256 && candidate.split_sha256 === config.split_sha256;
+  });
+  options($('#compare-run'), [{value:'',label:'Compare run'}, ...comparable.map(r => ({value:r.id,label:r.name}))]);
+  comparisonMetrics = []; comparisonName = '';
+  if ($('#compare-run').value) {
+    const comparison = await api('/api/runs/' + $('#compare-run').value);
+    comparisonMetrics = comparison.metrics; comparisonName = comparison.run.name;
+  }
+  renderRuns(); draw();
+}
+function draw() {
+  const canvas = $('#loss-chart'), context = canvas.getContext('2d'), width = canvas.clientWidth, height = canvas.clientHeight;
+  if (!width || !height) return;
+  const ratio = devicePixelRatio || 1; canvas.width = width*ratio; canvas.height = height*ratio; context.scale(ratio,ratio);
+  const pad = {left:43,right:16,top:25,bottom:35}, pace = $('#chart-mode').value === 'speed';
+  const series = pace ? [{name:'Steps/s',color:'#91b8f3',points:metrics.map((m,i) => ({step:m.step,value:i ? (m.step-metrics[i-1].step)/(m.elapsed-metrics[i-1].elapsed) : m.step/Math.max(.001,m.elapsed)}))}] : [
+    {name:'Training',color:'#91b8f3',points:metrics.map(m => ({step:m.step,value:m.train}))},
+    {name:'Validation',color:'#bea6e7',points:metrics.map(m => ({step:m.step,value:m.val}))}
+  ];
+  if (!pace && comparisonMetrics.length) series.push({name:comparisonName,color:'#99c8b4',dashed:true,points:comparisonMetrics.map(m => ({step:m.step,value:m.val}))});
+  const values = series.flatMap(s => s.points.map(p => p.value)).filter(Number.isFinite);
+  const low = pace || !values.length ? 0 : Math.max(0,Math.min(...values)-.15);
+  const high = Math.max(low+.1, values.length ? Math.max(...values)*1.04 : 1);
+  const maxStep = Math.max(1,...series.flatMap(s => s.points.map(p => p.step)));
+  const x = step => pad.left + step/maxStep*(width-pad.left-pad.right);
+  const y = value => pad.top + (high-value)/(high-low)*(height-pad.top-pad.bottom);
+  context.font = '11px -apple-system, sans-serif'; context.textAlign = 'right';
+  for (let i=0;i<=4;i++) {
+    const value = low+(high-low)*i/4, yy = y(value);
+    context.strokeStyle = '#1d2330'; context.lineWidth = 1; context.beginPath(); context.moveTo(pad.left,yy); context.lineTo(width-pad.right,yy); context.stroke();
+    context.fillStyle = '#737d90'; if (values.length) context.fillText(value.toFixed(1),pad.left-12,yy+4);
+  }
+  context.textAlign = 'center';
+  for (let i=0;i<=4;i++) { const step=Math.round(maxStep*i/4); if (metrics.length) context.fillText(step.toLocaleString(),x(step),height-11); }
+  $('#chart-empty').hidden = !!metrics.length;
+  $('#chart-caption').textContent = pace ? 'Steps/s includes evaluation and saves' : 'Loss / training steps';
+  $('.legend').hidden = pace;
+  $('.comparison-key').hidden = !comparisonMetrics.length;
+  $('.comparison-key').title = comparisonName;
+  for (const s of series) {
+    if (!s.points.length) continue;
+    context.beginPath(); context.setLineDash(s.dashed ? [5,5] : []);
+    s.points.forEach((p,i) => i ? context.lineTo(x(p.step),y(p.value)) : context.moveTo(x(p.step),y(p.value)));
+    context.strokeStyle = s.color; context.lineWidth = 2; context.stroke(); context.setLineDash([]);
+    s.points.forEach(p => { context.beginPath(); context.arc(x(p.step),y(p.value),2.2,0,Math.PI*2); context.fillStyle=s.color; context.fill(); });
+  }
+  const tooltip = $('#chart-tooltip'); tooltip.hidden = true;
+  if (hover >= 0 && metrics[hover]) {
+    const step=metrics[hover].step, xx=x(step); context.strokeStyle='#555e70'; context.setLineDash([3,5]);
+    context.beginPath(); context.moveTo(xx,pad.top); context.lineTo(xx,height-pad.bottom); context.stroke(); context.setLineDash([]);
+    tooltip.hidden=false; tooltip.style.left=`${Math.min(width-180,Math.max(0,xx+15))}px`;
+    tooltip.textContent=`Step ${step}\n`+series.map(s => {const p=s.points.find(p=>p.step===step);return p ? `${s.name}: ${p.value.toFixed(3)}` : null;}).filter(Boolean).join('\n');
+  }
+  canvas._x=x;
+  if (metrics.length) canvas.setAttribute('aria-label',pace ? 'Training steps per second. Measured intervals include evaluation and saving.' : `Latest training loss ${number(metrics.at(-1).train,3)}, validation ${number(metrics.at(-1).val,3)}. Every point is available in Recorded measurements.`);
+}
+function datasetDetail() {
+  const data = state.datasets.find(d => d.id === $('#dataset').value);
+  $('#dataset-detail').textContent = data ? `${data.chars.toLocaleString()} prepared characters. Original retained.` : 'Import training text to begin.';
+  $('#split-note').textContent = data?.analysis.split === 'explicit' ? 'Fixed research partitions. See the dataset provenance in research notes.' : '80% training, 10% validation, 10% final test.';
+}
+function initialDetail() {
+  const chosen = $('#initial-model').value;
+  const inherited = state.models.find(model => model.id === chosen);
+  if (chosen !== previousInitial) {
+    const fields = ['#architecture','#tokenizer','[name=context]'];
+    if (chosen && !previousInitial) scratchSettings = Object.fromEntries(fields.map(selector => [selector,$(selector).value]));
+    if (inherited) {
+      $('#architecture').value = inherited.summary?.architecture || 'classic';
+      $('#tokenizer').value = inherited.tokenizer;
+      $('[name=context]').value = inherited.context;
+    } else if (scratchSettings) {
+      for (const [selector,value] of Object.entries(scratchSettings)) $(selector).value = value;
+    }
+    previousInitial = chosen;
+  }
+  $('#model-size').closest('label').hidden = !!chosen;
+  for (const selector of ['#architecture','#model-size','#tokenizer','[name=context]']) $(selector).disabled = !!chosen;
+  $('#initial-help').textContent = chosen ? 'Continue a copy of your best weights. Architecture, context and vocabulary are inherited. Use a fresh evaluation split if the model has already seen this data.' : 'New weights. Your existing checkpoints stay intact.';
+}
+function renderData() {
+  const target=$('#datasets'); target.replaceChildren();
+  if (!state.datasets.length) target.append(node('p','empty','Import a text file or use the public Shakespeare example.'));
+  for (const data of state.datasets) {
+    const row=node('article','dataset-row'), info=node('div'), size=node('div');
+    info.append(node('h3','',data.name), node('p','',data.analysis.format === 'whatsapp' ? `${data.analysis.messages} messages. Speaker labels retained.` : 'Text / Unicode preserved'));
+    (data.analysis.warnings||[]).forEach(w=>info.append(node('p','warning',w)));
+    size.append(node('span','dataset-number',data.chars.toLocaleString()),node('p','','Prepared characters'));
+    row.append(info,size); target.append(row);
+  }
+}
+function renderModels() {
+  const target=$('#model-library'); target.replaceChildren();
+  for (const model of state.models) {
+    const s=model.summary||{}, card=node('article','model-card');
+    card.append(node('span','model-origin',model.readonly ? 'Original VV-GPT3 / preserved' : s.initial_model ? 'Continued from your trained weights' : `${s.architecture||'Classic'} Transformer / from scratch`),node('h2','',model.name));
+    const dl=node('dl'), params=model.params||s.parameters;
+    [['Parameters',params ? `${(params/1e6).toFixed(2)}M` : '—'],['Context',`${model.context} tokens`],['Validation loss',number(model.best,3)],['Test bits/byte',number(s.test?.bits_per_byte,3)]].forEach(([k,v])=>dl.append(node('dt','',k),node('dd','',v)));
+    card.append(dl); const actions=node('div','model-actions');
+    const generate=node('button','','Generate'); generate.onclick=()=>{$('#sample-model').value=model.id;openDrawer('play');};
+    const train=node('button','','Continue training'); train.onclick=()=>{$('#initial-model').value=model.id;initialDetail();$('#training-form [name=lr]').value='0.0001';openDrawer('new');};
+    actions.append(generate,train);card.append(actions);target.append(card);
+  }
+  if (!state.models.length) target.append(node('p','empty','Your trained models will appear here.'));
+  const list=state.models.map(m=>({value:m.id,label:m.name}));
+  options($('#sample-model'),list,'Train a model first');
+  if (!modelSelectionReady && list.length) {
+    const current = 'run:' + selectedRun;
+    if (list.some(item => item.value === current)) $('#sample-model').value = current;
+    modelSelectionReady = true;
+  }
+  options($('#initial-model'),[{value:'',label:'Train from scratch'},...list]);
+  options($('#baseline-model'),[{value:'',label:'Same model / no sampling penalties'},...list]);
+}
+function resultView(result) {
+  lastSample=result; const baseline=result.baseline;
+  $('#sample-columns').classList.toggle('single',!baseline); $('.sample-card.baseline').hidden=!baseline;
+  $('#baseline-label').textContent = result.comparison_kind === 'weights' ? state.models.find(m=>m.id===result.settings?.baseline_model)?.name || 'Comparison model' : 'Without sampling penalties';
+  for (const key of ['baseline','enhanced']) {
+    const sample=result[key]; if (!sample) continue;
+    $(`#${key}-output`).textContent=sample.text || '[End of text]';
+    $(`#${key}-meta`).textContent=`${sample.tokens} tokens / ${sample.seconds}s / ${(sample.repeat_fraction*100).toFixed(1)}% repeated 4-token phrases\nCheckpoint step ${sample.step} / seed ${sample.seed}`+(sample.prompt_tokens>sample.used_prompt_tokens?`\nPrompt trimmed to its last ${sample.used_prompt_tokens} tokens.`:'');
+  }
+}
+function renderSamples() {
+  const target=$('#samples'); target.replaceChildren();
+  for (const sample of state.samples) {
+    const button=node('button','',sample.prompt.slice(0,100));
+    button.onclick=handle(async()=>{
+      const data=await api('/api/samples/'+sample.id), settings=data.settings;
+      $('#sample-prompt').value=data.prompt;$('#sample-model').value=data.model;
+      for (const [id,key] of [['sample-tokens','tokens'],['temperature','temperature'],['penalty','repetition_penalty'],['ngram','no_repeat_ngram'],['sample-seed','seed'],['baseline-model','baseline_model']]) if (settings[key]!==undefined) $('#'+id).value=settings[key];
+      $('#compare').checked=!!settings.compare; $('#comparison-settings').hidden=!settings.compare;
+      resultView({...data.result,model:data.model,prompt:data.prompt,settings});
+    });target.append(button);
+  }
+}
+async function upload(input) {
+  if (!input.files.length) return;
+  const form=new FormData(); form.append('file',input.files[0]);input.disabled=true;
+  try {const result=await api('/api/datasets',{method:'POST',body:form});await refresh();$('#dataset').value=result.id;datasetDetail();notice('Dataset imported. Original text preserved.');}
+  finally {input.disabled=false;input.value='';}
+}
+document.querySelectorAll('[data-open]').forEach(button=>button.onclick=()=>openDrawer(button.dataset.open));
+document.querySelectorAll('[data-close]').forEach(button=>button.onclick=()=>button.closest('dialog').close());
+document.querySelectorAll('dialog').forEach(dialog=>{
+  dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
+  dialog.addEventListener('close',()=>{document.body.append($('#notice'));$('#notice').hidden=true;});
+});
+$('.brand').onclick=event=>{event.preventDefault();closeDrawers();};
+$('#new-run').onclick=()=>openDrawer('new');$('#refresh').onclick=handle(refresh);
+$('#dataset').onchange=datasetDetail;$('#initial-model').onchange=()=>{initialDetail();$('#training-form [name=lr]').value=$('#initial-model').value?'0.0001':'0.0003';};
+$('#compare').onchange=()=>$('#comparison-settings').hidden=!$('#compare').checked;
+$('#dataset-file').onchange=handle(event=>upload(event.target));$('#data-file').onchange=handle(event=>upload(event.target));
+$('#example').onclick=handle(async()=>{await api('/api/datasets/example',{method:'POST'});await refresh();openDrawer('new');});
+$('#compare-run').onchange=handle(()=>loadRun(selectedRun));$('#chart-mode').onchange=()=>{hover=-1;draw();};
+$('#loss-chart').addEventListener('pointermove',event=>{
+  if(!metrics.length)return;const xx=event.clientX-event.target.getBoundingClientRect().left;
+  hover=metrics.reduce((best,m,i)=>Math.abs(event.target._x(m.step)-xx)<Math.abs(event.target._x(metrics[best].step)-xx)?i:best,0);draw();
+});
+$('#loss-chart').addEventListener('pointerleave',()=>{hover=-1;draw();});window.addEventListener('resize',draw);
+$('#training-form').onsubmit=handle(async event=>{
+  event.preventDefault();const button=event.target.querySelector('[type=submit]');button.disabled=true;
+  try{const data=Object.fromEntries(new FormData(event.target));const result=await api('/api/runs',{method:'POST',body:data});selectedRun=result.id;closeDrawers();await refresh();notice('Training started.');}finally{button.disabled=false;}
+});
+document.querySelectorAll('[data-control]').forEach(button=>button.onclick=handle(async()=>{await api(`/api/runs/${selectedRun}/${button.dataset.control}`,{method:'POST'});await loadRun(selectedRun);}));
+$('#sample-form').onsubmit=handle(async event=>{
+  event.preventDefault();if(busy)return;busy=true;$('#sample-submit').disabled=true;$('#notice').hidden=true;$('#enhanced-output').textContent='Generating…';
+  try{
+    const settings={model:$('#sample-model').value,prompt:$('#sample-prompt').value,tokens:Number($('#sample-tokens').value),temperature:Number($('#temperature').value),repetition_penalty:Number($('#penalty').value),no_repeat_ngram:Number($('#ngram').value),seed:Number($('#sample-seed').value),compare:$('#compare').checked,baseline_model:$('#baseline-model').value};
+    const result=await api('/api/sample',{method:'POST',body:settings});resultView({...result,model:settings.model,prompt:settings.prompt,settings});await refresh();
+  }catch(error){$('#enhanced-output').textContent='Generation failed.';throw error;}finally{busy=false;$('#sample-submit').disabled=false;}
+});
+$('#export-sample').onclick=()=>{
+  if(!lastSample){notice('Generate a sample first.');return;}
+  const url=URL.createObjectURL(new Blob([JSON.stringify(lastSample,null,2)],{type:'application/json'})),link=node('a');link.href=url;link.download='vv-gpt-sample.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
+setInterval(()=>{if(state?.runs.some(run=>['queued','running','paused','evaluating'].includes(run.status)))refresh().catch(error=>notice(error.message,true));},2500);
+refresh().catch(error=>notice(error.message,true));

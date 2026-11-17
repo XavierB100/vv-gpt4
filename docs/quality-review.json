@@ -1,0 +1,140 @@
+{
+  "method": "Exploratory, unblinded qualitative inspection of the retained public continuations. No independent raters, semantic judge, or statistical coherence score. All planned outputs are retained, including failures.",
+  "shakespeare": "Standard continuation improves both reserved-text likelihood and external Hamlet likelihood and removes artificial paragraph markers in these samples. Individual fragments are more conventional, but broken grammar, invented words and abrupt speaker/topic changes remain. Unlikelihood lowers token repetition yet increases word repetition versus standard continuation; it is not a general quality win.",
+  "architecture": "Both revised runs improve held-out prediction within the matched step budget. The generated samples still show malformed grammar, generic dialogue and weak prompt/speaker continuity. This supports better learning efficiency on the tested corpus, not dependable coherence.",
+  "stories": "The first-budget model produces more conventional everyday sentences and usually stops at a story boundary. However, every one of the 16 inspected continuations has a clear entity, topic or causal failure. It changes names, replaces objects and misses simple counting. Word repetition averages 1.78%; a lower-loss story model is not yet a reliably coherent storyteller.",
+  "first_story_budget_observations": [
+    {
+      "sample": 0,
+      "observation": "Red ball is replaced by a box of toys; later toy-car and location/pronoun drift."
+    },
+    {
+      "sample": 1,
+      "observation": "Red ball is replaced by a mean dog; generic moral and broken closing grammar."
+    },
+    {
+      "sample": 2,
+      "observation": "Soup turns into cake; bowl burns and unrelated moral follows."
+    },
+    {
+      "sample": 3,
+      "observation": "Spoon thrown, then described as bitter; emotions and repair do not follow the setup."
+    },
+    {
+      "sample": 4,
+      "observation": "Anna becomes Lily; nest actions lose meaning; continuation hits the token cap."
+    },
+    {
+      "sample": 5,
+      "observation": "Injured bird flies away without explanation; Anna becomes Lily."
+    },
+    {
+      "sample": 6,
+      "observation": "Staying dry becomes taking mommy to the park; repetitive worry dialogue; token cap."
+    },
+    {
+      "sample": 7,
+      "observation": "Takes a toy gun to stay dry; it becomes a toy car; goal ignored."
+    },
+    {
+      "sample": 8,
+      "observation": "Two minus one apple becomes a box; Sam and Sam are treated as two people."
+    },
+    {
+      "sample": 9,
+      "observation": "Apple count becomes a ball; repeated thanks between Sam and Sam."
+    },
+    {
+      "sample": 10,
+      "observation": "Lost dog becomes a lost girl; pronoun/role confusion and repeated sadness."
+    },
+    {
+      "sample": 11,
+      "observation": "Lost dog shifts to lost toy; girl says she is a baby bird; possession confusion."
+    },
+    {
+      "sample": 12,
+      "observation": "Ella becomes Anna/Poppy; unexplained thanks and repeated love dialogue."
+    },
+    {
+      "sample": 13,
+      "observation": "Unexplained happiness after tower collapse; Pandy/Pinky/Mimi replace the entities."
+    },
+    {
+      "sample": 14,
+      "observation": "Seed/leaf/rock and many characters introduced inconsistently; token cap."
+    },
+    {
+      "sample": 15,
+      "observation": "Seed correctly grows into a flower at first, then fruit/plant identity and eating drift."
+    }
+  ],
+  "chat": "Continuing the original chat model produced only a tiny historical-test change: 1.3708 to 1.3697 bits/byte with standard likelihood, or 1.3695 with unlikelihood (about 0.1%). Both selected additional step 600. This is too small and too historically entangled to claim a meaningful improvement in conversational coherence; no private chat samples or independent ratings were used.",
+  "story_continuation": "The further-trained model lowers bits/byte on the new common reserved slice from 0.7528 to 0.6934 (7.9%). Average repeated word 4-grams fall from 1.78% to 1.44% across the same 16 continuations. Several outputs stay on the local topic better: both soup prompts now remain about soup, and the first lost-dog continuation keeps the dog and girl. However, every reviewed continuation still contains an entity, goal or causal failure. Object tracking, counting and consistent names remain unreliable. These are modest topic/prediction gains, not a solved coherence problem.",
+  "continued_story_observations": [
+    {
+      "sample": 0,
+      "observation": "Keeps Lily and returns to balls, but changes the box contents/size and introduces unexplained plural participants."
+    },
+    {
+      "sample": 1,
+      "observation": "Ball becomes butterfly; thanks herself and red becomes blue."
+    },
+    {
+      "sample": 2,
+      "observation": "Soup stays soup, an improvement over cake; served soup is remade and ownership of cooking shifts."
+    },
+    {
+      "sample": 3,
+      "observation": "Soup stays soup, but puts served soup in an oven; generic moral follows."
+    },
+    {
+      "sample": 4,
+      "observation": "Keeps Ben and Anna initially; they thank themselves, then bird care turns into collecting bread from a tree; token cap."
+    },
+    {
+      "sample": 5,
+      "observation": "Bird recovers eventually, but people try to fly and the bird becomes a cat."
+    },
+    {
+      "sample": 6,
+      "observation": "Toy-boat episode is more internally sustained than the first version; the original stay-dry goal is ignored."
+    },
+    {
+      "sample": 7,
+      "observation": "Rain and bird/toy identities become contradictory; repeated rain and unmotivated melting."
+    },
+    {
+      "sample": 8,
+      "observation": "Mentions apples, but no count and Sam talks to himself; redundant smart and smart."
+    },
+    {
+      "sample": 9,
+      "observation": "Mentions apples, but no correct count and says apples were high without context."
+    },
+    {
+      "sample": 10,
+      "observation": "Retains dog/girl and lost-home topic initially; helper roles, blanket resolution and final sentence fail."
+    },
+    {
+      "sample": 11,
+      "observation": "Dog/girl becomes Fluffy/Lucy/boy/Max; ownership and thanks confused."
+    },
+    {
+      "sample": 12,
+      "observation": "Ella/brother becomes Ben/Emma/mom; tower becomes a park outing; repeated fun ending."
+    },
+    {
+      "sample": 13,
+      "observation": "Ella/brother becomes Tim and his baby; unexplained gratitude after destroying the tower."
+    },
+    {
+      "sample": 14,
+      "observation": "Max thanks himself; seed moved into a tree without a plausible growth sequence."
+    },
+    {
+      "sample": 15,
+      "observation": "Seed growth is appropriate at first; Amy/Sue identity shift and incomprehensible bird lesson at the end."
+    }
+  ]
+}

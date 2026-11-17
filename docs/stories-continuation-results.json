@@ -1,0 +1,856 @@
+{
+  "runs": [
+    {
+      "kind": "stories_continued",
+      "run": "155f4e2dcc524a9391c072b201364229",
+      "config": {
+        "name": "Simple stories / further learning",
+        "dataset": "575dcf93025140d589e448a2ea1b236b",
+        "initial_model": "run:e65fe480badd4a56ba0011c82815164d",
+        "steps": 5000,
+        "batch": 16,
+        "seed": 42,
+        "lr": 0.0003,
+        "dropout": 0,
+        "eval_every": 250,
+        "patience": 12
+      },
+      "summary": {
+        "parameters": 3443136,
+        "vocab_size": 4096,
+        "tokenizer": "compact",
+        "train_tokens": 4121379,
+        "validation_tokens": 102013,
+        "test_chars": 410062,
+        "device": "mps",
+        "dataset_sha256": "429da2304468ebee13a422ff5c260e0f1692563d424e1f03fa419caca4d7722c",
+        "split": "Explicit research partitions",
+        "architecture": "revised",
+        "initial_model": "run:e65fe480badd4a56ba0011c82815164d",
+        "unlikelihood": 0.0,
+        "step": 5000,
+        "elapsed": 425.62488437499997,
+        "training_seconds": 409.1689694339475,
+        "steady_training_seconds": 407.6512926849482,
+        "steady_steps": 4990,
+        "steady_ms_per_step": 81.69364582864694,
+        "tokens_per_second": 50052.67146316701,
+        "best_loss": 1.8808745741844177,
+        "initial_val": 2.043279767036438,
+        "best_step": 5000,
+        "test": {
+          "bits_per_byte": 0.5998655731294809,
+          "loss": 1.7181616972300633,
+          "tokens": 1936,
+          "bytes": 8000,
+          "chars": 8000,
+          "context_tokens": 256,
+          "text_sha256": "34da2eb5f43eaa27c390df36b2c4aa89eb846f10afebfbb50ce6458a6bf7bf04"
+        }
+      },
+      "metrics": [
+        {
+          "step": 0,
+          "train": 1.9688684940338135,
+          "val": 2.043279767036438,
+          "lr": 0.0,
+          "elapsed": 0.824404749999303
+        },
+        {
+          "step": 1,
+          "train": 1.9686341881752014,
+          "val": 2.042919635772705,
+          "lr": 5.999999999999999e-06,
+          "elapsed": 1.8799185419993591
+        },
+        {
+          "step": 250,
+          "train": 2.005206733942032,
+          "val": 2.0844218134880066,
+          "lr": 0.00029892471917723637,
+          "elapsed": 22.93489616700026
+        },
+        {
+          "step": 500,
+          "train": 1.9750015139579773,
+          "val": 2.064450204372406,
+          "lr": 0.0002945556641377131,
+          "elapsed": 43.96790645799956
+        },
+        {
+          "step": 750,
+          "train": 1.9526136815547943,
+          "val": 2.051015257835388,
+          "lr": 0.00028693188285851485,
+          "elapsed": 65.02074445799917
+        },
+        {
+          "step": 1000,
+          "train": 1.9193488359451294,
+          "val": 2.032997578382492,
+          "lr": 0.0002762449016703513,
+          "elapsed": 86.0615786670005
+        },
+        {
+          "step": 1250,
+          "train": 1.8830859661102295,
+          "val": 2.01469486951828,
+          "lr": 0.00026276320129405814,
+          "elapsed": 107.25391562500045
+        },
+        {
+          "step": 1500,
+          "train": 1.863882064819336,
+          "val": 2.0000427961349487,
+          "lr": 0.0002468254720081514,
+          "elapsed": 128.40715483299937
+        },
+        {
+          "step": 1750,
+          "train": 1.837105393409729,
+          "val": 1.9760169684886932,
+          "lr": 0.00022883210499624281,
+          "elapsed": 149.55962374999945
+        },
+        {
+          "step": 2000,
+          "train": 1.8219197392463684,
+          "val": 1.9744069576263428,
+          "lr": 0.00020923513363057836,
+          "elapsed": 170.73199374999967
+        },
+        {
+          "step": 2250,
+          "train": 1.7827516496181488,
+          "val": 1.9592762291431427,
+          "lr": 0.00018852687738901745,
+          "elapsed": 191.88612229200044
+        },
+        {
+          "step": 2500,
+          "train": 1.7541770040988922,
+          "val": 1.9438256323337555,
+          "lr": 0.0001672275736954959,
+          "elapsed": 213.0087576249989
+        },
+        {
+          "step": 2750,
+          "train": 1.7432197034358978,
+          "val": 1.9303888380527496,
+          "lr": 0.00014587230839963316,
+          "elapsed": 234.24923187499917
+        },
+        {
+          "step": 3000,
+          "train": 1.7318254113197327,
+          "val": 1.9210506677627563,
+          "lr": 0.00012499757323088196,
+          "elapsed": 255.38447124999948
+        },
+        {
+          "step": 3250,
+          "train": 1.7170551121234894,
+          "val": 1.9168757796287537,
+          "lr": 0.00010512778793385331,
+          "elapsed": 276.59250741699907
+        },
+        {
+          "step": 3500,
+          "train": 1.698990523815155,
+          "val": 1.9133494198322296,
+          "lr": 8.676212567873141e-05,
+          "elapsed": 297.7587480000002
+        },
+        {
+          "step": 3750,
+          "train": 1.685536414384842,
+          "val": 1.9011134505271912,
+          "lr": 7.036197272175301e-05,
+          "elapsed": 318.9535717919989
+        },
+        {
+          "step": 4000,
+          "train": 1.6788868308067322,
+          "val": 1.8962134718894958,
+          "lr": 5.63393373569516e-05,
+          "elapsed": 340.1591521249993
+        },
+        {
+          "step": 4250,
+          "train": 1.6643914580345154,
+          "val": 1.8924245238304138,
+          "lr": 4.5046499352062353e-05,
+          "elapsed": 361.3156142080006
+        },
+        {
+          "step": 4500,
+          "train": 1.6620112359523773,
+          "val": 1.8836225271224976,
+          "lr": 3.676715989776299e-05,
+          "elapsed": 382.5221789999996
+        },
+        {
+          "step": 4750,
+          "train": 1.6515608429908752,
+          "val": 1.8839507400989532,
+          "lr": 3.170931440319629e-05,
+          "elapsed": 403.6938633329992
+        },
+        {
+          "step": 5000,
+          "train": 1.6526555120944977,
+          "val": 1.8808745741844177,
+          "lr": 3.0000027188991924e-05,
+          "elapsed": 424.953120958
+        }
+      ]
+    }
+  ],
+  "conditions": {
+    "first_budget": {
+      "model": "run:e65fe480badd4a56ba0011c82815164d",
+      "checkpoint_step": 5000,
+      "test": {
+        "bits_per_byte": 0.7528000831805046,
+        "loss": 2.0746774764818743,
+        "tokens": 25158,
+        "bytes": 100028,
+        "chars": 100000,
+        "context_tokens": 256,
+        "sha256": "52e3d5f579a19c49fcc77c0ece75920a5b545aead755a06775ecf05706ded520",
+        "slice_start": 100000,
+        "slice_end": 200000
+      },
+      "samples": [
+        {
+          "text": " saw a big box of toys. Lily was very happy. She took the box and played with it all day.\nThe next day, Lily went back to her room. She looked at her favorite toy car. She saw that she was sad. She wanted to help her mom. She put her toys on the shelf and went to her room. At the end of the day, Lily went home and had a great time.\n",
+          "tokens": 87,
+          "seconds": 1.866,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.023809523809523836,
+          "seed": 42,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " saw a big, mean dog. The dog barked at Lily and said, \"No, I am a bad dog!\" Lily was sad and cried. She knew she had to go home.\nLily learned that it is important to be nice to her friends and not to be mean. She learned that sometimes, things don't happen to her friends and be friends. She learned that being kind and kind is a good thing to do.\n",
+          "tokens": 88,
+          "seconds": 1.366,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.02352941176470591,
+          "seed": 123,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and",
+          "word_repeat_fraction": 0.014285714285714235
+        },
+        {
+          "text": " a bowl. He started to eat the cake. He was very happy.\nAfter eating, Tom was not hungry. He ate the cake all at the kitchen. He was very happy. But then, something unexpected happened. The bowl started to burn! Tom was sad. He did not know that the pot was not their way back.\nTom's mommy saw what happened. She told him that he was not a good job. She said he was sorry and learned that it was okay to be mad. From that day on, Tom always remembered to be kind and help others. And he never went to sleep in his house again.\n",
+          "tokens": 129,
+          "seconds": 2.789,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.023809523809523836,
+          "seed": 42,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and",
+          "word_repeat_fraction": 0.009615384615384581
+        },
+        {
+          "text": " threw it in the kitchen. The spoon was very bitter. Tom was sad, but he had an idea.\nTom gave the spoon to his mom and said, \"Now you can have some soup, but you must be careful.\" Tom was very sad and started to cry. His mom was very happy and said, \"It's okay, Tom. We can fix the soup together.\"\n",
+          "tokens": 79,
+          "seconds": 1.189,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.013157894736842146,
+          "seed": 123,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " they picked it up.\n\"Look, Anna, this is a nice nest. Do you want to see what it is?\" Ben asked.\n\"Yes, I want to see!\" Anna said. \"But I can't reach the nest. It's very hard. Do you want to climb it?\"\nBen nodded. He said, \"Yes, you can. But be careful. You can do it. I can try.\"\n\"OK, Lily, I will help you.\" Ben said. He threw the nest in the nest and the nest. It went from the nest. It looked fun.\nBut Ben did not see the nest. It was a big bird. It could not fly. It was angry. It wanted to see what was inside. It did not know how",
+          "tokens": 160,
+          "seconds": 2.544,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.031847133757961776,
+          "seed": 42,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ben and Anna found a little bird with a hurt wing. They wanted to help it, so",
+          "word_repeat_fraction": 0.00877192982456143
+        },
+        {
+          "text": " they tried to fly away. The bird flew away with a big smile on its face. Ben and Lily were happy to be friends again, and they all played together.\n",
+          "tokens": 35,
+          "seconds": 0.546,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ben and Anna found a little bird with a hurt wing. They wanted to help it, so",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " mommy to the park. \nMia asked her mommy if she could go outside and play. Her mommy said yes, but Mia was too scared. Mia was sad. She wanted to help her mommy. Her mommy gave her a big hug and said, \"I will be careful when you're scared. But you have to listen to me.\"\nMia was sad, but she knew her mommy was right. She asked her mommy if she could help. Her mommy told her to be careful and not be scared. Mia did not want to listen to the mommy. Her mommy said, \"Don't worry, Mia. We will go to the park.\"\nMia was sad, but she didn't know that the park was gone. She thought it would be fun to play with the sun and the",
+          "tokens": 160,
+          "seconds": 2.45,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.06369426751592355,
+          "seed": 42,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "It was raining outside. Mia wanted to stay dry, so she took her",
+          "word_repeat_fraction": 0.046875
+        },
+        {
+          "text": " toy gun outside. She put it in the sky and went outside to play.\nWhen Mia got home, she saw the rain and her toy car was gone. Mia felt sad and sorry for her toy car. She asked her mom for help. Her mom said they would come back to the park and play together again. Mia felt very happy and thanked her mom. From that day on, Mia and her mom always looked for the toy car and played together again.\n",
+          "tokens": 95,
+          "seconds": 1.461,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "It was raining outside. Mia wanted to stay dry, so she took her",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " a big, shiny box. Sam was very happy.\nSam and Sam had a great time playing together. They knew they would always help each other when they needed it. They went back home, happy and full.\n",
+          "tokens": 45,
+          "seconds": 0.927,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 42,
+          "prompt_tokens": 15,
+          "used_prompt_tokens": 15,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Sam had two apples. He gave one to his friend. Now Sam had",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " a nice ball. Sam was very happy.\nSam said, \"Thank you, Sam. You are a good helper.\" Sam smiled and said, \"You're welcome. I'm glad you are happy.\"\nSam smiled and said, \"Thank you, Sam. You are the best friend.\"\n",
+          "tokens": 62,
+          "seconds": 0.958,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.15254237288135597,
+          "seed": 123,
+          "prompt_tokens": 15,
+          "used_prompt_tokens": 15,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Sam had two apples. He gave one to his friend. Now Sam had",
+          "word_repeat_fraction": 0.10810810810810811
+        },
+        {
+          "text": " \"Why are you sad, dog?\" The little girl said, \"I am lost and I can't find him.\"\nThe little girl was sad, but she wanted to help him. So, she tried to find his way back to the big park. She tried and tried, but she could not find the way home. The little girl was sad, but she had a bad day.\n",
+          "tokens": 80,
+          "seconds": 1.215,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.051948051948051965,
+          "seed": 42,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "A little dog was lost in the park. A girl saw him and said,",
+          "word_repeat_fraction": 0.06666666666666665
+        },
+        {
+          "text": " \"Why are you sad?\" The dog said, \"I lost my toy. I will find it.\" The girl was very happy and said, \"I will help you find my toy.\" The girl agreed and they walked together. They looked under trees, under trees and behind the trees.\nAfter a while, they saw a little girl sitting under a tree. She said, \"Hi, I'm a baby bird. Do you want to play with me?\" The girl said, \"Yes, I am happy to have my toy back. I am the best friend!\" The girl and the little girl became best friends. They played and had fun together.\n",
+          "tokens": 133,
+          "seconds": 2.009,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.007692307692307665,
+          "seed": 123,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "A little dog was lost in the park. A girl saw him and said,",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " a little better.\n\"Thank you, Anna,\" she said. \"You're welcome, Poppy. I love your tower.\"\nAnna smiled and said, \"Thank you, Ella. You are my best friend. I love you too. And I love you too.\"\n",
+          "tokens": 57,
+          "seconds": 0.88,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.01851851851851849,
+          "seed": 42,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt",
+          "word_repeat_fraction": 0.030303030303030276
+        },
+        {
+          "text": " so happy. She said, \"Thank you, Pandy!\"\nThe mommy smiled and said, \"You are a great helper, Pinky!\"\nMimi and the little girl played together in the yard, and soon it was time to go home.\n",
+          "tokens": 54,
+          "seconds": 0.822,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " Max gave the seed a big hug. He felt very happy and loved.\nOne day, Max was playing with his tiny seed. He saw a big, shiny rock. Max wanted to show the leaf to his friend, a small bird named Chirpy. Blue was sad because he did not have a big leaf.\nOne day, Max saw a little bug on the ground. He thought it was a good idea. He asked Chirpy to help him. Chirpy flew to Cat and said, \"I can help you. I can't move the leaf to help you.\" Whiskers and Cat were happy. They became good friends.\nFrom that day on, Max and Jerry became good friends. They played together every day. They would fly, jump, and laugh all day. And they lived happily ever",
+          "tokens": 160,
+          "seconds": 2.48,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.02547770700636942,
+          "seed": 42,
+          "prompt_tokens": 21,
+          "used_prompt_tokens": 21,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Max planted a seed in a small pot. Every day he gave it water. After a week,",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " the seed grew in a beautiful flower. Max was very happy.\nThe next day, Max went to the kitchen to get a yummy fruit. He brought the plant to the garden. He took it home and ate it all by himself. Max was happy and not jealous anymore.\n",
+          "tokens": 57,
+          "seconds": 0.958,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 21,
+          "used_prompt_tokens": 21,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Max planted a seed in a small pot. Every day he gave it water. After a week,",
+          "word_repeat_fraction": 0.0
+        }
+      ],
+      "mean_word_repeat_fraction": 0.01778911461271658
+    },
+    "continued": {
+      "model": "run:155f4e2dcc524a9391c072b201364229",
+      "checkpoint_step": 5000,
+      "test": {
+        "bits_per_byte": 0.6934299592601342,
+        "loss": 1.9110565343146881,
+        "tokens": 25158,
+        "bytes": 100028,
+        "chars": 100000,
+        "context_tokens": 256,
+        "sha256": "52e3d5f579a19c49fcc77c0ece75920a5b545aead755a06775ecf05706ded520",
+        "slice_start": 100000,
+        "slice_end": 200000
+      },
+      "samples": [
+        {
+          "text": " saw a small box. \"What's in the box?\" she asked.\nLily looked at the box and said, \"I found a big box! Let's play with it!\" They opened the box and saw many colorful balls. They played with the balls all day. They were very happy.\n",
+          "tokens": 61,
+          "seconds": 3.382,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 42,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " saw a pretty butterfly. Lily was so happy and said, \"Thank you, Lily! I love your blue ball.\"\nLily and her mom played with the butterfly. They had so much fun. After that, Lily and her mom went to the park to play with the butterfly. They were very happy and tired.\n",
+          "tokens": 65,
+          "seconds": 0.995,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.032258064516129004,
+          "seed": 123,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and",
+          "word_repeat_fraction": 0.04081632653061229
+        },
+        {
+          "text": " started to make a soup.\nWhen the soup was ready, Tom started to eat. He looked at his mum and said, \"Mommy, this soup is so good!\" His mum smiled and said, \"That's okay, Tom. We can make a yummy soup instead.\"\nTom was happy that his Mommy was making the soup. He enjoyed his soup and was proud of his work. From that day on, Tom always made sure to take care of the soup. And every day, he would always remember to share his soup with his friends.\n",
+          "tokens": 112,
+          "seconds": 2.503,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.00917431192660545,
+          "seed": 42,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " started to cook. He put some soup in the oven to cook the soup. He ate the soup and it was very yummy.\nTom's mom was very happy. She said, \"I love you, Tom!\" Tom smiled and said, \"Thank you, Mommy!\" From that day on, Tom and his mom were best friends. They learned to share and help each other in the kitchen.\n",
+          "tokens": 81,
+          "seconds": 1.191,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 25,
+          "used_prompt_tokens": 25,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " they picked it up.\n\"Look, Anna, this is a nice nest for the bird,\" Ben said.\n\"Yes, Ben, it is a good home for us,\" Anna said.\nThey were happy and grateful. They thanked Ben and Anna for their help. They ran to the nest and looked at the nest. They saw some news on the ground. They had an idea.\n\"Let's take some bread and bread. We can pick some bread from the tree and take it home. It's a good place to eat,\" Ben said.\nThey took a deep breath and put the bread near the tree. They did not want to eat it. They did not want to share. They wanted the bread.\n\"Can we have some bread, mom?\" Ben",
+          "tokens": 160,
+          "seconds": 2.577,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.03821656050955413,
+          "seed": 42,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ben and Anna found a little bird with a hurt wing. They wanted to help it, so",
+          "word_repeat_fraction": 0.01666666666666672
+        },
+        {
+          "text": " they tried to fly away. They put the bird on a branch and got stuck in a tree. They were happy to help their new friend.\nAfter the day, the bird's wing got better and better. The cat was happy and thanked Ben and Anna for their help. They all became good friends and lived happily together.\n",
+          "tokens": 67,
+          "seconds": 0.987,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ben and Anna found a little bird with a hurt wing. They wanted to help it, so",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " toy boat.\nWhen Mia got wet, she could not find her toy boat. She felt sad and cried. Mia's mom heard her cry and came to see what was wrong. Mia's mom told her, \"Don't worry, Mia. The toy boat will be okay.\"\nMia's mom gave the toy boat back to Mia. Mia was happy that she listened to her mom. From that day on, Mia played with her toy boat in the sun and water, and the toy boat became her favorite toy.\n",
+          "tokens": 106,
+          "seconds": 1.671,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.009708737864077666,
+          "seed": 42,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "It was raining outside. Mia wanted to stay dry, so she took her",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " toy. She went outside to play in the rain.\nMia saw a big tree and thought, \"I will stay dry outside!\" She ran to the tree and started to play in it. But then, something unexpected happened. The rain fell down, and the rain fell down. The rain did not get wet, and Mia felt bad.\nMia's mom came to help her, and they both helped the bird. The rain stopped, and the rain fell. The bird's toy started to melt. Mia felt much better. She knew that her mom would be more careful when playing in the rain. The rain got more warm and bright, all the other kids came to see her toy. Mia and her mom were so happy, and they played all day long.\n",
+          "tokens": 156,
+          "seconds": 2.359,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.019607843137254943,
+          "seed": 123,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "It was raining outside. Mia wanted to stay dry, so she took her",
+          "word_repeat_fraction": 0.016000000000000014
+        },
+        {
+          "text": " a big smile.\n\"Thank you, Sam!\" Sam said. \"You are very welcome. Now you can have some apples and share them with your friends.\"\n\"Thank you, Sam,\" Sam said. \"You are very smart and smart. Now, let's play something else. We can share the apples and have fun together.\"\nThey smiled and went to play with their friends. They had a lot of fun and became good friends.\n",
+          "tokens": 92,
+          "seconds": 1.745,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0786516853932584,
+          "seed": 42,
+          "prompt_tokens": 15,
+          "used_prompt_tokens": 15,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Sam had two apples. He gave one to his friend. Now Sam had",
+          "word_repeat_fraction": 0.07692307692307687
+        },
+        {
+          "text": " enough apples, they were so high. Sam and Ben were happy. They played together every day.\n",
+          "tokens": 21,
+          "seconds": 0.32,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 15,
+          "used_prompt_tokens": 15,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Sam had two apples. He gave one to his friend. Now Sam had",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " \"Why are you sad, dog?\"\nThe dog said, \"I can't find my way home. I will help you.\" The girl wanted to help the dog. She found a small, soft blanket and gave it to the dog. The dog was very happy and said, \"Thank you, my deal!\"\nThe girl smiled and said, \"You're welcome, dog. You are a very kind dog.\" The dog and the girl became friends and played together every day. They were happy and never lost a nice dog who loved to help them.\n",
+          "tokens": 115,
+          "seconds": 1.706,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.008928571428571397,
+          "seed": 42,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "A little dog was lost in the park. A girl saw him and said,",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " \"Hi, I'm Fluffy. I lost my toy.\" Lucy wanted to help the boy. She picked it up and gave it to the boy.\nLucy was so happy. She hugged Max and said, \"Thank you, Lucy. I will give you a new toy.\" They both played with the toy together and had a lot of fun.\n",
+          "tokens": 71,
+          "seconds": 1.056,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 123,
+          "prompt_tokens": 16,
+          "used_prompt_tokens": 16,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "A little dog was lost in the park. A girl saw him and said,",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " a little better.\n\"Thank you, Ben,\" said her mom. \"You're welcome, sweetie. I'm glad you're happy. Now, let's go to the park.\"\nBen and Emma went back to the park. They played on the swings and slides. They had a lot of fun. They forgot about the messy tower and the mess. They had a lot of fun.\n",
+          "tokens": 82,
+          "seconds": 1.211,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.06329113924050633,
+          "seed": 42,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt",
+          "word_repeat_fraction": 0.054545454545454564
+        },
+        {
+          "text": " happy. She thanked Tim and said, \"Thank you, Tim!\" Tim felt proud of himself. He hugged his baby and said, \"You are my hero! You are my friend.\"\n",
+          "tokens": 39,
+          "seconds": 0.6,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.02777777777777779,
+          "seed": 123,
+          "prompt_tokens": 19,
+          "used_prompt_tokens": 19,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " Max got the seed. He was so happy! He thanked Max for his help and went back to the plant.\nMax took the seed to the ground and put it in a tree. He showed the seed to his friends and they all liked it. They all liked the seed. From that day on, Max and his friends always helped each other in the big green garden.\n",
+          "tokens": 77,
+          "seconds": 1.179,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.0,
+          "seed": 42,
+          "prompt_tokens": 21,
+          "used_prompt_tokens": 21,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Max planted a seed in a small pot. Every day he gave it water. After a week,",
+          "word_repeat_fraction": 0.0
+        },
+        {
+          "text": " the seed started to grow. \nOne day, a little girl named Amy walked by and saw the seed. She wanted to grow it. Amy was very happy. She took the seed outside and started to grow big and strong.\nBut then, something unexpected happened. The seed started to grow and bloomed. Amy was very surprised and happy. She learned that even when something unexpected happens, a big bird could do. And everyone in the town loved Sue, even though she was not so messy.\n",
+          "tokens": 104,
+          "seconds": 1.554,
+          "checkpoint": "best",
+          "step": 5000,
+          "repeat_fraction": 0.01980198019801982,
+          "seed": 123,
+          "prompt_tokens": 21,
+          "used_prompt_tokens": 21,
+          "context": 256,
+          "settings": {
+            "temperature": 0.8,
+            "repetition_penalty": 1.0,
+            "no_repeat_ngram": 0
+          },
+          "prompt": "Max planted a seed in a small pot. Every day he gave it water. After a week,",
+          "word_repeat_fraction": 0.024691358024691357
+        }
+      ],
+      "mean_word_repeat_fraction": 0.014352680168156363
+    }
+  },
+  "limitations": "Exploratory second budget and dropout change selected after first outputs. Test slice was not scored in the first round, but is from the same reserved partition. Prompts informed the continuation decision; improvement on them is not confirmation on unseen tasks. Fresh optimizer. No claim of general chat or factual reliability."
+}

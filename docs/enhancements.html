@@ -1,10 +1,440 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VV-GPT · An evolution of your own model</title><style>
-:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"Avenir Next",sans-serif;background:#0b0e14;color:#e7ebf3}*{box-sizing:border-box}body{margin:0 auto;max-width:1160px;padding:54px 32px 64px}a{color:#b6a0e9}header{border-bottom:1px solid #232b3b;padding-bottom:35px;margin-bottom:34px}.eyebrow{font-size:11px;letter-spacing:1.4px;color:#b6a0e9;text-transform:uppercase}h1{font-size:44px;font-weight:500;line-height:1.16;letter-spacing:-1.8px;max-width:800px;margin:18px 0}h2{font-size:23px;font-weight:500;letter-spacing:-.5px;margin:0 0 12px}h3{font-size:15px;font-weight:550;margin:12px 0}p,li{color:#9daac0;font-size:13px;line-height:1.9}strong{color:#d7e0ef;font-weight:550}.lead{max-width:800px;font-size:15px}.grid,.original,.sample-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.original,.sample-grid{grid-template-columns:repeat(3,minmax(0,1fr))}article{padding:23px;background:#111620;border:1px solid #232b3b;border-radius:12px;min-width:0}article p{font-size:12px;margin-bottom:0}svg{width:100%;display:block;margin:16px 0 0}.number{font-size:45px;line-height:1.2;letter-spacing:-1.7px;color:#b6a0e9;margin:12px 0 8px}.number small{font-size:14px;letter-spacing:0;color:#8a96ac}section{margin:38px 0}.note{padding:19px 23px;border-left:2px solid #8cc9b4;background:#10171d;border-radius:0 8px 8px 0;margin:24px 0}.note p{margin:0}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;margin-top:23px;font-size:12px;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:14px 12px;border-bottom:1px solid #232b3b;white-space:nowrap}th{color:#8290a9;font-weight:450}td{color:#cad5e7}.fine{font-size:11px;color:#7d8da7}ul{padding-left:19px}li{margin:9px 0}details{border-top:1px solid #232b3b;padding:18px 0}summary{cursor:pointer;font-size:13px;color:#bac7dd}pre{font:11px/1.85 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:#aab9d0}small{color:#8393ad;font-size:10px}.sample-grid{margin-top:20px}footer{border-top:1px solid #232b3b;padding-top:24px;color:#65728a;font-size:11px;line-height:1.9}@media(max-width:750px){body{padding:30px 18px}.grid,.original,.sample-grid{grid-template-columns:1fr}h1{font-size:34px}h2{font-size:21px}article{padding:20px}}</style>
-<header><span class="eyebrow">VV-GPT4 · Research &amp; design notes · 17 November 2026</span><h1>An evolution of<br>your own model.</h1><p class="lead">Your Transformer, your datasets, your learned weights. A simpler dark studio with more trustworthy training and clearer evidence about what actually helps.</p></header>
-<section><h2>What you had already achieved</h2><p>You built a complete language-model training project: a custom decoder, data preparation, GPU training, checkpoints, text generation and a desktop launcher. The three existing model families contain weights you trained yourself.</p><div class="original"><article><span class="eyebrow">51.0M parameters</span><h3>chat 2</h3><svg viewBox="0 0 520 155" role="img" aria-label="Historical validation loss for chat 2"><path d="M18 125H502 M18 75H502 M18 25H502" stroke="#252e3e"/><polyline points="18.0,29.8 33.6,93.9 49.2,111.2 64.8,116.2 80.5,115.3 96.1,117.4 111.7,114.7 127.3,116.6 142.9,116.5 158.5,118.5 174.1,117.2 189.7,118.2 205.4,119.0 221.0,119.2 236.6,118.6 252.2,120.5 267.8,118.2 283.4,121.1 299.0,119.2 314.6,119.8 330.3,120.1 345.9,121.7 361.5,119.3 377.1,120.8 392.7,120.8 408.3,120.1 423.9,118.0 439.5,120.9 455.2,119.4 470.8,119.3 486.4,118.7 502.0,118.2" fill="none" stroke="#b6a0e9" stroke-width="2.2"/><text x="18" y="148" fill="#8a96ac" font-size="10">Recorded evaluations →</text></svg><p>Historical best validation: <strong>2.305</strong> at step 1,050. Validation loss is not a coherence score.</p></article><article><span class="eyebrow">29.9M parameters</span><h3>chat</h3><svg viewBox="0 0 520 155" role="img" aria-label="Historical validation loss for chat"><path d="M18 125H502 M18 75H502 M18 25H502" stroke="#252e3e"/><polyline points="18.0,31.0 24.6,80.7 31.3,106.2 37.9,114.0 44.5,114.9 51.2,116.4 57.8,116.4 64.4,118.2 71.0,116.6 77.7,119.3 84.3,118.9 90.9,119.3 97.6,118.2 104.2,118.0 110.8,119.5 117.5,119.8 124.1,120.2 130.7,118.5 137.3,119.9 144.0,120.1 150.6,120.3 157.2,118.8 163.9,120.0 170.5,118.8 177.1,120.0 183.8,119.5 190.4,120.6 197.0,121.2 203.6,118.5 210.3,120.2 216.9,119.0 223.5,121.3 230.2,120.3 236.8,119.3 243.4,120.6 250.1,119.5 256.7,118.0 263.3,119.2 269.9,121.9 276.6,119.4 283.2,118.8 289.8,119.0 296.5,121.6 303.1,119.7 309.7,117.5 316.4,118.9 323.0,119.6 329.6,117.2 336.2,117.7 342.9,120.0 349.5,119.0 356.1,119.6 362.8,117.6 369.4,117.7 376.0,120.9 382.7,117.4 389.3,117.6 395.9,117.7 402.5,118.1 409.2,118.3 415.8,118.7 422.4,118.3 429.1,117.5 435.7,115.7 442.3,117.4 449.0,118.5 455.6,118.8 462.2,119.9 468.8,116.6 475.5,115.2 482.1,117.0 488.7,115.6 495.4,118.4 502.0,116.7" fill="none" stroke="#b6a0e9" stroke-width="2.2"/><text x="18" y="148" fill="#8a96ac" font-size="10">Recorded evaluations →</text></svg><p>Historical best validation: <strong>2.287</strong> at step 1,900. Validation loss is not a coherence score.</p></article><article><span class="eyebrow">29.9M parameters</span><h3>shakespeare-small-v1</h3><svg viewBox="0 0 520 155" role="img" aria-label="Historical validation loss for shakespeare-small-v1"><path d="M18 125H502 M18 75H502 M18 25H502" stroke="#252e3e"/><polyline points="18.0,29.4 42.2,67.7 66.4,90.6 90.6,94.4 114.8,97.2 139.0,97.3 163.2,97.9 187.4,100.1 211.6,99.5 235.8,100.3 260.0,102.7 284.2,101.3 308.4,101.8 332.6,103.2 356.8,102.5 381.0,102.3 405.2,102.4 429.4,103.3 453.6,101.9 477.8,101.4 502.0,101.7" fill="none" stroke="#b6a0e9" stroke-width="2.2"/><text x="18" y="148" fill="#8a96ac" font-size="10">Recorded evaluations →</text></svg><p>Historical best validation: <strong>4.013</strong> at step 850. Validation loss is not a coherence score.</p></article></div><p class="fine">Historical metadata from VV-GPT3. Separate datasets and run configurations mean these values are not a ranking across models. The original source and checkpoints are preserved.</p></section>
-<section><h2>The training-speed experiment</h2><p>Same public Shakespeare text, Nano decoder, batch 8, context 128 and seed 42. A compact vocabulary reduces the work in the embedding and output layers.</p><div class="grid"><article><span class="eyebrow">Steady training step · milliseconds ↓</span><div class="number">2.06× <small>observed speed ratio</small></div><svg viewBox="0 0 520 215" role="img" aria-label="Original · 400 steps: 52.569 ms per step; Compact · 400 steps: 25.491 ms per step; Compact · 800 steps: 25.845 ms per step"><text x="0" y="20" fill="#aab6cb" font-size="12">Original · 400 steps</text><rect x="0" y="32" width="401.4" height="12" rx="3" fill="#83b9e9"/><text x="411.4" y="43" fill="#e7ebf3" font-size="12">52.57</text><text x="0" y="87" fill="#aab6cb" font-size="12">Compact · 400 steps</text><rect x="0" y="99" width="194.7" height="12" rx="3" fill="#b6a0e9"/><text x="204.7" y="110" fill="#e7ebf3" font-size="12">25.49</text><text x="0" y="154" fill="#aab6cb" font-size="12">Compact · 800 steps</text><rect x="0" y="166" width="197.4" height="12" rx="3" fill="#8cc9b4"/><text x="207.4" y="177" fill="#e7ebf3" font-size="12">25.84</text></svg></article><article><span class="eyebrow">Common held-out text · lower is better</span><div class="number">2.708 <small>best test bits per byte</small></div><svg viewBox="0 0 520 215" role="img" aria-label="Original · 400 steps: 2.708 bits per byte; Compact · 400 steps: 2.930 bits per byte; Compact · 800 steps: 2.817 bits per byte"><text x="0" y="20" fill="#aab6cb" font-size="12">Original · 400 steps</text><rect x="0" y="32" width="372.9" height="12" rx="3" fill="#83b9e9"/><text x="382.9" y="43" fill="#e7ebf3" font-size="12">2.71</text><text x="0" y="87" fill="#aab6cb" font-size="12">Compact · 400 steps</text><rect x="0" y="99" width="403.5" height="12" rx="3" fill="#b6a0e9"/><text x="413.5" y="110" fill="#e7ebf3" font-size="12">2.93</text><text x="0" y="154" fill="#aab6cb" font-size="12">Compact · 800 steps</text><rect x="0" y="166" width="388.0" height="12" rx="3" fill="#8cc9b4"/><text x="398.0" y="177" fill="#e7ebf3" font-size="12">2.82</text></svg></article></div><div class="note"><p><strong>Faster did not mean better here.</strong> The compact model scored worse after 400 steps. Spending the saved time on 800 steps narrowed the gap, but did not close it. The original vocabulary remains the default; compact is an optional experiment.</p></div><div class="table-wrap"><table><thead><tr><th>Condition</th><th>Parameters</th><th>Active training</th><th>Run elapsed</th><th>Test bits/byte ↓</th></tr></thead><tbody><tr><td>Original · 400 steps</td><td>8.008M</td><td>22.03s</td><td>26.00s</td><td>2.708</td></tr><tr><td>Compact · 400 steps</td><td>1.361M</td><td>10.65s</td><td>12.39s</td><td>2.930</td></tr><tr><td>Compact · 800 steps</td><td>1.361M</td><td>21.05s</td><td>24.16s</td><td>2.817</td></tr></tbody></table></div><p class="fine">One seed and one corpus, short pilots only. The exploratory 800-step budget was chosen after observing the first timing. Preflight/tokenizer fitting and model/data initialization are outside these timings. Steady step time excludes the first ten steps, evaluation and saving. Test scores use the same 8,000-byte slice; different vocabularies cover different amounts of raw text in 128 tokens. Raw token losses are not comparable across vocabularies. These pilots are not replacements for your original trained models.</p></section>
-<section><h2>Improvements grounded in the original code</h2><div class="grid"><article><h3>Keep the actual best model</h3><p>The original final-save path retained live tensors: later training could overwrite the supposed best weights. All three final files differ from their separate best checkpoints. The new worker immediately saves the real best weights and keeps a separate resumable state.</p></article><article><h3>Resume with the training state intact</h3><p>Current Torch rejected the original resume load, which could fall back to starting fresh. Restricted checkpoint loading, optimizer/RNG restoration and explicit errors now make resume dependable. The CPU regression reaches exactly the same weights after interruption.</p></article><article><h3>Preserve the information in your data</h3><p>Emoji, punctuation, Unicode and speaker labels survive preparation. Common WhatsApp AM/PM exports and multiline messages are handled. Raw decoded uploads stay beside prepared copies; compact tokenizers learn from the training split only.</p></article><article><h3>Make learning visible</h3><p>Training and validation curves use fixed batches with dropout disabled. A separate final test follows checkpoint selection. Hover values, training pace, elapsed time and a measurement table give the dark studio a practical purpose.</p></article></div></section>
-<section><h2>Read the samples, not just the repetition score</h2><p>The same original Shakespeare best checkpoint was tested with three fixed public prompts, 200 generated tokens and matched seeds. The mild penalty produced mixed results. Hard phrase blocking produced zero repeated four-token phrases by construction, but broke recurring delimiters and speaker labels. It is therefore opt-in.</p><p><strong>Better coherence is not yet demonstrated.</strong> Sampling controls cannot supply grammar, knowledge or conversational ability the model has not learned. Further quality work should use a fixed prompt set, more varied clean text, multiple seeds and a fresh held-out evaluation before claiming a better model.</p><details><summary>ROMEO: The night is quiet, and · seed 42</summary><div class="sample-grid"><article><h3>Original sampling</h3><small>14.2% repeated four-token phrases</small><pre> I would have a word;
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VV-GPT / Coherence research</title><style>
+:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"Avenir Next",sans-serif;background:#080a0f;color:#e4e7ed}*{box-sizing:border-box}body{max-width:1100px;margin:0 auto;padding:58px 40px}header{padding-bottom:38px;border-bottom:1px solid #252936}.eyebrow{color:#959dad;font-size:11px;letter-spacing:.08em}h1{font-size:42px;font-weight:480;letter-spacing:-1.5px;line-height:1.2;margin:19px 0}h2{font-size:25px;font-weight:480;letter-spacing:-.6px;margin:14px 0 20px}h3{font-size:15px;font-weight:500;margin-top:32px}p{font-size:14px;line-height:1.95;color:#a6afbf;max-width:900px}.lead{font-size:16px;max-width:750px}section{padding:36px 0;border-bottom:1px solid #202633}a{color:#91b8f3;text-decoration:none}a:hover{text-decoration:underline}.fine,small{font-size:11px;line-height:1.9;color:#838fa4}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums;margin:25px 0}th,td{text-align:left;padding:14px 12px;border-bottom:1px solid #252936;white-space:nowrap}th{font-weight:450;color:#838fa4}th:first-child,td:first-child{padding-left:0}svg{width:100%;height:auto;display:block;margin-top:25px}svg text{font:11px -apple-system,sans-serif;fill:#838fa4}.legend{display:flex;gap:30px;color:#959dad;font-size:11px;justify-content:center;margin:8px 0 20px}.legend span:before{content:'';display:inline-block;width:20px;height:2px;background:var(--key);vertical-align:middle;margin-right:8px}details{padding:20px 0;border-top:1px solid #252936}summary{font-size:13px;color:#bec7d6;cursor:pointer;line-height:1.8}summary:focus-visible,a:focus-visible{outline:2px solid #91b8f3;outline-offset:5px}.sample{padding:22px 0 12px;border-bottom:1px solid #202633}.prompt{color:#bea6e7;white-space:pre-wrap;font-size:13px}.sample pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.95 -apple-system,sans-serif;max-width:800px}.sources{display:flex;gap:12px 25px;flex-wrap:wrap;font-size:12px;margin-top:25px}footer{font-size:11px;color:#727d90;padding-top:30px;line-height:2}@media(max-width:600px){body{padding:30px 20px}h1{font-size:32px}h2{font-size:22px}section{padding:28px 0}.legend{gap:16px;font-size:10px}p{font-size:13px}}
+</style><header><span class="eyebrow">VV-GPT4 / RESEARCH / 17 NOVEMBER 2026</span><h1>Better learning.<br>Evidence you can inspect.</h1><p class="lead">Changes to your own Transformer, tested against your existing weights. Clearer language is the aim; prediction scores, repetition and coherence are assessed separately.</p><a href="/">Open the local studio ↗</a></header><section><h2>Your foundation</h2><p>You already built a custom decoder, data preparation, GPU training, checkpointing, generation and a desktop launcher. This work extends that code and keeps your original trained weights intact.</p><div class="table-wrap"><table><thead><tr><th>Original family</th><th>Historical parameter count</th><th>Historical validation</th></tr></thead><tbody><tr><td>chat 2</td><td>51.0M</td><td>2.305</td></tr><tr><td>chat</td><td>29.9M</td><td>2.287</td></tr><tr><td>shakespeare-small-v1</td><td>29.9M</td><td>4.013</td></tr></tbody></table></div><p class="fine">Historical metadata excludes positional embeddings in its parameter count. Different training sets mean these validation values are not a ranking across models.</p></section><section><span class="eyebrow">01 / Learned weights</span><h2>Continuing your Shakespeare model</h2><p>Both candidates started from your actual best 30.04M-parameter checkpoint. Cleaning artificial paragraph markers and continuing training improved prediction on the reserved text and an external Hamlet excerpt.</p><div class="table-wrap"><table><thead><tr><th>Condition</th><th>Historical bits/byte ↓</th><th>Hamlet bits/byte ↓</th><th>Word repetition</th><th>Paragraph markers</th></tr></thead><tbody><tr><td>Original weights</td><td>2.600</td><td>2.518</td><td>0.51%</td><td>47</td></tr><tr><td>Continued / standard</td><td>2.331</td><td>2.338</td><td>0.09%</td><td>0</td></tr><tr><td>Continued / unlikelihood</td><td>2.331</td><td>2.338</td><td>0.78%</td><td>0</td></tr></tbody></table></div><p>Standard continuation improves both reserved-text likelihood and external Hamlet likelihood and removes artificial paragraph markers in these samples. Individual fragments are more conventional, but broken grammar, invented words and abrupt speaker/topic changes remain. Unlikelihood lowers token repetition yet increases word repetition versus standard continuation; it is not a general quality win.</p><p class="fine">1,200 updates each; original vocabulary and architecture retained. Historical test: 50,597 bytes; Hamlet: 30,000 bytes. The parent was selected using the whole historical validation tail, so that tail is not selection-naive. Hamlet was not used for training or selection. Twelve samples per condition: six fixed prompts × two seeds, up to 160 tokens, temperature 0.8, top-k 50, top-p 0.9, no repetition penalties. Repetition is the mean duplicate word 4-gram fraction; markers are counted across all outputs.</p></section><section><span class="eyebrow">02 / Transformer experiment</span><h2>More learning within the same step budget</h2><p>The revised block combines RMSNorm, rotary positions and a SwiGLU feed-forward layer. Both models use approximately 2.6M parameters, the same data, compact vocabulary, context and 1,500-update budget. The revised block scored better in both seeds.</p><svg viewBox="0 0 940 330" role="img" aria-label="Validation loss versus training steps; architecture comparison, seed 42"><title>Validation loss versus training steps; architecture comparison, seed 42</title><path d="M55 285.0H915" stroke="#202633"/><text x="40" y="289.0" text-anchor="end">4.4</text><text x="55.0" y="312" text-anchor="middle">0</text><path d="M55 223.8H915" stroke="#202633"/><text x="40" y="227.8" text-anchor="end">5.4</text><text x="270.0" y="312" text-anchor="middle">375</text><path d="M55 162.5H915" stroke="#202633"/><text x="40" y="166.5" text-anchor="end">6.5</text><text x="485.0" y="312" text-anchor="middle">750</text><path d="M55 101.2H915" stroke="#202633"/><text x="40" y="105.2" text-anchor="end">7.5</text><text x="700.0" y="312" text-anchor="middle">1,125</text><path d="M55 40.0H915" stroke="#202633"/><text x="40" y="44.0" text-anchor="end">8.6</text><text x="915.0" y="312" text-anchor="middle">1,500</text><polyline points="55.6,54.7 112.3,198.3 169.7,224.0 227.0,233.7 284.3,239.4 341.7,242.7 399.0,246.1 456.3,249.8 513.7,253.0 571.0,254.5 628.3,257.1 685.7,258.6 743.0,259.6 800.3,260.1 857.7,261.1 915.0,261.5" fill="none" stroke="#91b8f3" stroke-width="2.5"/><polyline points="55.6,55.0 112.3,196.9 169.7,230.4 227.0,244.3 284.3,252.4 341.7,259.0 399.0,262.7 456.3,265.9 513.7,269.9 571.0,270.8 628.3,272.5 685.7,273.9 743.0,274.6 800.3,274.8 857.7,276.2 915.0,275.8" fill="none" stroke="#bea6e7" stroke-width="2.5"/></svg><div class="legend"><span style="--key:#91b8f3">Classic / seed 42</span><span style="--key:#bea6e7">Revised / seed 42</span></div><div class="table-wrap"><table><thead><tr><th>Seed</th><th>Block</th><th>Parameters / M</th><th>Test bits/byte ↓</th><th>Steady step</th><th>Run elapsed</th></tr></thead><tbody><tr><td>42</td><td>Classic</td><td>2.591</td><td>2.775</td><td>39.5 ms</td><td>65.5 s</td></tr><tr><td>42</td><td>Revised</td><td>2.558</td><td>2.624</td><td>43.5 ms</td><td>71.5 s</td></tr><tr><td>123</td><td>Classic</td><td>2.591</td><td>2.759</td><td>39.7 ms</td><td>65.2 s</td></tr><tr><td>123</td><td>Revised</td><td>2.558</td><td>2.606</td><td>43.8 ms</td><td>71.3 s</td></tr></tbody></table></div><h3>Time to reach the classic run’s final validation level</h3><div class="table-wrap"><table><thead><tr><th>Seed</th><th>Target loss</th><th>Revised step</th><th>Revised elapsed</th><th>Classic full run</th></tr></thead><tbody><tr><td>42</td><td>4.799</td><td>600</td><td>28.8 s</td><td>65.5 s</td></tr><tr><td>123</td><td>4.792</td><td>700</td><td>33.3 s</td><td>65.2 s</td></tr></tbody></table></div><p>Both revised runs improve held-out prediction within the matched step budget. The generated samples still show malformed grammar, generic dialogue and weak prompt/speaker continuity. This supports better learning efficiency on the tested corpus, not dependable coherence.</p><p class="fine">Full held-out test: 111,537 bytes, identical in all four conditions. Revised steps are about 10% slower; learning efficiency is the improvement here. Threshold-crossing times are derived after the experiment, at discrete evaluation points; they are not an equal-time retraining trial. Timings include worker evaluation/saves but exclude preflight, data/model initialization and tokenizer fitting. Current classic initialization order differs from the preceding release, so these runs are compared only with their paired current implementation. Two seeds, one small corpus, one architecture bundle—not proof that every component helps independently or that all model sizes benefit.</p></section><section><span class="eyebrow">03 / Clean-language study</span><h2>Teach a small model a clearer task</h2><p>Public TinyStories training text, your Transformer code, fresh random weights. The data is restricted to simple stories: 20,000 whole stories for training, 500 for validation and 500 held out. Exact duplicate stories were removed before partitioning.</p><svg viewBox="0 0 940 330" role="img" aria-label="Simple-stories training and validation loss versus training steps"><title>Simple-stories training and validation loss versus training steps</title><path d="M55 285.0H915" stroke="#202633"/><text x="40" y="289.0" text-anchor="end">1.8</text><text x="55.0" y="312" text-anchor="middle">0</text><path d="M55 223.8H915" stroke="#202633"/><text x="40" y="227.8" text-anchor="end">3.5</text><text x="270.0" y="312" text-anchor="middle">1,250</text><path d="M55 162.5H915" stroke="#202633"/><text x="40" y="166.5" text-anchor="end">5.2</text><text x="485.0" y="312" text-anchor="middle">2,500</text><path d="M55 101.3H915" stroke="#202633"/><text x="40" y="105.3" text-anchor="end">6.9</text><text x="700.0" y="312" text-anchor="middle">3,750</text><path d="M55 40.0H915" stroke="#202633"/><text x="40" y="44.0" text-anchor="end">8.6</text><text x="915.0" y="312" text-anchor="middle">5,000</text><polyline points="55.2,49.1 98.0,223.8 141.0,241.4 184.0,250.2 227.0,256.3 270.0,260.3 313.0,263.1 356.0,266.0 399.0,268.3 442.0,270.7 485.0,272.5 528.0,273.6 571.0,274.6 614.0,275.7 657.0,276.7 700.0,277.5 743.0,278.1 786.0,278.7 829.0,278.9 872.0,279.4 915.0,279.6" fill="none" stroke="#91b8f3" stroke-width="2.5"/><polyline points="55.2,49.5 98.0,224.1 141.0,241.3 184.0,250.4 227.0,256.1 270.0,259.8 313.0,262.9 356.0,265.3 399.0,267.2 442.0,268.9 485.0,270.3 528.0,271.8 571.0,272.9 614.0,273.7 657.0,274.3 700.0,275.0 743.0,275.6 786.0,276.0 829.0,276.4 872.0,276.6 915.0,276.9" fill="none" stroke="#bea6e7" stroke-width="2.5"/></svg><div class="legend"><span style="--key:#91b8f3">Training</span><span style="--key:#bea6e7">Validation</span></div><div class="table-wrap"><table><thead><tr><th>Parameters</th><th>Training updates</th><th>Best step</th><th>Run elapsed</th><th>Test bits/byte ↓</th></tr></thead><tbody><tr><td>3.443M</td><td>5000</td><td>5000</td><td>7.9 min</td><td>0.744</td></tr></tbody></table></div><p>The first-budget model produces more conventional everyday sentences and usually stops at a story boundary. However, every one of the 16 inspected continuations has a clear entity, topic or causal failure. It changes names, replaces objects and misses simple counting. Word repetition averages 1.78%; a lower-loss story model is not yet a reliably coherent storyteller.</p><p class="fine">One Mini model: six layers, width 192, six heads, revised blocks, 4,096-token vocabulary fitted on training text, context 256, batch 16, LR 5e-4. Test covers the first 100,000 characters of the reserved stories; EOS separators count in the denominator. These test scores cannot be compared numerically with Shakespeare scores on different text. This is an exploratory data/task change, not a controlled architecture comparison or a general assistant. No pretrained weights were downloaded.</p></section><section><h2>A second, fixed training budget</h2><p>After reviewing the first story samples, one further 5,000-step continuation tested whether more learning with dropout disabled would help. It keeps the same model, vocabulary, data and context, with a fresh optimizer and LR 3e-4. These combined changes are exploratory.</p><svg viewBox="0 0 940 330" role="img" aria-label="Continued story model: training and validation loss versus additional steps"><title>Continued story model: training and validation loss versus additional steps</title><path d="M55 285.0H915" stroke="#202633"/><text x="40" y="289.0" text-anchor="end">1.5</text><text x="55.0" y="312" text-anchor="middle">0</text><path d="M55 223.8H915" stroke="#202633"/><text x="40" y="227.8" text-anchor="end">1.7</text><text x="270.0" y="312" text-anchor="middle">1,250</text><path d="M55 162.5H915" stroke="#202633"/><text x="40" y="166.5" text-anchor="end">1.8</text><text x="485.0" y="312" text-anchor="middle">2,500</text><path d="M55 101.2H915" stroke="#202633"/><text x="40" y="105.2" text-anchor="end">2.0</text><text x="700.0" y="312" text-anchor="middle">3,750</text><path d="M55 40.0H915" stroke="#202633"/><text x="40" y="44.0" text-anchor="end">2.1</text><text x="915.0" y="312" text-anchor="middle">5,000</text><polyline points="55.0,107.6 55.2,107.7 98.0,93.8 141.0,105.3 184.0,113.8 227.0,126.4 270.0,140.2 313.0,147.5 356.0,157.6 399.0,163.4 442.0,178.3 485.0,189.1 528.0,193.3 571.0,197.6 614.0,203.2 657.0,210.1 700.0,215.2 743.0,217.7 786.0,223.2 829.0,224.1 872.0,228.1 915.0,227.6" fill="none" stroke="#91b8f3" stroke-width="2.5"/><polyline points="55.0,79.4 55.2,79.5 98.0,63.7 141.0,71.3 184.0,76.4 227.0,83.3 270.0,90.2 313.0,95.8 356.0,104.9 399.0,105.5 442.0,111.2 485.0,117.1 528.0,122.2 571.0,125.8 614.0,127.3 657.0,128.7 700.0,133.3 743.0,135.2 786.0,136.6 829.0,140.0 872.0,139.8 915.0,141.0" fill="none" stroke="#bea6e7" stroke-width="2.5"/></svg><div class="legend"><span style="--key:#91b8f3">Continued training</span><span style="--key:#bea6e7">Continued validation</span></div><div class="table-wrap"><table><thead><tr><th>Condition</th><th>Same new test slice / bits per byte ↓</th><th>Word repetition</th></tr></thead><tbody><tr><td>first_budget</td><td>0.753</td><td>1.78%</td></tr><tr><td>continued</td><td>0.693</td><td>1.44%</td></tr></tbody></table></div><p>The further-trained model lowers bits/byte on the new common reserved slice from 0.7528 to 0.6934 (7.9%). Average repeated word 4-grams fall from 1.78% to 1.44% across the same 16 continuations. Several outputs stay on the local topic better: both soup prompts now remain about soup, and the first lost-dog continuation keeps the dog and girl. However, every reviewed continuation still contains an entity, goal or causal failure. Object tracking, counting and consistent names remain unreliable. These are modest topic/prediction gains, not a solved coherence problem.</p><p class="fine">Additional run: 7.1 minutes; selected additional step 5000. Both models were scored on characters 100,000–199,999 of the reserved story partition, unseen by the first scoring round. This is a fresh slice of the same partition, chosen adaptively after initial outputs, not an independent dataset. The prompts informed the decision to continue; performance on them is exploratory. No further tuning on these outputs was performed.</p></section><section><span class="eyebrow">04 / Your existing chat model</span><h2>Keep the original as the control</h2><div class="table-wrap"><table><thead><tr><th>Condition</th><th>Historical test bits/byte ↓</th><th>Selected checkpoint step</th></tr></thead><tbody><tr><td>original</td><td>1.371</td><td>1900</td></tr><tr><td>chat_ce</td><td>1.370</td><td>600</td></tr><tr><td>chat_ul</td><td>1.369</td><td>600</td></tr></tbody></table></div><p>Continuing the original chat model produced only a tiny historical-test change: 1.3708 to 1.3697 bits/byte with standard likelihood, or 1.3695 with unlikelihood (about 0.1%). Both selected additional step 600. This is too small and too historically entangled to claim a meaningful improvement in conversational coherence; no private chat samples or independent ratings were used.</p><p class="fine">Same original chat weights and vocabulary, up to 800 updates, LR 3e-5, one seed. Starting weights are saved at step zero; new best weights must improve validation. The parent previously used the historical validation tail for selection. This is aggregate historical evaluation, without a fresh external chat test or independent coherence ratings. Private source text and generated chat are not included in this report.</p></section><section><h2>Read the generated text</h2><p>Every planned public sample is retained below, including awkward grammar and failed continuity. These are the full returned continuations, up to their token limit or end-of-text. No semantic judge score is claimed. The original Shakespeare model’s simple-story outputs are a demonstration of task mismatch, not a fair in-domain benchmark.</p><details><summary>stories_continued / 16 retained samples</summary><article class="sample"><p class="prompt">Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and</p><small>Seed 42 · 61 generated tokens</small><pre> saw a small box. &quot;What&#x27;s in the box?&quot; she asked.
+Lily looked at the box and said, &quot;I found a big box! Let&#x27;s play with it!&quot; They opened the box and saw many colorful balls. They played with the balls all day. They were very happy.
+</pre></article><article class="sample"><p class="prompt">Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and</p><small>Seed 123 · 65 generated tokens</small><pre> saw a pretty butterfly. Lily was so happy and said, &quot;Thank you, Lily! I love your blue ball.&quot;
+Lily and her mom played with the butterfly. They had so much fun. After that, Lily and her mom went to the park to play with the butterfly. They were very happy and tired.
+</pre></article><article class="sample"><p class="prompt">Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and</p><small>Seed 42 · 112 generated tokens</small><pre> started to make a soup.
+When the soup was ready, Tom started to eat. He looked at his mum and said, &quot;Mommy, this soup is so good!&quot; His mum smiled and said, &quot;That&#x27;s okay, Tom. We can make a yummy soup instead.&quot;
+Tom was happy that his Mommy was making the soup. He enjoyed his soup and was proud of his work. From that day on, Tom always made sure to take care of the soup. And every day, he would always remember to share his soup with his friends.
+</pre></article><article class="sample"><p class="prompt">Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and</p><small>Seed 123 · 81 generated tokens</small><pre> started to cook. He put some soup in the oven to cook the soup. He ate the soup and it was very yummy.
+Tom&#x27;s mom was very happy. She said, &quot;I love you, Tom!&quot; Tom smiled and said, &quot;Thank you, Mommy!&quot; From that day on, Tom and his mom were best friends. They learned to share and help each other in the kitchen.
+</pre></article><article class="sample"><p class="prompt">Ben and Anna found a little bird with a hurt wing. They wanted to help it, so</p><small>Seed 42 · 160 generated tokens</small><pre> they picked it up.
+&quot;Look, Anna, this is a nice nest for the bird,&quot; Ben said.
+&quot;Yes, Ben, it is a good home for us,&quot; Anna said.
+They were happy and grateful. They thanked Ben and Anna for their help. They ran to the nest and looked at the nest. They saw some news on the ground. They had an idea.
+&quot;Let&#x27;s take some bread and bread. We can pick some bread from the tree and take it home. It&#x27;s a good place to eat,&quot; Ben said.
+They took a deep breath and put the bread near the tree. They did not want to eat it. They did not want to share. They wanted the bread.
+&quot;Can we have some bread, mom?&quot; Ben</pre></article><article class="sample"><p class="prompt">Ben and Anna found a little bird with a hurt wing. They wanted to help it, so</p><small>Seed 123 · 67 generated tokens</small><pre> they tried to fly away. They put the bird on a branch and got stuck in a tree. They were happy to help their new friend.
+After the day, the bird&#x27;s wing got better and better. The cat was happy and thanked Ben and Anna for their help. They all became good friends and lived happily together.
+</pre></article><article class="sample"><p class="prompt">It was raining outside. Mia wanted to stay dry, so she took her</p><small>Seed 42 · 106 generated tokens</small><pre> toy boat.
+When Mia got wet, she could not find her toy boat. She felt sad and cried. Mia&#x27;s mom heard her cry and came to see what was wrong. Mia&#x27;s mom told her, &quot;Don&#x27;t worry, Mia. The toy boat will be okay.&quot;
+Mia&#x27;s mom gave the toy boat back to Mia. Mia was happy that she listened to her mom. From that day on, Mia played with her toy boat in the sun and water, and the toy boat became her favorite toy.
+</pre></article><article class="sample"><p class="prompt">It was raining outside. Mia wanted to stay dry, so she took her</p><small>Seed 123 · 156 generated tokens</small><pre> toy. She went outside to play in the rain.
+Mia saw a big tree and thought, &quot;I will stay dry outside!&quot; She ran to the tree and started to play in it. But then, something unexpected happened. The rain fell down, and the rain fell down. The rain did not get wet, and Mia felt bad.
+Mia&#x27;s mom came to help her, and they both helped the bird. The rain stopped, and the rain fell. The bird&#x27;s toy started to melt. Mia felt much better. She knew that her mom would be more careful when playing in the rain. The rain got more warm and bright, all the other kids came to see her toy. Mia and her mom were so happy, and they played all day long.
+</pre></article><article class="sample"><p class="prompt">Sam had two apples. He gave one to his friend. Now Sam had</p><small>Seed 42 · 92 generated tokens</small><pre> a big smile.
+&quot;Thank you, Sam!&quot; Sam said. &quot;You are very welcome. Now you can have some apples and share them with your friends.&quot;
+&quot;Thank you, Sam,&quot; Sam said. &quot;You are very smart and smart. Now, let&#x27;s play something else. We can share the apples and have fun together.&quot;
+They smiled and went to play with their friends. They had a lot of fun and became good friends.
+</pre></article><article class="sample"><p class="prompt">Sam had two apples. He gave one to his friend. Now Sam had</p><small>Seed 123 · 21 generated tokens</small><pre> enough apples, they were so high. Sam and Ben were happy. They played together every day.
+</pre></article><article class="sample"><p class="prompt">A little dog was lost in the park. A girl saw him and said,</p><small>Seed 42 · 115 generated tokens</small><pre> &quot;Why are you sad, dog?&quot;
+The dog said, &quot;I can&#x27;t find my way home. I will help you.&quot; The girl wanted to help the dog. She found a small, soft blanket and gave it to the dog. The dog was very happy and said, &quot;Thank you, my deal!&quot;
+The girl smiled and said, &quot;You&#x27;re welcome, dog. You are a very kind dog.&quot; The dog and the girl became friends and played together every day. They were happy and never lost a nice dog who loved to help them.
+</pre></article><article class="sample"><p class="prompt">A little dog was lost in the park. A girl saw him and said,</p><small>Seed 123 · 71 generated tokens</small><pre> &quot;Hi, I&#x27;m Fluffy. I lost my toy.&quot; Lucy wanted to help the boy. She picked it up and gave it to the boy.
+Lucy was so happy. She hugged Max and said, &quot;Thank you, Lucy. I will give you a new toy.&quot; They both played with the toy together and had a lot of fun.
+</pre></article><article class="sample"><p class="prompt">Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt</p><small>Seed 42 · 82 generated tokens</small><pre> a little better.
+&quot;Thank you, Ben,&quot; said her mom. &quot;You&#x27;re welcome, sweetie. I&#x27;m glad you&#x27;re happy. Now, let&#x27;s go to the park.&quot;
+Ben and Emma went back to the park. They played on the swings and slides. They had a lot of fun. They forgot about the messy tower and the mess. They had a lot of fun.
+</pre></article><article class="sample"><p class="prompt">Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt</p><small>Seed 123 · 39 generated tokens</small><pre> happy. She thanked Tim and said, &quot;Thank you, Tim!&quot; Tim felt proud of himself. He hugged his baby and said, &quot;You are my hero! You are my friend.&quot;
+</pre></article><article class="sample"><p class="prompt">Max planted a seed in a small pot. Every day he gave it water. After a week,</p><small>Seed 42 · 77 generated tokens</small><pre> Max got the seed. He was so happy! He thanked Max for his help and went back to the plant.
+Max took the seed to the ground and put it in a tree. He showed the seed to his friends and they all liked it. They all liked the seed. From that day on, Max and his friends always helped each other in the big green garden.
+</pre></article><article class="sample"><p class="prompt">Max planted a seed in a small pot. Every day he gave it water. After a week,</p><small>Seed 123 · 104 generated tokens</small><pre> the seed started to grow.&#32;
+One day, a little girl named Amy walked by and saw the seed. She wanted to grow it. Amy was very happy. She took the seed outside and started to grow big and strong.
+But then, something unexpected happened. The seed started to grow and bloomed. Amy was very surprised and happy. She learned that even when something unexpected happens, a big bird could do. And everyone in the town loved Sue, even though she was not so messy.
+</pre></article></details><details><summary>own_original / 16 retained samples</summary><article class="sample"><p class="prompt">Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and</p><small>Seed 42 · 160 generated tokens</small><pre>
+hath a little; &#x27;tis more, I, to see:
+Away with my good, for a little thing, I am too much
+are you not so.
+
+&lt;|paragraph|&gt;
+Nurse:
+Nay, sir, come, sir, that I think you have you;
+to be it were a man&#x27;s not.
+
+&lt;|paragraph|&gt;
+PETRUCHIO:
+What is&#x27;t, sir, no more.
+
+&lt;|paragraph|&gt;
+Nurse:
+Sir, sir, sir, is a word; I&#x27;ll not a thing of
+to be the good sir.
+
+&lt;|paragraph|&gt;
+DUKE VINCENTIO:
+I have been a man, my good fellow</pre></article><article class="sample"><p class="prompt">Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and</p><small>Seed 123 · 160 generated tokens</small><pre>
+be an ass it a man.
+
+&lt;|paragraph|&gt;
+DUKE VINCENTIO:
+Go, then, sir, you, a month, that you are a word, and a
+she have you have but I was her good to be a man
+thanio.
+
+&lt;|paragraph|&gt;
+Provost:
+I have done, sir; you to you.
+
+&lt;|paragraph|&gt;
+DUKE VINCENTIO:
+I think you, for you,--
+
+&lt;|paragraph|&gt;
+ISABELLA:
+What! O, a bawd.
+
+&lt;|paragraph|&gt;
+ISABELLA:
+Nay, what is the dost:
+You will not</pre></article><article class="sample"><p class="prompt">Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and</p><small>Seed 42 · 160 generated tokens</small><pre>
+hath a little; &#x27;tis more, I, to the one thing and
+pithee, for thy poor thing he is not
+he were a very time to see the duke: which would I will, he&#x27;s a
+inius have been so, but a doth she was a man;
+to be it were a man&#x27;s not a man.
+
+&lt;|paragraph|&gt;
+First Citizen:
+Why, sir, sir, sir; and I think &#x27;tis so he is not.
+
+&lt;|paragraph|&gt;
+POMPEY:
+It is a woman; and he&#x27;s to the good sir.
+
+&lt;|paragraph|&gt;
+DUKE VINCENTIO:
+I have been a man, my good fellow</pre></article><article class="sample"><p class="prompt">Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and</p><small>Seed 123 · 160 generated tokens</small><pre>
+and a great men are a little: he shall have made
+a-she&#x27;s the man; that thou art a man,
+and a word of him in the people&#x27;s no other.
+
+&lt;|paragraph|&gt;
+First Citizen:
+How is the duke is the duke:
+And, we will not for the gods?
+
+&lt;|paragraph|&gt;
+SICINIUS:
+What, you, he that we have
+to be done the truth; and to my house: you,--
+
+&lt;|paragraph|&gt;
+SICINIUS:
+I am not a word.
+
+&lt;|paragraph|&gt;
+First Citizen:
+Let us, we will find
+He hath the gods be an&#x27;t; and the</pre></article><article class="sample"><p class="prompt">Ben and Anna found a little bird with a hurt wing. They wanted to help it, so</p><small>Seed 42 · 160 generated tokens</small><pre> I would have a
+mest, for my lord, to see: then, I&#x27;ll say it.
+
+&lt;|paragraph|&gt;
+ROMEO:
+My lord, sir, my lord, for I will,
+My soul, and I have been so,
+I would not for thyself to see your heart.
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+My lord, my lord, good lord;
+I shall not have been a little more than I know
+And not that is that thou art a mother,
+That is as thou know I have done to me,
+And to the king.
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+
+&lt;|paragraph|&gt;
+KING EDWARD IV:</pre></article><article class="sample"><p class="prompt">Ben and Anna found a little bird with a hurt wing. They wanted to help it, so</p><small>Seed 123 · 160 generated tokens</small><pre>, I do I must have a little
+and a man shall not by your daughter&#x27;s house, my heart;
+Or shall be not, as I do it is come,
+With a child, no more of it is,
+Of our general was nothing; I am a man
+Or to-t a bawd, I am not?
+
+&lt;|paragraph|&gt;
+LUCIO:
+My lord, then, what is&#x27;t.
+
+&lt;|paragraph|&gt;
+JULIET:
+Well, I would I cannot do.
+
+&lt;|paragraph|&gt;
+ROMEO:
+I love me, but I wouldst thou art
+A man, I must not a word of your tongue.
+
+&lt;|paragraph|&gt;
+L</pre></article><article class="sample"><p class="prompt">It was raining outside. Mia wanted to stay dry, so she took her</p><small>Seed 42 · 160 generated tokens</small><pre>
+Or shall not, I have heard the Vols,
+But what&#x27;st thou hast thou hast not for thy father;
+I am too much as I&#x27;ll not so.
+
+&lt;|paragraph|&gt;
+Nurse:
+O, it is not so, sir.
+
+&lt;|paragraph|&gt;
+ROMEO:
+But I was not, I have more than me to be.
+
+&lt;|paragraph|&gt;
+JULIET:
+I have not, sir, he is not.
+
+&lt;|paragraph|&gt;
+Nurse:
+No; I have I love me,
+And to the king is not? I&#x27;ll find thee!
+I&#x27;ll hear me to my name?
+
+&lt;|paragraph|&gt;
+ROMEO:</pre></article><article class="sample"><p class="prompt">It was raining outside. Mia wanted to stay dry, so she took her</p><small>Seed 123 · 160 generated tokens</small><pre>
+To do I must have spoke.
+
+&lt;|paragraph|&gt;
+MARCIUS:
+What, I know the people: I will,
+That I will be made you.
+
+&lt;|paragraph|&gt;
+WARWICK:
+Good morrow, my lord, no more:
+And, we will not all, and with me;
+But he cannot speak no more than he would.
+
+&lt;|paragraph|&gt;
+KING RICHARD II:
+But then, I will not for you,
+My lord, my brother, to be married.
+
+&lt;|paragraph|&gt;
+RICHARD II:
+How! it is the king is not like a little,
+And I will die, the king&#x27;st,
+The crown</pre></article><article class="sample"><p class="prompt">Sam had two apples. He gave one to his friend. Now Sam had</p><small>Seed 42 · 160 generated tokens</small><pre> I would have a
+mest, the Vols, to the one thing of the crown,
+the doth be the people that he is an hour,
+That you.
+
+&lt;|paragraph|&gt;
+POLIXENES:
+No, good lords, sir, that you were done?
+
+&lt;|paragraph|&gt;
+LEONTES:
+And,--
+
+&lt;|paragraph|&gt;
+LEONTES:
+Come, sir, no more.
+
+&lt;|paragraph|&gt;
+POLIXENES:
+O, sir, my lord.
+
+&lt;|paragraph|&gt;
+CORIOLYCUS:
+You may be no more, as he, you to do
+That&#x27;s a word to the dost: for your honour</pre></article><article class="sample"><p class="prompt">Sam had two apples. He gave one to his friend. Now Sam had</p><small>Seed 123 · 160 generated tokens</small><pre> not
+Pray, you, but a good lord, for you
+I have seen the Duke of that you well-morrow.
+
+&lt;|paragraph|&gt;
+First Servingman:
+O, sir, sir,
+My brother, I was not have you be made you are.
+
+&lt;|paragraph|&gt;
+ISABELLA:
+I do not, good lord.
+
+&lt;|paragraph|&gt;
+ISABELLA:
+Sir, sir.
+
+&lt;|paragraph|&gt;
+ANGELO:
+Well, you.
+
+&lt;|paragraph|&gt;
+ISABELLA:
+Ay, but I wouldst it,
+A: but I must not call him;
+That she is the house of your tongue
+Tis</pre></article><article class="sample"><p class="prompt">A little dog was lost in the park. A girl saw him and said,</p><small>Seed 42 · 160 generated tokens</small><pre>
+Or shall you have done in this night,
+To-morrow, then, I&#x27;ll say it not for his father.
+
+&lt;|paragraph|&gt;
+LEONTES:
+A:
+We&#x27;ll not, then, sir, and give us have done,
+I would not for our good to see
+To speak it out a man&#x27;s face.
+
+&lt;|paragraph|&gt;
+EL:
+O, what&#x27;s come; you,
+O, my soul is no, sir;
+And not that is so;
+I had I am not, as you
+Or let us to come, as they have the business.
+
+&lt;|paragraph|&gt;
+PAULINA:
+O,
+It is it be too well: you have made you</pre></article><article class="sample"><p class="prompt">A little dog was lost in the park. A girl saw him and said,</p><small>Seed 123 · 160 generated tokens</small><pre>
+The gods I must have spoke of his wife
+I&#x27;ll not by your person: I shall be done;
+Or else to be, as I do him; I&#x27;ll come to his friends
+To have a thousand men have done
+In&#x27;t but his tongue to be made,
+But to our voices, and we will not:
+When I have no more than he cannot speak
+To make the law to thee: yet be so.
+
+&lt;|paragraph|&gt;
+LEONTES:
+To your brother,
+The matter, I cannot do.
+
+&lt;|paragraph|&gt;
+POLIXENES:
+Ay, but I wouldst it,
+A pretty word: but what I would not your tongue
+And, he is an&#x27;t beheld the</pre></article><article class="sample"><p class="prompt">Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt</p><small>Seed 42 · 160 generated tokens</small><pre> her
+the a little-up-house, I am a gentleman: and
+fret, it not for a little thing he is not
+he were a very time to see the duke:
+be a man, a woman, and so, I have been a
+a-morrow for a man to see the
+em upon the time of the time.
+
+&lt;|paragraph|&gt;
+Clown:
+You&#x27;ll be your brother&#x27;s a word, no more.
+
+&lt;|paragraph|&gt;
+Nurse:
+
+&lt;|paragraph|&gt;
+Clown:
+Nay, sir, he&#x27;s a man of the dost.
+
+&lt;|paragraph|&gt;
+Clown:
+
+&lt;|paragraph|&gt;
+Shepherd:
+I</pre></article><article class="sample"><p class="prompt">Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt</p><small>Seed 123 · 160 generated tokens</small><pre> an
+Pray, a man is a good to my wife.
+
+&lt;|paragraph|&gt;
+DUKE VINCENTIO:
+O, a doth come, I pray you not the time to you have
+and now I was to have you to her.
+
+&lt;|paragraph|&gt;
+ANGELO:
+Why, no; I have done, what I have heard it.
+
+&lt;|paragraph|&gt;
+DUKE VINCENTIO:
+I think you, for you,--
+
+&lt;|paragraph|&gt;
+ISABELLA:
+What! O, a bawd.
+
+&lt;|paragraph|&gt;
+ISABELLA:
+I&#x27;ll give me, you would not be it be gone?</pre></article><article class="sample"><p class="prompt">Max planted a seed in a small pot. Every day he gave it water. After a week,</p><small>Seed 42 · 160 generated tokens</small><pre>
+for the man, I have heard the Vols, to see the old man,
+to-morrow for thy father; for that I have made anon you not
+dureseech you. I will, he&#x27;s a true; and all
+and, sir, that I think you have with the
+to be it were a man&#x27;s not.
+
+&lt;|paragraph|&gt;
+CLAUDIO:
+Come, sir; you, sir, no more.
+
+&lt;|paragraph|&gt;
+ESCALUS:
+O, sir, my lord.
+
+&lt;|paragraph|&gt;
+TRANIO:
+O, it is a little more, as he&#x27;s no?
+
+&lt;|paragraph|&gt;
+LUCIO:
+I</pre></article><article class="sample"><p class="prompt">Max planted a seed in a small pot. Every day he gave it water. After a week,</p><small>Seed 123 · 160 generated tokens</small><pre>
+to thy head, a man is a noble lord!
+
+&lt;|paragraph|&gt;
+ROMEO:
+How now, then, sir, for him in the king&#x27;st, a word,
+By all the Duke of the day:
+How is the duke is the crown of our hands;
+What will not all, and all the way of the king&#x27;st!
+
+&lt;|paragraph|&gt;
+KING RICHARD III:
+My lord, I will,
+And I will not for you, and I would I cannot do.
+
+&lt;|paragraph|&gt;
+KING RICHARD III:
+Well, I will not the king, I do not:
+That I would be your tongue to be.
+
+&lt;|paragraph|&gt;</pre></article></details><details><summary>stories_revised / 16 retained samples</summary><article class="sample"><p class="prompt">Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and</p><small>Seed 42 · 87 generated tokens</small><pre> saw a big box of toys. Lily was very happy. She took the box and played with it all day.
+The next day, Lily went back to her room. She looked at her favorite toy car. She saw that she was sad. She wanted to help her mom. She put her toys on the shelf and went to her room. At the end of the day, Lily went home and had a great time.
+</pre></article><article class="sample"><p class="prompt">Lily put her red ball in a box. Then she went outside. When she came back, she looked in the box and</p><small>Seed 123 · 88 generated tokens</small><pre> saw a big, mean dog. The dog barked at Lily and said, &quot;No, I am a bad dog!&quot; Lily was sad and cried. She knew she had to go home.
+Lily learned that it is important to be nice to her friends and not to be mean. She learned that sometimes, things don&#x27;t happen to her friends and be friends. She learned that being kind and kind is a good thing to do.
+</pre></article><article class="sample"><p class="prompt">Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and</p><small>Seed 42 · 129 generated tokens</small><pre> a bowl. He started to eat the cake. He was very happy.
+After eating, Tom was not hungry. He ate the cake all at the kitchen. He was very happy. But then, something unexpected happened. The bowl started to burn! Tom was sad. He did not know that the pot was not their way back.
+Tom&#x27;s mommy saw what happened. She told him that he was not a good job. She said he was sorry and learned that it was okay to be mad. From that day on, Tom always remembered to be kind and help others. And he never went to sleep in his house again.
+</pre></article><article class="sample"><p class="prompt">Tom was hungry, so he went to the kitchen. His mum gave him a bowl of soup. Tom took a spoon and</p><small>Seed 123 · 79 generated tokens</small><pre> threw it in the kitchen. The spoon was very bitter. Tom was sad, but he had an idea.
+Tom gave the spoon to his mom and said, &quot;Now you can have some soup, but you must be careful.&quot; Tom was very sad and started to cry. His mom was very happy and said, &quot;It&#x27;s okay, Tom. We can fix the soup together.&quot;
+</pre></article><article class="sample"><p class="prompt">Ben and Anna found a little bird with a hurt wing. They wanted to help it, so</p><small>Seed 42 · 160 generated tokens</small><pre> they picked it up.
+&quot;Look, Anna, this is a nice nest. Do you want to see what it is?&quot; Ben asked.
+&quot;Yes, I want to see!&quot; Anna said. &quot;But I can&#x27;t reach the nest. It&#x27;s very hard. Do you want to climb it?&quot;
+Ben nodded. He said, &quot;Yes, you can. But be careful. You can do it. I can try.&quot;
+&quot;OK, Lily, I will help you.&quot; Ben said. He threw the nest in the nest and the nest. It went from the nest. It looked fun.
+But Ben did not see the nest. It was a big bird. It could not fly. It was angry. It wanted to see what was inside. It did not know how</pre></article><article class="sample"><p class="prompt">Ben and Anna found a little bird with a hurt wing. They wanted to help it, so</p><small>Seed 123 · 35 generated tokens</small><pre> they tried to fly away. The bird flew away with a big smile on its face. Ben and Lily were happy to be friends again, and they all played together.
+</pre></article><article class="sample"><p class="prompt">It was raining outside. Mia wanted to stay dry, so she took her</p><small>Seed 42 · 160 generated tokens</small><pre> mommy to the park.&#32;
+Mia asked her mommy if she could go outside and play. Her mommy said yes, but Mia was too scared. Mia was sad. She wanted to help her mommy. Her mommy gave her a big hug and said, &quot;I will be careful when you&#x27;re scared. But you have to listen to me.&quot;
+Mia was sad, but she knew her mommy was right. She asked her mommy if she could help. Her mommy told her to be careful and not be scared. Mia did not want to listen to the mommy. Her mommy said, &quot;Don&#x27;t worry, Mia. We will go to the park.&quot;
+Mia was sad, but she didn&#x27;t know that the park was gone. She thought it would be fun to play with the sun and the</pre></article><article class="sample"><p class="prompt">It was raining outside. Mia wanted to stay dry, so she took her</p><small>Seed 123 · 95 generated tokens</small><pre> toy gun outside. She put it in the sky and went outside to play.
+When Mia got home, she saw the rain and her toy car was gone. Mia felt sad and sorry for her toy car. She asked her mom for help. Her mom said they would come back to the park and play together again. Mia felt very happy and thanked her mom. From that day on, Mia and her mom always looked for the toy car and played together again.
+</pre></article><article class="sample"><p class="prompt">Sam had two apples. He gave one to his friend. Now Sam had</p><small>Seed 42 · 45 generated tokens</small><pre> a big, shiny box. Sam was very happy.
+Sam and Sam had a great time playing together. They knew they would always help each other when they needed it. They went back home, happy and full.
+</pre></article><article class="sample"><p class="prompt">Sam had two apples. He gave one to his friend. Now Sam had</p><small>Seed 123 · 62 generated tokens</small><pre> a nice ball. Sam was very happy.
+Sam said, &quot;Thank you, Sam. You are a good helper.&quot; Sam smiled and said, &quot;You&#x27;re welcome. I&#x27;m glad you are happy.&quot;
+Sam smiled and said, &quot;Thank you, Sam. You are the best friend.&quot;
+</pre></article><article class="sample"><p class="prompt">A little dog was lost in the park. A girl saw him and said,</p><small>Seed 42 · 80 generated tokens</small><pre> &quot;Why are you sad, dog?&quot; The little girl said, &quot;I am lost and I can&#x27;t find him.&quot;
+The little girl was sad, but she wanted to help him. So, she tried to find his way back to the big park. She tried and tried, but she could not find the way home. The little girl was sad, but she had a bad day.
+</pre></article><article class="sample"><p class="prompt">A little dog was lost in the park. A girl saw him and said,</p><small>Seed 123 · 133 generated tokens</small><pre> &quot;Why are you sad?&quot; The dog said, &quot;I lost my toy. I will find it.&quot; The girl was very happy and said, &quot;I will help you find my toy.&quot; The girl agreed and they walked together. They looked under trees, under trees and behind the trees.
+After a while, they saw a little girl sitting under a tree. She said, &quot;Hi, I&#x27;m a baby bird. Do you want to play with me?&quot; The girl said, &quot;Yes, I am happy to have my toy back. I am the best friend!&quot; The girl and the little girl became best friends. They played and had fun together.
+</pre></article><article class="sample"><p class="prompt">Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt</p><small>Seed 42 · 57 generated tokens</small><pre> a little better.
+&quot;Thank you, Anna,&quot; she said. &quot;You&#x27;re welcome, Poppy. I love your tower.&quot;
+Anna smiled and said, &quot;Thank you, Ella. You are my best friend. I love you too. And I love you too.&quot;
+</pre></article><article class="sample"><p class="prompt">Ella built a tall tower with her blocks. Her baby brother knocked it down. Ella felt</p><small>Seed 123 · 54 generated tokens</small><pre> so happy. She said, &quot;Thank you, Pandy!&quot;
+The mommy smiled and said, &quot;You are a great helper, Pinky!&quot;
+Mimi and the little girl played together in the yard, and soon it was time to go home.
+</pre></article><article class="sample"><p class="prompt">Max planted a seed in a small pot. Every day he gave it water. After a week,</p><small>Seed 42 · 160 generated tokens</small><pre> Max gave the seed a big hug. He felt very happy and loved.
+One day, Max was playing with his tiny seed. He saw a big, shiny rock. Max wanted to show the leaf to his friend, a small bird named Chirpy. Blue was sad because he did not have a big leaf.
+One day, Max saw a little bug on the ground. He thought it was a good idea. He asked Chirpy to help him. Chirpy flew to Cat and said, &quot;I can help you. I can&#x27;t move the leaf to help you.&quot; Whiskers and Cat were happy. They became good friends.
+From that day on, Max and Jerry became good friends. They played together every day. They would fly, jump, and laugh all day. And they lived happily ever</pre></article><article class="sample"><p class="prompt">Max planted a seed in a small pot. Every day he gave it water. After a week,</p><small>Seed 123 · 57 generated tokens</small><pre> the seed grew in a beautiful flower. Max was very happy.
+The next day, Max went to the kitchen to get a yummy fruit. He brought the plant to the garden. He took it home and ate it all by himself. Max was happy and not jealous anymore.
+</pre></article></details><details><summary>original / 12 retained samples</summary><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 42 · 160 generated tokens</small><pre> I would have a word;
 He will not to me to see: then, I&#x27;ll say it.
 
 &lt;|paragraph|&gt;
@@ -24,203 +454,2073 @@ That I have the king is not?
 &lt;|paragraph|&gt;
 ROMEO:
 I know not be it be too well:
-I would not, to him, thou hast thy life;
-For now, thou wilt thou art.
+I would not</pre></article><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 123 · 160 generated tokens</small><pre> not with thee to make a word.
 
 &lt;|paragraph|&gt;
 JULIET:
-Well, how thou art thou art</pre></article><article><h3>Penalty only · default</h3><small>21.3% repeated four-token phrases</small><pre> I would have a word;
-He will not to me to see: then, I&#x27;ll say it.
-
-&lt;|paragraph|&gt;
-ROMEO:
-My lord.
+Come, my poor, then, thou,
+That thou doth that thou wilt thou not be thine.
 
 &lt;|paragraph|&gt;
 Nurse:
-O, go, good lords, sir, that is dead;
-I know the heavens!
-
-&lt;|paragraph|&gt;
-JULIET:
-Now, thou dost not what a word; &#x27;tis more,
-That I should be so, he is not.
-
-&lt;|paragraph|&gt;
-Nurse:
-No; I will I love me,
-And here the king is not? and I would you are,
-The man that&#x27;st thou art dead, he be too! O day?
+How mayst thou know thee, now,
+I am not? but not this world is thine.
 
 &lt;|paragraph|&gt;
 ROMEO:
-O God, thou wilt thou know.
+And I have I am in thee?
 
 &lt;|paragraph|&gt;
-JULIET:
-Well, how to-morrow?</pre></article><article><h3>Penalty + hard phrase guard</h3><small>0.0% repeated four-token phrases</small><pre> I would have a word;
-He will not to me to see: then, I&#x27;ll say it.
+FRIAR LAURENCE:
+O, for that, thou shalt be thee!
+O, by a subject.
 
 &lt;|paragraph|&gt;
 ROMEO:
-My lord.
+My lords, wert thou hast thou art not be,
+Thou</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 42 · 160 generated tokens</small><pre> I would have a word.
 
+&lt;|paragraph|&gt;
+JULIET:
+O, for thy father, I&#x27;ll not for thy tongue,
+That you, is dead!
 
-&lt;ICINCE EDWARD IV:
-O heavens, I have done, but a doth think&#x27;s dead!
-I know thou woe, I hear thee.
-And, in your honour, I have not by my face;
-And so long-morrow is no more than I am,
-Than thou not that thou, thou art thou, if it be,
-We&#x27;ll call&#x27;d my heart from our brother&#x27;s love&#x27;s son.
+&lt;|paragraph|&gt;
+ROMEO:
+I have I am thy heart.
 
- a kind of Norfolk! why, what news, to do again?
-I know me with thy death, my husband&#x27;s death,
-The king is my gracious wife is made me
-Of this blood of Edward&#x27;st,
-And yet the doth he didst thou wot,
-As thou art not the</pre></article></div></details><details><summary>KING RICHARD III: My lord, · seed 123</summary><div class="sample-grid"><article><h3>Original sampling</h3><small>32.0% repeated four-token phrases</small><pre> and I do I must have a king.
+&lt;|paragraph|&gt;
+ROMEO:
+O, my hand, let me in me.
+
+&lt;|paragraph|&gt;
+ROMEO:
+IET: thou art thou not be, I know&#x27;s love.
+
+&lt;|paragraph|&gt;
+JULIET:
+O, my sovereign, and say &#x27;tis the king.
+
+&lt;|paragraph|&gt;
+ROMEO:
+My son, then, be it be too!
+
+&lt;|paragraph</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 123 · 160 generated tokens</small><pre> not to thee to make me,
+For what I am a child, I am come on,
+What thou art not be done: then, I do, I will,
+But now, I would have a thousand men have done.
+
+&lt;|paragraph|&gt;
+ROMEO:
+What, I do not,
+I am not? but not, by my lord,
+O, but it, if I do love,
+And I am I have a little:
+But then I&#x27;ll have mine eyes to thy daughter,
+For my brother, to be done,
+Thou wilt thou, then a bawd.
+
+&lt;|paragraph|&gt;
+ROMEO:
+My lord, I will die,
+
+&lt;|paragraph|&gt;
+</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 42 · 160 generated tokens</small><pre>, and by a little house
+My heart, I, to see the king and mine own,
+For for thy father, for that I&#x27;ll take me,
+That you, with me with thee, for this night,
+My soul, and, this good lords,
+I would I think you have with your mother&#x27;s hand
+I would I was not with me.
+
+&lt;|paragraph|&gt;
+KING RICHARD II:
+Come, my lord; and I should be,
+Than thou not that thou? thou shalt give it,
+That is as thou know I have done to me,
+And never look to make it? I&#x27;ll make thee to my lord,
+To make my name to see your grace to the night:
+I do you</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 123 · 160 generated tokens</small><pre>, I do I must.
 
 &lt;|paragraph|&gt;
 QUEEN ELIZABETH:
-Ah, my lord, so, for I&#x27;ll come to his friends.
+Why, my lord, my lord, so, I will,
+With this a holy king&#x27;s brother&#x27;s crown,
+Of our father, his tongue to be my lord.
+
+&lt;|paragraph|&gt;
+WARWICK:
+So, my lord, my lord, I have but it.
+
+&lt;|paragraph|&gt;
+KING RICHARD III:
+But then I do my uncle&#x27;st, my lord,
+To do I to the crown&#x27;d, and thy face.
+
+&lt;|paragraph|&gt;
+QUEEN ELIZABETH:
+Now, what I would I&#x27;ll give me,
+
+&lt;|paragraph|&gt;
+</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 42 · 160 generated tokens</small><pre> more than he was,
+And, for my lord, to see:
+Away, my love, for thy father,
+I am too much as I&#x27;ll not so.
+
+&lt;|paragraph|&gt;
+BUCKINGHAM:
+No, good lord, sir, that I think you have with your mother;
+As he would I was not have I have more than your honour,
+My soul was my lord, my lord;
+I shall not have been in this gentleman,
+Than what I do not so; but &#x27;tis not be,
+That thou know I have done to me,
+And to the king.
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+
+&lt;|paragraph|&gt;
+KING EDWARD IV:</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 123 · 160 generated tokens</small><pre> will I do I.
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+O, madam, my lord, my husband.
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+
+&lt;|paragraph|&gt;
+BUCKINGHAM:
+My lord, my lord.
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+Well, I would I cannot do.
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+Well, I wouldst thou, to your father&#x27;s blood.
+
+&lt;|paragraph|&gt;
+QUEEN ELIZABETH:</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 42 · 160 generated tokens</small><pre> I would have a little;
+He will not to me to see: then, I&#x27;ll say it.
+
+&lt;|paragraph|&gt;
+ROMEO:
+My lord, sir, but I&#x27;ll be a man,
+My soul, and, I have done, but a doth she was dead.
+
+&lt;|paragraph|&gt;
+JULIET:
+Nay, I have no more than my face,
+And I&#x27;ll tell me, no more.
+
+&lt;|paragraph|&gt;
+Nurse:
+Ay, I cannot be gone, sir.
+
+&lt;|paragraph|&gt;
+JULIET:
+Now, I would you that I cannot be,
+The heavens have heard of a word to-day:
+I&#x27;ll tell</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 123 · 160 generated tokens</small><pre> and I do I must have a little:
+I am a child, I have seen, if my heart;
+Or shall be not, as I do, I will,
+With a child, no more of it not have
+Of our general, and then to be a time
+But to-t a bawdils of her good-morrow;
+But I cannot speak no more
+Myself to thee to do; and I have I am
+As now in a time,
+I&#x27;ll take your brother to have been so, I cannot do.
+
+&lt;|paragraph|&gt;
+POLIXENES:
+Ay, but I wouldst it,
+A man, sir, what I would be your tongue
+And, I can be to be gone,</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 42 · 160 generated tokens</small><pre>
+
+&lt;|paragraph|&gt;
+QUEEN MARGARET:
+It is my love, for thy father,
+And let me from me, and I will.
+
+&lt;|paragraph|&gt;
+BUCKINGHAM:
+Thou liest, my heart that I think thy head?
+I&#x27;ll speak it were a man&#x27;s face.
+
+&lt;|paragraph|&gt;
+KING EDWARD IV:
+Why, I know, and the crown and I not from his blood.
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+
+&lt;|paragraph|&gt;
+QUEEN ELIZABETH:
+And I am no more, as he, for our son,
+But that he be the dost thou wert.</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 123 · 160 generated tokens</small><pre>
+
+&lt;|paragraph|&gt;
+GLOUCESTER:
+I am I did, my lord;
+Or else to be the king, so, for I&#x27;ll come to his friends.
 
 &lt;|paragraph|&gt;
 QUEEN ELIZABETH:
 How may we have of Norfolk,
-In that I, then, but not like a king&#x27;st me!
+In that I, then, but not like a king&#x27;st,
+A little more to thee to do;
+That ever I am I have a little.
 
 &lt;|paragraph|&gt;
+LADY ANNE:
+You do to be the crown, and for his heart,
+In a king is his body&#x27;s son,
+As he didst not like a little else
+And in my death, the king&#x27;st,
+Thou</pre></article></details><details><summary>continued_ce / 12 retained samples</summary><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 42 · 160 generated tokens</small><pre> I would have a little
+And tell the hour that, to see the rest:
+And, it is a happy days;
+And let me take me what you not so.
+
+BENVOLIO:
+I&#x27;ll speak, and so, I have done,
+I would not for thyself to see;
+If it were a man&#x27;s not.
+
+ROMEO:
+I have no more but my face,
+And so long to the crown:
+And so much, I will keep it not that:
+And, &#x27;tis not, I, as thou wilt,
+As thou hast no less than the king.
+
+ROMEO:
+Nurse, be gone,
+O, then, be it be too much:
+I&#x27;ll tell</pre></article><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 123 · 160 generated tokens</small><pre> not to thy head.
+
+ROMEO:
+I&#x27;ll not by my lord; I shall be so;
+Or shall be not, as I do with a gentleman,
+That I&#x27;ll go at the time to thee.
+
+ROMEO:
+FRIAR LAURENCE:
+Now, I wouldst thou not for thee, and with thee;
+For &#x27;t thou wilt wilt die, I&#x27;ll be with thee.
+
+ROMEO:
+I&#x27;ll tell thee, thou not, thou not,--
+
+ROMEO:
+I shouldst thou hast thy brother&#x27;st!
+
+ROMEO:
+I know thou liest,
+A pretty word thou art not love&#x27;st.
+
+JULIET:
+O thou would</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 42 · 160 generated tokens</small><pre> be gone.
+
+ROMEO:
+Well, what is the king&#x27;s son,
+That it not for thy father&#x27;s hand:
+And yet I will keep the crown.
+
+JULIET:
+I&#x27;ll not be gone; and all&#x27;st not.
+
+ROMEO:
+I&#x27;ll tell thee, my son, I shall not.
+
+ROMEO:
+I have no more but my face,
+And I&#x27;ll tell thee, no more.
+
+ROMEO:
+O, that is that thou art a mother,
+That is as thou wilt have done to me,
+And never canst say not live.
+
+ROMEO:
+Come, I will do beseech you, be too.
+
+ROMEO:</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 123 · 160 generated tokens</small><pre> not to thee.
+
+JULIET:
+What is my lord?
+
+Nurse:
+Why, my lord?
+
+ROMEO:
+&#x27;Tis no, a word, and a thousand men
+My brother, I was nothing but to be.
+
+ROMEO:
+And then, good lady!
+
+ROMEO:
+I have done, that Romeo&#x27;s name:
+Where&#x27;s good love&#x27;s death is that word,
+And in a man, then I&#x27;ll take my life.
+
+ROMEO:
+O, a bawdo is thy face,
+And all my love is, but love in thy love,
+And I not like a little love&#x27;st.
+
+JULIET:
+What&#x27;s the</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 42 · 160 generated tokens</small><pre>&#x27;st on a little house
+My heart&#x27;s children, to see the king and thee
+That it not for thy father&#x27;s blood
+With all the father&#x27;s son and my crown&#x27;d me!
+
+KING RICHARD III:
+Ay, and all the blood is but a grave:
+And by the Tower, by God&#x27;s son,
+That he hath he were more in your honour,
+My soul was my gracious liege.
+
+KING RICHARD III:
+I, my lord, and not that is so;
+I had the cause, or is dead;
+Or that thou doth say &#x27;tis the king.
+
+KING RICHARD III:
+The king, to my lord: for that he be too much:
+I do not</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 123 · 160 generated tokens</small><pre>, I do I.
+
+KING RICHARD III:
+Go, my lord, if my lord;
+Or shall be not, as I do with a traitor,
+With a king, by the queen&#x27;s son,
+Of our father, his tongue to be my lord.
+
+KING RICHARD III:
+My Lord of my lord; let him have done.
+
+KING RICHARD III:
+I know what dost thou have I am in.
+
+KING RICHARD III:
+Well, I would I cannot do.
+
+KING RICHARD III:
+I am not a king; for I know.
+
+KING RICHARD III:
+That I would be your grace to be.
+
+KING RICHARD III</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 42 · 160 generated tokens</small><pre>: and I was, I have heard
+To do, to see the king and I&#x27;ll find it.
+
+KING EDWARD IV:
+And tell me not I will.
+
+KING EDWARD IV:
+I&#x27;ll not be true and give thee,
+To bear a king I will bear my head.
+
 GLOUCESTER:
-Why, I will, then I think my father&#x27;st,
-My Lord of my brother, to be married.
 
-&lt;|paragraph|&gt;
+GLOUCESTER:
+Now, we must not with your good?
+
+KING EDWARD IV:
+Well, my lord; you love thee, and then;
+I had not be, or you.
+
+GLOUCESTER:
+I&#x27;ll have done to you.
+
+GLOUCESTER:
+
+GLOUCESTER:
+
+KING EDWARD IV:
+</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 123 · 160 generated tokens</small><pre> gentleman to thee.
+
+QUEEN MARGARET:
+I am my lord, my father;
+Or else, then, as I do with a traitor,
+With that he is no more of it.
+
+QUEEN ELIZABETH:
+Why, gentle father, that I do beseech your grace
+To seek to your king.
+
+QUEEN ELIZABETH:
+I hope, my brother; I have a little grace
+In such a little less than my friends,
+To save my poor brother&#x27;s daughter&#x27;s death.
+
+QUEEN ELIZABETH:
+My lord, that is it, to your father&#x27;s blood
+That I would be your grace to my lie
+In that you have not my</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 42 · 160 generated tokens</small><pre> I would have a little
+the king, that I will be seen: then, I&#x27;ll say it.
+
+MERCUTIO:
+&#x27;Tis a letter, that is a bawd.
+
+Nurse:
+Nay, sir, come, sir.
+
+MERCUTIO:
+Away! he is a man; a man.
+
+ROMEO:
+My master is my daughter, good?
+
+ROMEO:
+I have not in a man; and I&#x27;ll give it so.
+
+MERCUTIO:
+No; I will I love me,
+have not the better than it.
+
+MERCUTIO:
+You have to do beseech you, sir; and I am a gentleman.</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 123 · 160 generated tokens</small><pre> and I will take it.
+
+JULIET:
+Go, I&#x27;ll give thee; I&#x27;ll bear my husband.
+
+JULIET:
+O, no, a word, and I love,
+My brother, I was not yet to be gone.
+
+ROMEO:
+I must say, I am not?
+
+JULIET:
+O, but it is a man that love&#x27;s death.
+
+ROMEO:
+I will, then I&#x27;ll take thee for you.
+
+Nurse:
+No, I&#x27;ll go, good sir.
+
+JULIET:
+I know that is it,
+Amen, I must not love thee to your tongue.
+
+JULIET:
+I</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 42 · 160 generated tokens</small><pre>
+
+QUEEN ELIZABETH:
+My gracious lord, then and mine own
+From all that thy father&#x27;s hand that hand
+And never, nor time will I&#x27;ll go;
+And for this is, then, that thou art,
+My brother, as a doth she was dead?
+
+QUEEN ELIZABETH:
+And so, in your honour, I have all.
+
+QUEEN ELIZABETH:
+Your majesty is no, I did;
+The time is that thou shalt prove it:
+I, as thou know I have done her father,
+And never canst say not live.
+
+QUEEN ELIZABETH:
+I do not be it in the earth.
+
+QUE</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 123 · 160 generated tokens</small><pre>
+
+QUEEN ELIZABETH:
+I&#x27;ll not by your grace&#x27;s house, my heart;
+Or else, then, as I do with a traitor,
+With that he is no more of it.
+
+QUEEN ELIZABETH:
+Why, my father, that I do beseech your grace
+
+QUEEN ELIZABETH:
+A little doubt, if I do love you.
+
+KING RICHARD III:
+My lord, I will not for you,--
+
+QUEEN ELIZABETH:
+Thou wilt say, then: by your tongue.
+
+QUEEN ELIZABETH:
+That I would be your grace to be.
+
+KING RICHARD III</pre></article></details><details><summary>continued_ul / 12 retained samples</summary><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 42 · 160 generated tokens</small><pre> I would have a little
+And tell the hour that, to see the rest:
+And, it not for thy father,
+I am too much as I&#x27;ll not so.
+
+JULIET:
+I&#x27;ll speak, then; and I have done,
+I would not for thyself to see me:
+And, I had rather have been an oath,
+Thy, I could not by my face,
+And I&#x27;ll tell thee, no more.
+
+ROMEO:
+O, that is that thou art a mother,
+That is as thou wilt have done to me,
+And never canst say not live.
+
+ROMEO:
+Come, I will do beseech you, be too.
+
+ROMEO:</pre></article><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 123 · 160 generated tokens</small><pre> not to thy head.
+
+ROMEO:
+I&#x27;ll not by my lord; I shall be so;
+Or shall be not, as I do with a gentleman,
+With a thousand times, and I love,
+My brother, I was nothing but to be gone.
+
+ROMEO:
+I must be not for her good?
+
+JULIET:
+O, but it is my son:
+It is the queen; I have a little:
+But then I&#x27;ll take my life to thy love.
+
+ROMEO:
+I&#x27;ll go, good sir.
+
+ROMEO:
+Ay, but I will go: you shall.
+
+JULIET:
+Well, what is the king&#x27;st thou art not?</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 42 · 160 generated tokens</small><pre> be gone.
+
+ROMEO:
+Well, what is the king&#x27;s son,
+That it not for thy father&#x27;s hand:
+And yet I will keep the crown.
+
+JULIET:
+I&#x27;ll not be gone; and all&#x27;st not.
+
+ROMEO:
+I&#x27;ll tell thee, my son, I shall not.
+
+ROMEO:
+I have no more but my face,
+And I&#x27;ll tell thee, no more.
+
+ROMEO:
+O, that is that thou art a mother,
+That is as thou wilt have done to me,
+And never canst say not live.
+
+ROMEO:
+Come, I will do beseech you, be too.
+
+ROMEO:</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 123 · 160 generated tokens</small><pre> not to thee.
+
+JULIET:
+What is my lord?
+
+Nurse:
+Why, my lord?
+
+ROMEO:
+&#x27;Tis no, a word, and a thousand men
+My brother, I was nothing but to be.
+
+ROMEO:
+And then, good lady!
+
+ROMEO:
+I have done, that Romeo&#x27;s name?
+
+JULIET:
+And I have I am in thee
+In such a man&#x27;st thou hast done so?
+
+ROMEO:
+I&#x27;ll go, good sir.
+
+JULIET:
+I know that name that you shall.
+
+JULIET:
+Well, what is the king?
+
+ROMEO:</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 42 · 160 generated tokens</small><pre>&#x27;st on a little house
+My heart&#x27;s children, to see the king and thee
+That it not for thy father&#x27;s blood
+With all the father&#x27;s son and my crown&#x27;d me!
+
+KING RICHARD III:
+Ay, and all the blood is but a grave:
+And by the Tower, by God&#x27;s son,
+That he hath he were more in your honour,
+My soul was my gracious liege.
+
+KING RICHARD III:
+I, my lord, and not that is so;
+I had the cause, or else thou know;
+But thou hast, as I am the king.
+
+KING RICHARD III:
+The king, to my name is dead; I be too much:
+I do not</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 123 · 160 generated tokens</small><pre>, I do I.
+
+KING RICHARD III:
+Go, my lord, if my lord;
+Or shall be not, as I do with a traitor,
+With a king, by the queen&#x27;s son,
+Of our father, his tongue to be my lord.
+
+KING RICHARD III:
+My Lord of all.
+
+KING RICHARD III:
+My Lord of York&#x27;s good lord.
+
+KING RICHARD III:
+Here, then, to my lord.
+
+KING RICHARD III:
+Why, my lords, my brother&#x27;s name!
+
 KING RICHARD III:
 Come, my lord.
 
-&lt;|paragraph|&gt;
-QUEEN ELIZABETH:
-
-&lt;|paragraph|&gt;
-GLOUCESTER:
-And, that thy heart withal
-That we&#x27;ll give me to your grace.
-
-&lt;|paragraph|&gt;
-QUEEN EL</pre></article><article><h3>Penalty only · default</h3><small>17.8% repeated four-token phrases</small><pre> and I do I must have a king.
-
-&lt;|paragraph|&gt;
-QUEEN ELIZABETH:
-Ah, my lord, so, for I&#x27;ll come to his friends.
-
-&lt;|paragraph|&gt;
-QUEEN ELIZABETH:
-How may we are no blood of York;
-My Lord Hastings, but not like a king&#x27;st me!
-
-&lt;|paragraph|&gt;
-GLOUCESTER:
-Why, what you, then I&#x27;ll take your brother Richard,
-To save my poor Margaret.
-
-&lt;|paragraph|&gt;
 KING RICHARD III:
-Well, I will give it be the crown&#x27;d,
-Of what love the house of death to-morrow
-In an envious-hearted Edward,
-In this is his father&#x27;st to the other eyes,
-But for the Lord Hastings, and then you all my lord.
+I have been much to the prince.
 
-&lt;|paragraph|&gt;
-QUEEN</pre></article><article><h3>Penalty + hard phrase guard</h3><small>0.0% repeated four-token phrases</small><pre> and I do I must have a king.
+KING</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 42 · 160 generated tokens</small><pre>: and I was, I have heard
+To do, to see the king and I&#x27;ll find it.
 
-&lt;|paragraph|&gt;
+KING EDWARD IV:
+&#x27;Tis not, my lord; and I am content.
+
+LADY GREY:
+I have no more than a doth answer to woe.
+
+GLOUCESTER:
+How now? is a word to the time?
+
 QUEEN ELIZABETH:
-Ah, my lord, so, for I&#x27;ll come to his friends.
+O, my lord, &#x27;tis time;
+And I do not so; for &#x27;tis not of this,
+I&#x27;ll call a woman&#x27;s daughter of the night
+The better than it may do beseech your grace,
+You have to do beseech you, to you well:
+I do you</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 123 · 160 generated tokens</small><pre> gentleman to thee.
 
+QUEEN MARGARET:
+I am my lord, my father;
+Or else he shall be it in this:
+If, that is too late I would have a thousand men
+My brother, I was nothing else to be;
+But, to be a king, for that love I,
+But &#x27;tis too; or &#x27;t thou wert.
 
-&lt;EO, is the day I was her brother of grief?
+LADY GREY:
+No; I have a little:
+But then I&#x27;ll take your brother,
+Or I would I cannot do.
 
-&lt;INGHAM: I do we will not all,
-But but not like a king&#x27;st me withal.
+GLOUCESTER:
+I am not a king; for I know that time
+As well I do not like a little love.
 
-, I do I hope, be as we have you now in thee
-That it is to my hands for you,--
+LADY ANNE:
+Thou wilt</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 42 · 160 generated tokens</small><pre> I would have a little man
+beo my husband, to see her: and I&#x27;ll say it.
 
-&lt;&#x27;er the Duke of my lords, and leave him be your love:
-And yet, but I will give it,
-A king, like a little else we will.
+MERCUTIO:
+&#x27;Tis a letter, that is a bawd.
 
-3 KING HEN ELIZELOKE OF YORK:
-Thou art thou, for our grace and that thy heart,
-For what we&#x27;ll give me to make mine?
-And he cannot die my lord?
-The rest,</pre></article></div></details><details><summary>JULIET: If love be · seed 7</summary><div class="sample-grid"><article><h3>Original sampling</h3><small>8.6% repeated four-token phrases</small><pre>, I was thy love, and thou
-But, and what thou hast to be, or now.
+Nurse:
+Nay, sir; I am but a tardy as I have to see the
+and as he would say, if it were a woman in
+that, I have not for it with a good?
 
-&lt;|paragraph|&gt;
-JULIET:
-IET: if you would have no,
-And if they&#x27;ll give me, for that she was in the other
-For now thou art thou dost, my lie;
-For &#x27;twas I am not speak I will have done.
-
-&lt;|paragraph|&gt;
-JULIET:
-Ay, and be so, what&#x27;st thou wilt thou?
-
-&lt;|paragraph|&gt;
-Romeo, and I shouldst say,
-And he wouldst thou dost not have
-To be, thou not: I think, I was,
-I would I be so, for the king,
-And that have but this be a little,
-By this is not, let him to your grace,
-And I say, my heart in the doth:
-</pre></article><article><h3>Penalty only · default</h3><small>15.2% repeated four-token phrases</small><pre>, I was thy love thee,
-In all that thou, thou wast to be.
-
-&lt;|paragraph|&gt;
-JULIET:
-Thou art thou wert thou but this?
-
-&lt;|paragraph|&gt;
 ROMEO:
-I wouldst not so the word.
+I have not in a man; it is not a man; for a
+but I am a man; if it is a man&#x27;s
+to say &#x27;tis the better than it? I&#x27;ll find you to
+of, I have to do beseech you, sir; and I am a
+it</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 123 · 160 generated tokens</small><pre> and I will take it.
 
-&lt;|paragraph|&gt;
+BAPTISTA:
+I am I am, sir, if I know you,
+A gentleman, if it be so, that you must be gone.
+
+BENVOLIO:
+Marry, then, I am too much.
+
+LADY CAPULET:
+Thou art not too; I cannot speak.
+
+Nurse:
+Why, then, what is that I have you now?
+
+Nurse:
+I&#x27;ll be you, sir?
+
+PETRUCHIO:
+How now, he is your love?
+
+BENVOLIO:
+Nay, I do not: but what love&#x27;st.
+
 JULIET:
-Why, he is I will have thee to thee.
+You will not</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 42 · 160 generated tokens</small><pre>
 
-&lt;|paragraph|&gt;
+QUEEN ELIZABETH:
+My gracious lord, then and mine own
+From all that thy father&#x27;s hand that hand
+And never didst not so.
+
+QUEEN ELIZABETH:
+O, and it is not so, as a doth she;
+I&#x27;ll give thee as it were a man&#x27;s face.
+
+KING RICHARD III:
+Away with my liege.
+
+QUEEN ELIZABETH:
+If he is not for that is?
+
+QUEEN ELIZABETH:
+The king&#x27;st thou hast no less
+The better than it? hath done by me?
+
+QUEEN ELIZABETH:
+I do not for that thy sovereign,
+</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 123 · 160 generated tokens</small><pre>
+
+QUEEN ELIZABETH:
+I&#x27;ll not by your grace&#x27;s house, my heart;
+Or else he shall be as I do with a king,
+With that he is no more of it.
+
+QUEEN ELIZABETH:
+Why, my lord, that I do beseech your grace
+
+QUEEN ELIZABETH:
+A little doubt, if I do love you.
+
+KING RICHARD III:
+My lord, I will not for you,--
+
+QUEEN ELIZABETH:
+Thou wilt say, then: by your tongue.
+
+QUEEN ELIZABETH:
+That I would be your grace to be.
+
+KING RICHARD III</pre></article></details><details><summary>classic_42 / 12 retained samples</summary><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 42 · 160 generated tokens</small><pre> by his king&#x27;s
+But, but that we have seen in such a king
+To-busity.
+
+LEONTES:
+I&#x27;ll meet him.
+
+SICINIUS:
+What is no more, I am much.
+
+ROMEO:
+I thank you!
+
+
+ROMEO:
+Why, but, sir; then I am, if thou shalt be
+And I have be a cumb&#x27;d.
+
+GLOUCESTER:
+The good cousin, but I&#x27;ll see you should be so.
+
+QUEEN MARGARET:
+What&#x27;s not:
+No, I&#x27;ll tell me; and I&#x27;ll do it, my friends.
+
+BENVOLIO:
+And yet thou not not, my lord.
+
+ROMEO:
+So I have too.
+
+
+QUEEN MARGARET</pre></article><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 123 · 160 generated tokens</small><pre> I say, and his heart,
+I&#x27;ll be a noble lord, for my father&#x27;s blood
+And for a fudy, and thy royal prince!
+
 JULIET:
-How! and then thou wert thou art thou hast made thee!
-And, that thou shalt say you in thee,
-I was not love&#x27;st a little:
-The dost thou shalt never to thyself,
-That thou shouldst thee, when thou doth be so?
-O thou, that thou would have but thy eye.
-How may I could I may be not love;
-That, for thou art not be ant me in this world:
-</pre></article><article><h3>Penalty + hard phrase guard</h3><small>0.0% repeated four-token phrases</small><pre>, I was thy love thee,
-In all that thou, thou wast to be.
+Nay, thou art not, good, I have you will have no more
+That all the matter.
 
-&lt;|paragraph|&gt;
+CLARENCE:
+Now, and it shall have I am I know,
+The gods have the crown&#x27;d me:
+That you&#x27;ll be the grace.
+
+Nurse:
+A prince, my life.
+
+KING RICHARD III:
+My lord; I shall you, and you will not see the king,
+To the people, I&#x27;ll do&#x27;t.
+
+KING EDWARD:
+What is a brother?
+
 JULIET:
-Thou art thou wert thou but this?
+My father, your lord, my lord.</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 42 · 160 generated tokens</small><pre> be be;
+A traitor, but that we have seen in such
+Than that I think it,
+If you would I must be been: I have been.
 
-&lt;ingbroke is a little wilt not so many of it,
-For now thou art thou dost thou hast thou shouldst thou shalt say,
-That he hadst thou shalt have no more than to make thee.
+MENENIUS:
+For you would I am&#x27;t:
+I am.
 
-To what thou shalt tell me thy soul&#x27;st thou hast thou wert love;
-Thou know that thou not, and thou liest thou shaltst,
-I&#x27;ll say, thou,
-As I shall be so, thy death to thee, thou not:
-But thou, for thou wouldst thou, be so,
-Which thou wilt thou art: but thy eye thee, and the air
-And yet, with death to that thou hast thou art:
-He hath been in this night&#x27;st,</pre></article></div></details></section>
-<section><h2>Use the new studio</h2><p>Open <strong>VV-GPT4 Preview</strong> on your desktop. Training, Playground, Datasets and My models are the four main views. The original models appear alongside your new experiments. Advanced settings stay tucked away until needed.</p><p>All new work is local on <code>enhance-original-models</code>. The earlier assistant alpha is retained on <code>archive/assistant-alpha</code>. The original VV-GPT3 launcher and files remain unchanged.</p></section>
-<footer>Evidence: docs/legacy-evidence.json · docs/training-comparison.json · docs/generation-comparison.json<br>Source lineage: XavierB100/vv-gpt3 @ 802d1a8 · Custom Transformer retained · No pretrained model weights</footer></html>
+Nurse:
+Your love your daughter of him.
+
+CORIOLANUS:
+&#x27;er, I do you:
+That we will to make you that, I think.
+
+GLOUCESTER:
+The good you must not, you, you should be so.
+
+QUEEN MARGARET:
+What&#x27;s you:
+No, I&#x27;ll tell him.
+
+CORIOLANUS:
+The day! what is not speak.
+
+
+MENENIUS:
+I will you may;
+You are you will I have too.
+
+
+MENENIUS:</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 123 · 160 generated tokens</small><pre> I say,
+And we will die and the king,
+And I had I would not his royal father&#x27;s a man
+My lord.
+
+
+KING HENRY VI:
+If I may be no;
+The time I have you will have no more:
+I&#x27;er.
+
+CLARENCE:
+Now, and it shall have I am I know,
+The gods have.
+
+GLOUCESTER:
+Now, my brother:
+To be a day, I have a word to say.
+
+KING RICHARD III:
+My lord; I shall you, and you will not see;
+The other, the fid.
+
+ROMEO:
+The bums in the house of him?
+
+KING RICHARD III:
+I have no more.
+
+</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 42 · 160 generated tokens</small><pre> of his king.
+
+GLOUCESTER:
+I have not in the cause.
+
+
+BENVOLIO:
+If you, good lords, sir.
+
+DUKE OF YORK:
+Where is as you would I am&#x27;t:
+I am.
+
+Nurse:
+Your love the Tower.
+
+CORIOLANUS:
+Your lady&#x27;s not, I do not:
+That we will I, that thou, I think.
+
+GLOUCESTER:
+The good you must not, if it, and you;
+I cannot make your noble lady,
+And I do not as I&#x27;ll tell him.
+
+CAPULET:
+The day! I will not speak a pillor.
+
+Clown:
+How;
+You are you will the magest.
+
+CORIOLANUS:</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 123 · 160 generated tokens</small><pre> shall say, and his heart,
+I&#x27;ll be a noble lord, for my father&#x27;s blood
+And for a fudy, and thy royal prince,
+That he&#x27;sters their queen, with thy father,
+And thou hast thou hast my father&#x27;st.
+
+GLOUCESTER:
+Why,
+I know it shall have I speak thy hand,
+The gods have thy heart?
+
+ROMEO:
+
+We have a til of thy lord.
+
+QUEEN ELIZABETH:
+
+If I know, my lord?
+
+BUCKINGHAM:
+I&#x27;ll make my brother, my lord, I do,
+Is I be.
+
+KING RICHARD II:
+I am it be my Lord of your eyes,
+
+And, that my queen&#x27;st:</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 42 · 160 generated tokens</small><pre> of his king.
+
+GLOUCESTER:
+I have seen in the cause.
+
+
+BENVOLIO:
+If you would I must be been:
+And have you say it in my brother,
+And, I am much to see;
+That you will be a stun&#x27;d
+The noble queen&#x27;s good more, and so late,
+To do not be so much for I,
+I will have your grace and in the Tower.
+
+ROMEO:
+If you, you should you;
+I cannot make your noble lady,
+And I do not so more, my mother.
+
+CORIOLANUS:
+The day!
+I&#x27;ll speak a pillor:
+But that I am not;
+You have done, the magest.
+
+QUEEN MARGARET</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 123 · 160 generated tokens</small><pre> as a noble man?
+
+QUEEN ELIZABETH:
+I know my lord, I would not but a father&#x27;s a man
+My lord.
+
+Clown:
+A very man?
+
+CAMILLO:
+No, I have you shall you have no more:
+I&#x27;er.
+
+QUEEN MARGARET:
+Nay, it shall have I am I know,
+The gods have.
+
+GLOUCESTER:
+Now,
+We have a tiled,
+We have a very other as the people.
+
+PAULINA:
+Which, what I shall you,
+I will not see the king, I do, I will.
+
+ROMEO:
+The bums in the house of him?
+
+POLIXENES:
+My father, your lord, sir.
+</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 42 · 160 generated tokens</small><pre> by his king.
+
+GLOUCESTER:
+I have not in the cause.
+
+
+BENVOLIO:
+If you, good lords, sir.
+
+DUKE OF YORK:
+Where is as you would I am&#x27;t:
+I am.
+
+Nurse:
+Your love your daughter of him.
+
+CORIOLANUS:
+&#x27;Tis I am, if thou shalt be but I am,
+I will have your grace and in the Tower.
+
+ROMEO:
+If you, you should you;
+I cannot make your noble lady,
+And I do not as I&#x27;ll tell him.
+
+CORIOLANUS:
+The day!
+
+SICINIUS:
+And, sir, sir; and I am not;
+You are you will I have too.
+
+
+MENENIUS:</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 123 · 160 generated tokens</small><pre> I say, and his heart?
+
+ANGELO:
+I have not, I would not but you,
+And you to the crown of thy royal prince.
+
+JULIET:
+I may be no:
+A time I have you will have no more:
+I&#x27;er.
+
+CLARENCE:
+Now, and it shall have I am I know,
+The gods have.
+
+GLOUCESTER:
+Now, my lord, if you, I am it.
+
+QUEEN ELIZABETH:
+But I&#x27;ll make your lord, I am not do not be,
+
+How that he can you know I do, I will.
+
+ROMEO:
+The bumed in the house of him?
+
+JULIET:
+My father, your lord, my lord.</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 42 · 160 generated tokens</small><pre>
+
+Nurse:
+I will not that we have seen in the cause.
+
+
+BENVOLIO:
+If you would I must be been:
+And have you say it in my brother,
+And, I am much to see;
+That you will be a stun&#x27;d
+The noble queen&#x27;s good more,
+And then I am he may be in the fud&#x27;d,
+And, I think I&#x27;ll be a man.
+
+ROMEO:
+If you, you should be so.
+
+QUEEN MARGARET:
+What&#x27;s not:
+No, I, my mother, and I&#x27;ll swear
+The day of my name.
+
+Nurse:
+
+I thank you are you may;
+You are my lord.
+
+GLOUCESTER:
+
+To see</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 123 · 160 generated tokens</small><pre> I say, and his heart to me;
+
+KING RICHARD III:
+And I will be seen, for a man,
+To bear thy royal prince!
+
+JULIET:
+I may be no;
+A thock have you will have no more:
+I&#x27;er.
+
+CLARENCE:
+Now, and it shall have I am I know,
+The gods have.
+
+GLOUCESTER:
+Now, my brother:
+To be a day, I have a word to say.
+
+KING RICHARD III:
+My lord; I shall you, thou, my brother,
+The world is dead, I will.
+
+ROMEO:
+The bums in the house of him?
+
+KING RICHARD III:
+I have no more, what is</pre></article></details><details><summary>revised_42 / 12 retained samples</summary><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 42 · 160 generated tokens</small><pre> by his king&#x27;s death.
+
+ROMEO:
+O, come, so we have a tapbar of his good,
+And he&#x27;st thou hast a fudge that is no matter,
+But to be a thing.
+
+Nurse:
+How now,
+The king is not so so much to the people,
+To do him in the fudence of this world,
+That I&#x27;ll be a man, for they are to do.
+
+ROMEO:
+Well, and thou hast been a man, as thou art.
+
+KING RICHARD III:
+I must be the king, and thou shalt be the people.
+
+JULIET:
+But that thou art a porty that she will be not,
+Which he, of thee</pre></article><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 123 · 160 generated tokens</small><pre> I say, and I speak,
+I&#x27;ll give my noble lord.
+
+CAMILLO:
+No, for a woman,
+To bear your royal crown!
+
+JULIET:
+Nay, thou art not to see it it.
+
+JULIET:
+I will not go, as I should not give him:
+O, my lord, and I know, we do not know.
+
+GLOUCESTER:
+Now, what that the duke is a cagyy
+And tell us all the people.
+
+PAULINA:
+My lord,
+And you that is, my lord, I&#x27;ll know it.
+
+Second Senator:
+I will not have done, you will come to be;
+And, for that you have been too: he will not
+A</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 42 · 160 generated tokens</small><pre> not be;
+And, for I will not be so in the hand;
+And yet they do not be much: I must be;
+He was a cetares to take for them.
+
+BUCKINGHAM:
+I am not the sun, and I&#x27;ll be the Tower.
+
+CORIOLANUS:
+Thou wilt not be done!
+
+Clown:
+O, I see, my lord.
+
+LADY ANNE:
+How, good cousin!
+
+MENENIUS:
+I would not be done:
+I cannot be a subject: I&#x27;ll not say,
+I&#x27;ll make his take; and, but then I can tell,
+And, not so far as you are much.
+
+ROMEO:
+So I have too too.
+
+CORIOLANUS:</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 123 · 160 generated tokens</small><pre> be a noble man?
+
+QUEEN ELIZABETH:
+The noble lord, my lord, and his friends,
+And you shall have done me, and do me do.
+
+GLOUCESTER:
+Why, I am, I have you so much more.
+
+GLOUCESTER:
+The king hath not the king&#x27;s death, and it shall,
+In thy hand, we had not know thy heart.
+
+ROMEO:
+O, the duke is a cood, and with a word.
+
+MERCUTIO:
+I will not speak in the king of the world,
+And with a man&#x27;s blood, and I, as you were,
+I will not have done, you will come to be;
+And, for that I have been too: she will, what is</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 42 · 160 generated tokens</small><pre> of his hands hath done.
+
+ROMEO:
+O, come, so we have been this ped-night.
+
+ROMEO:
+He&#x27;st thou, and my soul&#x27;s as thou art,
+But to be a thing.
+
+Nurse:
+How now,
+The king is not so so much to the people,
+To do him in the fudence of this world,
+That I&#x27;ll be the common king, and go
+To be our royal, and you were gone.
+
+Nurse:
+What! you are you?
+
+LADY CAPULET:
+I must be;
+For God&#x27;s as he did, and not, not so far
+That I was a porty-gell&#x27;d, and the crown of
+bu</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 123 · 160 generated tokens</small><pre> shall say, and what we will.
+
+ROMEO:
+A man, by the king and me, for a woman&#x27;s man,
+That he was but a cuny-lourpor with
+A thock. Ullil&#x27;d me, if thou say&#x27;st:
+How? O, as thou dost not speak me?
+
+HASTINGS:
+O, a gentleman!
+
+LEONTES:
+Ay, then, I am a very tit, my lord.
+
+KING RICHARD III:
+My lord, I&#x27;ll be, and you will not see the
+cunth, I am an a little king,
+To be his puded, and my Lord of your eyes,
+To have the crown&#x27;d by our own own</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 42 · 160 generated tokens</small><pre> of his king&#x27;s death.
+
+ROMEO:
+O, come, so we have but taped my mind:
+But what&#x27;s he&#x27;s name, you&#x27;ll make it not that,
+And, I am not to see a traitor and to thee.
+
+KING RICHARD III:
+I&#x27;ll make it well, I&#x27;ll do you, if you be.
+
+ISABELLA:
+I will have your grace and in that.
+
+GLOUCESTER:
+Now, if it be so too; or now I had,
+That I&#x27;ll not hear you.
+
+LADY CAPULET:
+I must be;
+For God&#x27;s as he did, and not, not so far
+That I am a porty.
+
+First Murderer:
+Ay, good good brother</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 123 · 160 generated tokens</small><pre>, a noble lord.
+
+QUEEN ELIZABETH:
+The noble lord, my lord, and his friends,
+And you to the crown of thy royal crown!
+
+JULIET:
+Nay, thou art not to see it it.
+
+JULIET:
+I will not go, as I should not give him.
+
+KING RICHARD III:
+And, for we do not know thy heart.
+
+ROMEO:
+O, the duke is this: but it is the prince,
+And in the day is not, with you are gone;
+Or you, and you will not see the king.
+
+KING EDWARD IV:
+The king shall not have done, and I am,
+And she was, for I am not of mine:
+Ay, what is</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 42 · 160 generated tokens</small><pre> if you will give me.
+
+MENENIUS:
+O, come, I am no,
+My lord.
+
+LEONTES:
+You are a man;
+And what it is: as you would, I am much.
+
+ROMEO:
+I thank you, I&#x27;ll make him hence.
+
+CORIOLANUS:
+&#x27;Tis done!
+
+Clown:
+O, I&#x27;ll be a cature.
+
+GLOUCESTER:
+The good cousin is not well, it may be too;
+And thou art, by the gods&#x27; you are gone.
+
+LADY CAPULET:
+I must be;
+For God&#x27;s as he did, and not, not so far
+That I am a porty.
+
+First Murderer:
+Ay, good good brother</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 123 · 160 generated tokens</small><pre> I say, and you speak to me;
+Which he should have not, I would not go with him.
+
+KING RICHARD III:
+A prince!
+
+JULIET:
+Nay, thou art not to see it for you:
+
+YORK:
+O, cousin, as you should not give him?
+
+KING RICHARD III:
+And, my lord, that I had not a gentleman.
+
+LEONTES:
+Ay, then, I am a very tit, my lord.
+
+KING RICHARD III:
+My lord, I&#x27;ll be, and you will not see;
+The other of the people, I&#x27;ll do&#x27;t:
+The people, you will come, and will you hear,
+And, that you do not be a thing.
+</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 42 · 160 generated tokens</small><pre>
+
+Nurse:
+I will not.
+
+First Murderer:
+Ay, sir, my lord; my lord.
+
+Second Keeper:
+I have you so.
+
+CORIOLANUS:
+You are you, sir.
+
+ROMEO:
+I thank you, I&#x27;ll make him hence.
+
+CORIOLANUS:
+&#x27;Tis done!
+
+Clown:
+O, I&#x27;ll be a cature.
+
+VOLUMNIA:
+The good lady
+As I&#x27;ll see you that would tell your grace.
+
+JULIET:
+I must not do.
+
+First Gentleman:
+I must be the king, and then, and not a a pillor.
+
+Clown:
+How were you a little?
+
+MENENIUS:
+Ay, good good brother</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 123 · 160 generated tokens</small><pre> I say, and what thou dost,
+For thy father&#x27;s death, for I would not go:
+So is the city to this father, and thy brother.
+
+KING RICHARD III:
+To do it, how I have a happy name
+Of my grace, the mutals of his father:
+O, my lord, and thy hand, and my brother&#x27;s.
+
+GLOUCESTER:
+Now, my lord, if you have a traitor with the
+And tell us all the people&#x27;s eye.
+
+DUCHESS OF YORK:
+O, that thou art my brother, I&#x27;ll know
+To the fasces of my love, and see him,
+And I am a brother, for they are in this
+A mound-wer&#x27;d by</pre></article></details><details><summary>classic_123 / 12 retained samples</summary><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 42 · 160 generated tokens</small><pre> by his king,
+In our hand that we have seen in the hand;
+I&#x27;ll never do not my lord.
+
+ROMEO:
+He&#x27;st thou hast thou canst not that,
+And I am thy king to me for thy death.
+
+First Senator:
+
+The king, that you will, and I may I am,
+But I say we will I see, that,
+That I&#x27;ll be that thou canst not?
+
+KING HENRY VI:
+My lord;
+I cannot make thy lord, sir!
+
+KING RICHARD III:
+I&#x27;ll make his lord, and thy heart of thy father.
+
+WARWICK:
+To me not not, my lord, my lord, I had been the rest,
+Which you, I see</pre></article><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 123 · 160 generated tokens</small><pre> I say,
+And for him and the world hath he&#x27;s death,
+And I not his royal father&#x27;s a woman,
+To bear thy royal prince,
+That he&#x27;st thy father&#x27;st with thy father,
+And thou hast thou hast thee:
+And I do not in the stamyy-day,
+And I could never be dead, my brother&#x27;st,
+And I may I&#x27;ll meeting the blood.
+
+Nurse:
+A prince, my life,
+And now!
+
+DUCHESS OF YORK:
+And you, thou! my brother, I, for my father,
+Is an a little love, and I am,
+And I am a brother, like, for that I fear,
+Where is a millst</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 42 · 160 generated tokens</small><pre> be a king.
+
+GLOUCESTER:
+I have not in the cause!
+
+
+BENVOLIO:
+If you:
+I say, he&#x27;st thou hast a man!
+
+AUTOLYCUS:
+To take my lord.
+
+ROMEO:
+I thank you! I may
+
+ROMEO:
+I will, sir; then I am he may be in.
+
+LEONTES:
+I will have your grace:
+That thou canst thou?
+
+KING HENRY VI:
+I would not be done to make thy life,
+I must I do not as I&#x27;ll tell me.
+
+CAPULET:
+Why, and my lord!
+
+Nurse:
+No, you have I am not; that may I had not the rest,
+A king, I see</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 123 · 160 generated tokens</small><pre> I say,
+And for him and the world hath he&#x27;s death,
+And I will tell me, for a woman of the crown.
+
+CAPULET:
+A sweet lord;
+But thou art thou art, I have been a budes
+I will tell the morted in the king;
+In thy grace in the king and thy hand,
+The gods have thy heart&#x27;st:
+That you, that the ground, as he was a very tamy
+And in thy blood is not,
+And in the king of the feted with my brother,
+The world and my noble lord,
+And do not in the king,
+To see the house of him,
+As I am not this,
+But then, by my lords</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 42 · 160 generated tokens</small><pre> of his king.
+
+GLOUCESTER:
+I have seen in the cause.
+
+
+BENVOLIO:
+If you:
+But what&#x27;st thou dost thou hast it.
+
+CORIOLANUS:
+I know I am much.
+
+ROMEO:
+I thank you! I may
+
+GLOUCESTER:
+I will, and I may I am he may be in the fudence,
+I will have your grace of his lord.
+
+GLOUCESTER:
+Now, if it, that would not be done to make thy life,
+I must I do not as I&#x27;ll tell me.
+
+CAPULET:
+Why, and my lord, I can not,
+Now, you have I am not;
+Which I had not the rest is the good king,
+And</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 123 · 160 generated tokens</small><pre> shall say,
+And we will die and the king of your blood,
+And I will tell me, for our lord,
+To bear thy royal prince I do.
+
+KING EDWARD IV:
+My lord, I have have you will have no more:
+I know, as the king:
+How shall not know it shall have I speak, and I&#x27;ll swear,
+By his face of her.
+
+QUEEN MARGARET:
+To see this,
+And with a word to the Duke of my lord.
+
+DUCHESS OF YORK:
+And you, thou, my brother, I have not know,
+I am an pour&#x27;d in your life,
+To see them, and my Lord of your eyes,
+My father, like my heart&#x27;st:</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 42 · 160 generated tokens</small><pre> of his king,
+In our hand that we have seen in the cause.
+
+
+BENVOLIO:
+If you:
+I say, he&#x27;st thou hast it is it not that is no more,
+But I must be a sweet and to my lord.
+
+BUCKINGHAM:
+The queen, good lord, and I may I am,
+But I say we will I see,
+And I think I&#x27;ll be that thou canst not?
+
+KING HENRY VI:
+My lord;
+I cannot make thy lord, sir:
+No, for me, no more than thou wilt not be made
+The day of my name&#x27;s death&#x27;s blood,
+To give you have done.
+
+QUEEN ELIZABETH:
+So I not thy life.
+
+
+KING</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 123 · 160 generated tokens</small><pre> as a noble man?
+
+QUEEN ELIZABETH:
+I know my lord, I would not but a father&#x27;s a man;
+To bear thy father, I do.
+
+GLOUCESTER:
+Why, I am, I have you shall not have no more:
+I know, as you, and his father?
+
+MENENIUS:
+To speak!
+
+Clown:
+Why, sir, sir?
+
+LEONTES:
+
+You&#x27;ll be a man! I have a word to say.
+
+CORIOLANUS:
+
+I will, what&#x27;st you, and you will not see the king.
+
+ANGELO:
+The duke.
+
+KING RICHARD III:
+I am he be a man, and not to me not,
+Where is a millst</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 42 · 160 generated tokens</small><pre> by his king&#x27;s
+In mine own father and you to the earth
+Than we have but this pent.
+
+LEONTES:
+You are not; and you say.
+
+CORIOLANUS:
+You are I am much.
+
+ROMEO:
+I thank you, I may
+The noble brother&#x27;s good lord,
+And then I am he may be in the fudence,
+And, I must I&#x27;ll be a man.
+
+ROMEO:
+If you, you should be so.
+
+QUEEN MARGARET:
+What&#x27;s not:
+No, I&#x27;ll tell me, and I&#x27;ll do not, my lord.
+
+KING HENRY VI:
+
+DUCHESS OF YORK:
+How, that may I had not the rest is the good king,
+And</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 123 · 160 generated tokens</small><pre> I say, and what we will.
+
+ROMEO:
+A country, I would not but a man?
+
+FLORIZEL:
+O, sir, I do.
+
+AUTOLYCUS:
+Why, I am, it not have you:
+And you have not, if you will not not:
+I do not know it shall have I am I know,
+The gods have the way a thousand: the matter?
+
+
+MENENIUS:
+I am a very sir, but to say.
+
+CORIOLANUS:
+
+I will, what I shall you, and you will not see you,
+So shall be, you.
+
+ROMEO:
+The people, you will come, a brother?
+
+POLIXENES:
+My father, your lord, and what is</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 42 · 160 generated tokens</small><pre>
+
+Nurse:
+I will not that we have seen in the cause.
+
+
+BENVOLIO:
+If you:
+I say, he&#x27;st thou hast a man!
+
+AUTOLYCUS:
+To take my lord.
+
+ROMEO:
+I thank you, I may not be no.
+
+CORIOLANUS:
+&#x27;er I am he may be?
+
+CORIOLANUS:
+The world, I must I&#x27;ll be,
+I have? I do not, if it, and you;
+I cannot make thy noble lady,
+And I do not as I&#x27;ll tell me.
+
+Third Senator:
+If thou, and I have a piring me;
+But, you may be to thy son?
+
+MENENIUS:
+Ay,
+But,</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 123 · 160 generated tokens</small><pre> I say, and what we will die;
+Thou hast in my lord, I would not but a man
+And not to the crown of thy father,
+And, so, my lord, thou art not to see it not have been:
+And you have thy brother&#x27;st thou never not:
+How I must not a great man I could never be dead,
+And I had not a true: the matter?
+
+QUEEN MARGARET:
+I am a very noble lord,
+No, I pray you know,
+And I am not do not be, and that my brother,
+The world and my noble lord,
+And do not in your life, and thou dost thou hast a brother,
+As I am not this,
+But then, by my lords</pre></article></details><details><summary>revised_123 / 12 retained samples</summary><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 42 · 160 generated tokens</small><pre> by his king&#x27;s
+In mine own father and a noble house;
+And we for her own, for my life, I must be
+Tieved upon your wife.
+
+CORIOLANUS:
+O, I am much.
+
+ROMEO:
+I thank you, I&#x27;ll make him all.
+
+CORIOLANUS:
+&#x27;Tis I now, if I be so; for I&#x27;ll be a
+win-morrow: I would not have been gone to do.
+
+ROMEO:
+Well, and I had heard you know, my lord.
+
+POLIXENES:
+I&#x27;ll make this?
+
+KING RICHARD II:
+I&#x27;ll speak a pillor.
+
+Clown:
+How, that may I had been the magriril,
+And</pre></article><article class="sample"><p class="prompt">ROMEO:
+The night is quiet, and</p><small>Seed 123 · 160 generated tokens</small><pre> I say,
+And we to your father&#x27;s heart is in them.
+
+LADY ANNE:
+My lord, you&#x27;ll stay it.
+
+MENENIUS:
+A matter, my lord:
+To do it, I have have a man to me;
+And yet I do say, and, and I do not know
+The man of her hands and so, if it be,
+And not a mater-graitation,
+Which with the earth will not take the Duke of blood
+I had not speak in the king of it.
+
+First Citizen:
+And, for I do, I am an a little love
+To see him on this man?
+
+MENENIUS:
+Let me not speak.
+
+SICINIUS:
+We are by</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 42 · 160 generated tokens</small><pre> be be, or so much
+But that we have seen in such a king
+To-biled my lord.
+
+ROMEO:
+He&#x27;st thou to the people&#x27;st, and the king;
+A queen, for thy death is in the rest,
+And in the king&#x27;st of it, and I am,
+To be the king, but that I was a world,
+And I&#x27;ll be a word.
+
+ROMEO:
+If thou do see thy hand; or now thou wouldst
+My noble husband&#x27;st: he is a man,
+And yet I must be made thy heart of thy father.
+
+WARWICK:
+To me, and thou hast not a portyy;
+What thou is the crown of York of thee</pre></article><article class="sample"><p class="prompt">JULIET:
+When morning comes, I shall</p><small>Seed 123 · 160 generated tokens</small><pre> stand in peace.
+
+KING EDWARD IV:
+The noble lord, my lord, and his friends,
+And you shall have too much, and do me do.
+I am a father&#x27;s crown; but, how it is:
+I&#x27;ll be the Tower, if you will be not:
+How shall I know it is so? and I know,
+The gods are the crown&#x27;d of her.
+
+QUEEN MARGARET:
+What, I am a very day to tell thee?
+
+KING HENRY VI:
+I will not be a word.
+
+KING RICHARD III:
+The world is an, I am an a little love
+To see him on this man?
+
+QUEEN ELIZABETH:
+I am not this, that I&#x27;ll be a man:</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 42 · 160 generated tokens</small><pre> of his king&#x27;s death.
+
+ROMEO:
+O, come, I am no more than my brother.
+
+GLOUCESTER:
+Foge him, you&#x27;ll make it not that, but the
+A world and to see the sea and to go.
+
+KING RICHARD III:
+I&#x27;ll make it well to the people, and he&#x27;s good,
+And by the matter, that will have your graceed:
+O, for your grace to our country,
+Which should you tell your grace to make him,
+That you must be gone.
+
+GLOUCESTER:
+My gracious lord, and I&#x27;ll live with me.
+
+WARWICK:
+To me, good lord, and then I will be done.
+
+MENENIUS:
+O, good good brother</pre></article><article class="sample"><p class="prompt">KING RICHARD III:
+My lord, the people</p><small>Seed 123 · 160 generated tokens</small><pre> shall be not so much;
+And then I will be your grace in their blood.
+
+HENRY BOLINGBROKE:
+I&#x27;ll stay again.
+
+ROMEO:
+A matter, my lord, thou shall not be,
+To have a happy head of my father&#x27;s head.
+
+GLOUCESTER:
+Why, I must know it in the king and me?
+
+HASTINGS:
+O, my lord!
+
+LEONTES:
+
+KING EDWARD IV:
+Then I have a word to say.
+
+KING RICHARD III:
+My lord, I shall be, and you will not see;
+The other shall be a man.
+
+ROMEO:
+The bipp-day is a brother?
+
+KING RICHARD III:
+I have no more mill&#x27;d</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 42 · 160 generated tokens</small><pre> of a king&#x27;s death.
+
+ROMEO:
+O, come, I am no more than my brother.
+
+GLOUCESTER:
+Foge him, you&#x27;ll make it not that, but the
+A world and to see a name and to thee.
+
+KING RICHARD III:
+I&#x27;ll make it well to the people, and he&#x27;s good,
+And by the matter, that will have your graceed:
+O, for your grace to our country,
+Which should you tell your grace to make him
+That I&#x27;ll take the queen of your father,
+And yet I must be made of the Tower.
+
+SICINIUS:
+And, not you.
+
+LEONTES:
+But that I have done
+What you should make no king, I did</pre></article><article class="sample"><p class="prompt">GLOUCESTER:
+I have a secret</p><small>Seed 123 · 160 generated tokens</small><pre>, a noble father,
+And what hath the king is in my country,
+And not his friends, for our body&#x27;s daughter,
+That you do me do the people&#x27;s heart
+But thou shall not be, and I have a happy
+And from my soul, I do say in the king.
+
+GLOUCESTER:
+I have not so much, for we had not know.
+
+GLOUCESTER:
+Now, my lord, and then I have been a very
+And tell thee as I, I&#x27;ll make your king&#x27;s life,
+And I have no man of my brother&#x27;s life,
+And I, I am an pogle: but, I&#x27;ll see them,
+And now, and not to this word, that we do,
+And by</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 42 · 160 generated tokens</small><pre> if you will give
+aaa.
+
+First Citizen:
+Ay, sir, you do not be you: I must be done:
+I have you so.
+
+CORIOLANUS:
+You are you, sir.
+
+First Citizen:
+We&#x27;ll be gone.
+
+ESCALUS:
+I will, sir; but I am, if you be so?
+
+CORIOLANUS:
+No, sir.
+
+VOLUMNIA:
+The good cousin
+Creft, you should be so.
+
+First Murderer:
+What&#x27;s you, you should be, you shall be seen, sir.
+
+JULIET:
+I will not speak to you, sir.
+
+Clown:
+How, that will I had been the magriril, I see</pre></article><article class="sample"><p class="prompt">Nurse:
+Come, my dear child,</p><small>Seed 123 · 160 generated tokens</small><pre> I say, and what we will.
+
+ROMEO:
+A man, I would not tell me, for a woman&#x27;s man,
+That I do not do the people&#x27;s queen,
+To do not to see it.
+
+QUEEN MARGARET:
+I will not go: I&#x27;ll not: how I do not know it.
+
+HENRY BOLINGBROKE:
+I do not know the way?
+
+ROMEO:
+O, the ground.
+
+Nurse:
+A prince, my lord.
+
+CORIOLANUS:
+
+DUCHESS OF YORK:
+O, we&#x27;ll tell you that he is, for I do,
+Is an a little love of your life,
+To see them, and will your grace and not to me
+To give your royal queen.
+
+</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 42 · 160 generated tokens</small><pre>
+
+Nurse:
+I will not.
+
+First Citizen:
+Ay, sir, my lord; my lord: I must be done:
+I have you so.
+
+CORIOLANUS:
+You are you, and to see the sea and to go.
+
+First Citizen:
+The queen&#x27;s good sir, it is not, and he&#x27;s one?
+
+CORIOLANUS:
+The world is a son.
+
+VOLUMNIA:
+The good cousin
+Creft, you should be so.
+
+First Murderer:
+What! you are gone?
+
+First Gentleman:
+I must be the king, and then I can tell,
+And, not not; and, I am a porty.
+
+First Murderer:
+Ay, I&#x27;ll see</pre></article><article class="sample"><p class="prompt">QUEEN ELIZABETH:
+Where is my son?</p><small>Seed 123 · 160 generated tokens</small><pre> I say, and what we will.
+
+RICHARD:
+A king, my lord, and you have said,
+If you go, or my lord, by the people&#x27;s queen
+But thou shall not be, and I have a happy
+And from my soul, I do say in the king.
+
+GLOUCESTER:
+I have not so much.
+
+HASTINGS:
+O, my lord!
+
+LEONTES:
+
+KING EDWARD IV:
+Then I have a word to say.
+
+KING RICHARD III:
+My lord, I shall be, and you will not see;
+The other shall be, you were a little love
+To see the world and will come to be;
+And, for I am not, that we&#x27;ll be a man:</pre></article></details></section><section><details><summary>Earlier negative results and training repairs</summary><p>The earlier compact-vocabulary pilot was faster per step but scored worse at both tested budgets. Its 800-step extension was exploratory. The original vocabulary stays available and remains the vocabulary default; the new architecture is the default for new runs based on the paired study, while continued models inherit their own architecture.</p><div class="table-wrap"><table><thead><tr><th>Vocabulary</th><th>Steps</th><th>Steady step</th><th>Test bits/byte ↓</th></tr></thead><tbody><tr><td>gpt2</td><td>400</td><td>52.57 ms</td><td>2.708</td></tr><tr><td>compact</td><td>400</td><td>25.49 ms</td><td>2.930</td></tr><tr><td>compact</td><td>800</td><td>25.84 ms</td><td>2.817</td></tr></tbody></table></div><p>Hard phrase blocking eliminated repeated phrases mechanically but distorted speaker labels. Unlikelihood reduced token repetition in the continued Shakespeare trial, yet word repetition worsened relative to ordinary continuation. Standard likelihood and unpenalized sampling therefore remain the defaults.</p><p>The new worker also saves best weights immediately, restores optimizer/random state on resume, excludes bias/norm vectors from weight decay, and retains raw uploads. Continued training uses a private run-local copy of the source checkpoint. Originals remain read-only.</p></details></section><section><h2>Research and reproducibility</h2><p>The architecture papers motivate experiments; their large-model results do not establish gains for VV-GPT. The unlikelihood objective is a bounded 32-token context adaptation, not a full paper reproduction. Protocol, configurations, hashes, measurements and all public samples are retained locally in the project.</p><div class="sources"><a href="https://arxiv.org/html/2305.07759v1">TinyStories ↗</a><a href="https://arxiv.org/html/2302.13971v1">LLaMA, section 2.2 ↗</a><a href="https://arxiv.org/abs/2002.05202">SwiGLU ↗</a><a href="https://arxiv.org/abs/1910.07467">RMSNorm ↗</a><a href="https://arxiv.org/abs/2104.09864">RoPE ↗</a><a href="https://arxiv.org/html/1908.04319v2">Unlikelihood training ↗</a><a href="https://arxiv.org/abs/2203.15556">Compute-optimal training ↗</a><a href="https://huggingface.co/datasets/roneneldan/TinyStories">TinyStories dataset ↗</a><a href="https://cdla.dev/sharing-1-0/">Dataset license / CDLA-Sharing-1.0 ↗</a><a href="https://shakespeare.mit.edu/hamlet/full.html">External Hamlet source ↗</a></div><p class="fine">TinyStories revision f54c09fd23315a6f9c86f9dc80f725de7d8f9c64; 17,275,507 bytes downloaded. No model weights, paid API or external inference service. Data and checkpoints stay in ignored runtime storage; public research evidence lives in docs.</p></section><footer>Source lineage: XavierB100/vv-gpt3 @ 802d1a8<br>Evidence: RESEARCH_PROTOCOL.md · coherence-results.json · stories-results.json · stories-continuation-results.json · chat-research-results.json · quality-review.json<br>Original VV-GPT3 project preserved. Work remains local on enhance-original-models.</footer></html>
