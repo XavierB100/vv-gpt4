@@ -1,0 +1,46 @@
+[
+  {
+    "name": "homemade-gpt",
+    "default_branch": "main",
+    "url": "https://github.com/XavierB100/homemade-gpt",
+    "files": {
+      "src/chat/chat.py": "f73c9094fe4490b5663b5a25c4100d26788fc0f7",
+      "src/models/enhanced_gpt.py": "2161fb5b435d28fe446a06b3dd7e5c01196c3c18",
+      "src/training/data_loader.py": "c2e2bc60313cf15b6b233727ecd845675473aa01",
+      "web_app.py": "7831f9fdad243f1ca654937b6520e37b87ef5117"
+    }
+  },
+  {
+    "name": "vv-gpt-mac",
+    "default_branch": "main",
+    "url": "https://github.com/XavierB100/vv-gpt-mac",
+    "files": {
+      "src/chat/chat.py": "1f0fd55698c629e18198d311aa891fd723a60de6",
+      "src/models/enhanced_gpt.py": "c09a548cd2ca5b4cac657973bc3796aede6edef6",
+      "src/training/data_loader.py": "0fa2e5d6da7786075bef87a9e080ae69a8ae1e52",
+      "web_app.py": "9006a6baf0e62ecc1df5a4bc1c139939bb6ab04d"
+    }
+  },
+  {
+    "name": "vv-gpt2",
+    "default_branch": "main",
+    "url": "https://github.com/XavierB100/vv-gpt2",
+    "files": {
+      "src/chat/chat.py": "5007e7a12c5a56c90a6736888dee22de7d68ae25",
+      "src/models/enhanced_gpt.py": "6a23fe2474adaea78ad017df35e47212fb8e01a6",
+      "src/training/data_loader.py": "22b3109c303d7f5694d7497569b174e3c8442e54",
+      "web_app.py": "381040e2912424e3b8ac672aa44641a6232022de"
+    }
+  },
+  {
+    "name": "vv-gpt3",
+    "default_branch": "main",
+    "url": "https://github.com/XavierB100/vv-gpt3",
+    "files": {
+      "src/chat/chat.py": "b4cdbca94ab473ac4fcd97c55cd89b773e1ea97a",
+      "src/models/enhanced_gpt.py": "6a23fe2474adaea78ad017df35e47212fb8e01a6",
+      "src/training/data_loader.py": "22b3109c303d7f5694d7497569b174e3c8442e54",
+      "web_app.py": "c10bd941f37ad642335634e30a2f07385db2f99b"
+    }
+  }
+]
